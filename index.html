@@ -1,0 +1,3066 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head><meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>upgrAIde Command Center · v3.6-simple</title>
+  <meta name="description" content="upgrAIde Command Center v3.6-simple — één bel-scherm, WVL-first, plain Dutch help" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --bg: #070a10; --bg-elev: #0e1420; --bg-card: #131b2b; --bg-hover: #1a2438;
+  --border: #243049; --border-soft: #1a2336;
+  --text: #eef2f9; --muted: #8b96ab; --faint: #5c6780;
+  --accent: #5b8def; --accent-2: #a78bfa; --accent-3: #ec4899;
+  --accent-soft: rgba(91,141,239,.14); --accent2-soft: rgba(167,139,250,.12);
+  --green: #34d399; --green-soft: rgba(52,211,153,.12);
+  --orange: #fbbf24; --orange-soft: rgba(251,191,36,.12);
+  --red: #f87171; --red-soft: rgba(248,113,113,.12);
+  --radius: 14px; --radius-sm: 10px;
+  --shadow: 0 8px 32px rgba(0,0,0,.45); --shadow-sm: 0 2px 12px rgba(0,0,0,.25);
+  --font: "DM Sans", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+  --nav-w: 248px;
+  --grad: linear-gradient(135deg, #5b8def 0%, #a78bfa 55%, #ec4899 100%);
+}
+[data-theme="light"] {
+  --bg: #f3f5fa; --bg-elev: #fff; --bg-card: #fff; --bg-hover: #f0f3f9;
+  --border: #d5dce8; --border-soft: #e8ecf4;
+  --text: #121826; --muted: #5a6478; --faint: #8b95a8;
+  --accent: #3b6fd9; --accent-soft: rgba(59,111,217,.1);
+  --shadow: 0 8px 28px rgba(18,24,38,.08); --shadow-sm: 0 2px 8px rgba(18,24,38,.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.55; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button, input, select, textarea { font-family: inherit; font-size: .9rem; }
+.app { display: flex; min-height: 100vh; }
+.nav {
+  width: var(--nav-w); flex-shrink: 0; background: var(--bg-elev);
+  border-right: 1px solid var(--border); padding: 1.15rem .8rem;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  display: flex; flex-direction: column; gap: .22rem;
+}
+.nav-brand { display: flex; align-items: center; gap: .65rem; padding: .35rem .5rem 1.05rem; border-bottom: 1px solid var(--border); margin-bottom: .55rem; }
+.nav-mark {
+  width: 38px; height: 38px; border-radius: 11px;
+  background: var(--grad);
+  display: grid; place-items: center; font-size: 1.05rem; flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(91,141,239,.35);
+}
+.nav-brand h1 { font-size: .98rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; }
+.nav-brand p { font-size: .68rem; color: var(--muted); font-weight: 500; }
+.nav-sec { font-size: .62rem; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); font-weight: 700; padding: .65rem .65rem .25rem; }
+.nav-btn {
+  display: flex; align-items: center; gap: .5rem; width: 100%;
+  border: none; background: transparent; color: var(--muted);
+  padding: .52rem .65rem; border-radius: 9px; cursor: pointer;
+  font-weight: 500; font-size: .84rem; text-align: left; transition: .15s ease;
+}
+.nav-btn:hover { background: var(--bg-hover); color: var(--text); }
+.nav-btn.active { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.nav-foot { margin-top: auto; padding-top: 1rem; display: flex; flex-direction: column; gap: .4rem; }
+.badge {
+  font-size: .65rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  padding: .28rem .55rem; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--muted); display: inline-block;
+}
+.badge.warn { border-color: var(--orange); color: var(--orange); background: var(--orange-soft); }
+.badge.danger, .badge.off { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.badge.ok { border-color: var(--green); color: var(--green); background: var(--green-soft); }
+.badge.info { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.theme-btn, .btn {
+  border: 1px solid var(--border); background: var(--bg-card); color: var(--text);
+  border-radius: 9px; padding: .48rem .8rem; cursor: pointer; font-weight: 600; transition: .15s;
+}
+.theme-btn:hover, .btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; }
+.btn.danger { border-color: var(--red); color: var(--red); }
+.btn.sm { padding: .32rem .6rem; font-size: .78rem; }
+.btn-row { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; }
+.main { flex: 1; min-width: 0; padding: 1.35rem 1.65rem 3.5rem; max-width: 1180px; }
+.topbar {
+  display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
+  gap: .85rem; margin-bottom: 1.35rem; padding-bottom: 1.05rem; border-bottom: 1px solid var(--border);
+}
+.topbar h2 { font-size: 1.45rem; font-weight: 800; letter-spacing: -.03em; }
+.topbar .sub { font-size: .84rem; color: var(--muted); margin-top: .2rem; max-width: 52ch; }
+.panel { display: none; }
+.panel.active { display: block; animation: fade .22s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: .75rem; margin-bottom: 1.15rem; }
+.kpi {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1rem 1.05rem; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+}
+.kpi.accent::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--grad);
+}
+.kpi .label { font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 700; }
+.kpi .value { font-size: 1.5rem; font-weight: 800; margin-top: .25rem; letter-spacing: -.03em; }
+.kpi .sub { font-size: .74rem; color: var(--muted); margin-top: .2rem; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.2rem 1.3rem; margin-bottom: 1.05rem; box-shadow: var(--shadow-sm);
+}
+.card h3 {
+  font-size: 1.02rem; font-weight: 750; margin-bottom: .9rem;
+  display: flex; align-items: center; gap: .45rem; flex-wrap: wrap;
+}
+.card h3 .hint-tag { font-size: .68rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.lede { font-size: .9rem; color: var(--muted); margin: -.4rem 0 1rem; max-width: 70ch; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+@media (max-width: 980px) {
+  .app { flex-direction: column; }
+  .nav { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; flex-wrap: wrap; padding: .75rem; max-height: none; }
+  .nav-brand { width: 100%; border-bottom: none; margin-bottom: 0; padding-bottom: .35rem; }
+  .nav-sec { width: 100%; }
+  .nav-foot { width: 100%; flex-direction: row; flex-wrap: wrap; margin-top: .4rem; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .main { padding: 1rem 1rem 2.5rem; }
+}
+.progress-track { display: flex; align-items: center; gap: 0; margin: 1rem 0 .5rem; position: relative; }
+.progress-step { flex: 1; text-align: center; position: relative; z-index: 1; }
+.progress-step .bubble {
+  width: 46px; height: 46px; border-radius: 50%; margin: 0 auto .4rem;
+  display: grid; place-items: center; font-weight: 800; font-size: .95rem;
+  border: 2px solid var(--border); background: var(--bg-elev); color: var(--muted);
+}
+.progress-step.done .bubble { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+.progress-step.current .bubble { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.progress-step .lbl { font-size: .72rem; color: var(--muted); font-weight: 700; }
+.progress-line { position: absolute; top: 23px; left: 16%; right: 16%; height: 3px; background: var(--border); z-index: 0; border-radius: 2px; }
+.progress-line-fill { height: 100%; background: var(--grad); border-radius: 2px; transition: width .4s ease; }
+.gap-box {
+  margin-top: .75rem; padding: .85rem 1rem; border-radius: 10px;
+  background: var(--accent-soft); border: 1px solid var(--border); font-size: .88rem;
+}
+.gap-box strong { color: var(--accent); }
+.flag {
+  display: flex; gap: .65rem; align-items: flex-start; padding: .7rem .8rem;
+  border-radius: 10px; border: 1px solid var(--border); margin-bottom: .45rem; font-size: .88rem;
+  background: var(--bg-elev);
+}
+.flag.red { border-color: var(--red); background: var(--red-soft); }
+.flag.orange { border-color: var(--orange); background: var(--orange-soft); }
+.flag.ok { border-color: var(--green); background: var(--green-soft); }
+.check-item {
+  display: flex; gap: .65rem; align-items: flex-start; padding: .6rem 0;
+  border-bottom: 1px solid var(--border-soft); font-size: .9rem;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item input { margin-top: .3rem; width: 16px; height: 16px; accent-color: var(--accent); }
+.check-item.done span { text-decoration: line-through; color: var(--muted); }
+.check-item .who { font-size: .7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .55rem; }
+.field label { display: block; font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 700; margin-bottom: .25rem; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: .48rem .6rem; border-radius: 9px;
+  border: 1px solid var(--border); background: var(--bg-elev); color: var(--text);
+}
+.field textarea { min-height: 70px; resize: vertical; }
+.manual-tag { font-size: .7rem; color: var(--orange); font-weight: 700; }
+table.data { width: 100%; border-collapse: collapse; font-size: .85rem; }
+table.data th, table.data td { text-align: left; padding: .55rem .45rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.data th { color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+table.data tr:hover td { background: var(--bg-hover); }
+.kanban { display: grid; grid-template-columns: repeat(7, minmax(132px, 1fr)); gap: .5rem; overflow-x: auto; padding-bottom: .5rem; }
+.kanban-col { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; min-height: 180px; padding: .55rem; }
+.kanban-col h4 { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: .5rem; display: flex; justify-content: space-between; }
+.kanban-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 9px;
+  padding: .55rem .6rem; margin-bottom: .4rem; cursor: pointer; font-size: .8rem;
+}
+.kanban-card:hover { border-color: var(--accent); }
+.kanban-card .co { font-weight: 700; margin-bottom: .15rem; }
+.kanban-card .meta { color: var(--muted); font-size: .72rem; }
+.bar-chart { display: flex; flex-direction: column; gap: .65rem; }
+.bar-row { display: grid; grid-template-columns: 90px 1fr 70px; gap: .5rem; align-items: center; font-size: .85rem; }
+.bar-track { height: 18px; background: var(--bg-elev); border-radius: 6px; overflow: hidden; position: relative; border: 1px solid var(--border); }
+.bar-fill { height: 100%; border-radius: 5px; background: var(--grad); transition: width .35s ease; }
+.bar-fill.over { background: linear-gradient(90deg, var(--green), #059669); }
+.slot-card { border: 1px dashed var(--border); border-radius: 12px; padding: .9rem; background: var(--bg-elev); }
+.slot-card.busy { border-style: solid; border-color: var(--accent); }
+.slot-card.warn { border-color: var(--orange); }
+.slot-card.danger { border-color: var(--red); }
+.doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .5rem; }
+.doc-card {
+  border: 1px solid var(--border); border-radius: 10px; padding: .7rem .8rem;
+  background: var(--bg-elev); cursor: pointer; text-align: left; color: var(--text); width: 100%;
+}
+.doc-card:hover { border-color: var(--accent); }
+.doc-card .fn { font-family: var(--mono); font-size: .66rem; color: var(--muted); word-break: break-all; }
+.doc-card .lb { font-weight: 700; font-size: .85rem; margin-bottom: .2rem; }
+.li-status { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .45rem; }
+.li-week {
+  padding: 1rem 0; border-bottom: 1px solid var(--border-soft);
+}
+.li-week:last-child { border-bottom: none; }
+.modal-bg {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 100;
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+  max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto;
+  padding: 1.35rem; box-shadow: var(--shadow);
+}
+.modal.wide { max-width: 720px; }
+.modal h3 { margin-bottom: 1rem; }
+.modal-actions { display: flex; gap: .5rem; justify-content: flex-end; margin-top: 1rem; flex-wrap: wrap; }
+.toast {
+  position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 200;
+  background: var(--bg-elev); border: 1px solid var(--accent); color: var(--text);
+  padding: .8rem 1.05rem; border-radius: 12px; box-shadow: var(--shadow);
+  display: none; font-size: .88rem; max-width: 340px;
+}
+.toast.show { display: block; animation: fade .2s ease; }
+.muted { color: var(--muted); }
+.empty { color: var(--muted); font-style: italic; text-align: center; padding: 1.5rem; font-size: .9rem; }
+.mono { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+.view-toggle { display: inline-flex; border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
+.view-toggle button { border: none; background: var(--bg-elev); color: var(--muted); padding: .35rem .7rem; cursor: pointer; font-size: .8rem; }
+.view-toggle button.active { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+footer.note {
+  margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  font-size: .75rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
+}
+/* Glossary tip */
+.tip {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; border-radius: 50%; font-size: .65rem; font-weight: 800;
+  background: var(--accent-soft); color: var(--accent); border: 1px solid transparent;
+  cursor: help; vertical-align: middle; margin-left: .2rem; position: relative; flex-shrink: 0;
+}
+.tip:hover, .tip:focus { border-color: var(--accent); outline: none; }
+.tip[data-tip]::after {
+  content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 8px);
+  transform: translateX(-50%); width: max-content; max-width: 260px;
+  background: var(--bg-elev); color: var(--text); border: 1px solid var(--border);
+  padding: .55rem .7rem; border-radius: 10px; font-size: .75rem; font-weight: 500;
+  line-height: 1.4; letter-spacing: 0; text-transform: none;
+  box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: .15s; z-index: 50;
+  white-space: normal;
+}
+.tip:hover::after, .tip:focus::after { opacity: 1; }
+/* Bots */
+.bot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .85rem; }
+.bot-card {
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.05rem;
+  background: var(--bg-elev); display: flex; flex-direction: column; gap: .45rem;
+  transition: .15s; cursor: pointer;
+}
+.bot-card:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+.bot-card .bot-name { font-weight: 800; font-size: .98rem; letter-spacing: -.02em; }
+.bot-card .bot-rol { font-size: .84rem; color: var(--muted); }
+.bot-card .bot-nu { font-size: .8rem; color: var(--text); background: var(--bg-card); border-radius: 8px; padding: .45rem .55rem; border: 1px solid var(--border-soft); }
+.bot-status { align-self: flex-start; }
+.prompt-box {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: .75rem .85rem; font-size: .82rem; font-family: var(--mono); color: var(--text);
+  white-space: pre-wrap; margin: .4rem 0 .5rem; line-height: 1.45;
+}
+.action-banner {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent2-soft));
+  border: 1px solid var(--border); border-radius: 12px; padding: .9rem 1.05rem;
+  font-size: .88rem; margin-bottom: 1rem;
+}
+.action-banner strong { color: var(--accent); }
+/* Diagrams */
+.diagram {
+  background: var(--bg-elev); border: 1px solid var(--border); border-radius: 14px;
+  padding: 1.25rem; overflow-x: auto; margin-bottom: .5rem;
+}
+.flow { display: flex; align-items: center; gap: .45rem; flex-wrap: wrap; justify-content: center; min-width: 280px; }
+.flow-node {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: .7rem .9rem; text-align: center; min-width: 110px; box-shadow: var(--shadow-sm);
+}
+.flow-node .t { font-weight: 800; font-size: .88rem; }
+.flow-node .d { font-size: .72rem; color: var(--muted); margin-top: .2rem; }
+.flow-arrow { color: var(--accent); font-weight: 800; font-size: 1.2rem; }
+.flow-node.hl { border-color: var(--accent); background: var(--accent-soft); }
+.flow-node.warn-node { border-color: var(--red); background: var(--red-soft); }
+.dual-box { display: grid; grid-template-columns: 1fr auto 1fr; gap: .75rem; align-items: stretch; }
+.dual-box .side { border-radius: 12px; padding: 1rem; border: 1px solid var(--border); background: var(--bg-card); }
+.dual-box .side.yes { border-color: var(--green); }
+.dual-box .side.no { border-color: var(--red); opacity: .85; }
+.dual-box .vs { display: grid; place-items: center; font-weight: 800; color: var(--muted); }
+.step-list { counter-reset: ob; list-style: none; }
+.step-list li {
+  counter-increment: ob; display: flex; gap: .85rem; padding: .85rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.step-list li:last-child { border-bottom: none; }
+.step-num {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: var(--grad); color: #fff; font-weight: 800; font-size: .85rem;
+  display: grid; place-items: center;
+}
+.step-list strong { display: block; margin-bottom: .15rem; }
+.step-list p { font-size: .88rem; color: var(--muted); }
+.gloss-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .65rem; }
+.gloss-item {
+  border: 1px solid var(--border); border-radius: 12px; padding: .85rem .95rem;
+  background: var(--bg-elev);
+}
+.gloss-item dt { font-weight: 800; font-size: .92rem; margin-bottom: .3rem; color: var(--accent); }
+.gloss-item dd { font-size: .84rem; color: var(--muted); }
+.callout {
+  border-radius: 12px; padding: .9rem 1.05rem; margin-bottom: 1rem; font-size: .88rem;
+  border: 1px solid var(--border); background: var(--bg-elev);
+}
+.callout.warn { border-color: var(--orange); background: var(--orange-soft); }
+.callout.info { border-color: var(--accent); background: var(--accent-soft); }
+.callout.danger { border-color: var(--red); background: var(--red-soft); }
+.hot-ai-primary { border-width: 2px; box-shadow: var(--shadow-sm); }
+.hot-ai-primary h3 { color: var(--accent); }
+.v3-default-primary { border-width: 2px; box-shadow: var(--shadow-sm); border-color: var(--accent); }
+.v3-default-primary h3 { color: var(--accent); }
+.prospects-v2-interim { border-color: var(--orange); }
+.archive-list { font-size: .84rem; }
+.archive-list li { padding: .35rem 0; border-bottom: 1px solid var(--border-soft); list-style: none; }
+.archive-list li:last-child { border-bottom: none; }
+.path-chip {
+  display: inline-block; font-family: var(--mono); font-size: .68rem; color: var(--muted);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+  padding: .2rem .45rem; margin: .15rem .15rem 0 0; word-break: break-all;
+}
+
+/* v3.2 call-ready prospect detail */
+.hot-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .65rem; margin-bottom: 1rem;
+}
+@media (max-width: 800px) { .hot-strip { grid-template-columns: 1fr; } }
+.hot-chip {
+  background: var(--bg-elev); border: 1px solid var(--orange); border-radius: 12px;
+  padding: .75rem .85rem; position: relative;
+}
+.hot-chip .hot-rank {
+  font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--orange); margin-bottom: .25rem;
+}
+.hot-chip strong { display: block; font-size: .92rem; margin-bottom: .25rem; }
+.hot-chip .hot-why { font-size: .78rem; color: var(--muted); line-height: 1.4; }
+.hot-chip a.tel { font-family: var(--mono); font-size: .78rem; }
+.prospect-row { cursor: pointer; }
+.prospect-row:hover td { background: var(--bg-hover); }
+.prospect-row td { vertical-align: top; }
+.detail-grid {
+  display: grid; grid-template-columns: 120px 1fr; gap: .45rem .75rem;
+  font-size: .88rem; margin-top: .5rem;
+}
+.detail-grid .lbl { color: var(--muted); font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; padding-top: .15rem; }
+.detail-grid .val { color: var(--text); word-break: break-word; }
+.detail-hook {
+  margin-top: .9rem; padding: .75rem .85rem; border-radius: 10px;
+  background: var(--accent-soft); border: 1px solid var(--accent); font-size: .88rem;
+}
+.gaps-list { margin: .25rem 0 0 1.1rem; font-size: .82rem; color: var(--muted); }
+.hot-intent-list { list-style: none; margin: .6rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
+.hot-intent-list li {
+  display: grid; grid-template-columns: 1fr auto; gap: .35rem .75rem;
+  padding: .65rem .75rem; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg-elev); font-size: .85rem;
+}
+.hot-intent-list .hi-meta { font-size: .75rem; color: var(--muted); }
+.table-wrap { overflow-x: auto; margin-top: .65rem; }
+table.table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+table.table th, table.table td { text-align: left; padding: .45rem .5rem; border-bottom: 1px solid var(--border-soft); }
+table.table th { color: var(--muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; }
+.click-hint { font-size: .72rem; color: var(--faint); margin-top: .35rem; }
+
+/* —— v3.3 CEO control —— */
+.ceo-strip {
+  display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem;
+  padding: .75rem .9rem; border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent2-soft));
+  border: 1px solid var(--border);
+}
+.ceo-chip {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 999px; padding: .35rem .7rem;
+  font-size: .78rem; font-weight: 650; color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+.ceo-chip .dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.ceo-chip .dot.ok { background: var(--green); }
+.ceo-chip .dot.warn { background: var(--orange); }
+.ceo-chip .dot.info { background: var(--accent); }
+.ceo-chip .dot.off { background: var(--muted); }
+.ceo-chip .chip-k { color: var(--muted); font-weight: 600; font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; }
+.ceo-prompts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .65rem; }
+.ceo-prompt-card {
+  border: 1px solid var(--border); border-radius: 12px; padding: .85rem .95rem;
+  background: var(--bg-elev); display: flex; flex-direction: column; gap: .45rem;
+}
+.ceo-prompt-card strong { font-size: .9rem; }
+.ceo-prompt-card .prompt-box { margin: 0; font-size: .76rem; max-height: 5.2em; overflow: auto; }
+.team-table-wrap { overflow-x: auto; }
+table.team-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+table.team-table th, table.team-table td {
+  text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(--border-soft); vertical-align: top;
+}
+table.team-table th {
+  color: var(--muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; font-weight: 700;
+}
+table.team-table input, table.team-table select {
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); padding: .4rem .5rem; font-size: .82rem;
+  font-family: inherit;
+}
+table.team-table .owner-cell { font-weight: 750; white-space: nowrap; min-width: 110px; }
+.prospects-v2-interim { opacity: .92; }
+.prospects-v2-interim.archief-callout { border-color: var(--muted); background: var(--bg-elev); }
+
+
+/* v3.6-simple */
+.call-log-form { display:grid; grid-template-columns: 1.4fr 1fr 1.6fr auto; gap:.55rem; align-items:end; margin-bottom:.75rem; }
+@media (max-width:900px){ .call-log-form { grid-template-columns:1fr; } }
+.call-log-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.call-log-table th, .call-log-table td { padding:.4rem .5rem; border-bottom:1px solid var(--border-soft); text-align:left; vertical-align:top; }
+.call-log-table th { color:var(--muted); font-weight:650; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; }
+.team-meta { font-size:.8rem; color:var(--muted); margin:.35rem 0 .75rem; }
+.gloss-tip { margin-bottom:1rem; }
+.finance-note { font-size:.84rem; color:var(--muted); margin-top:.45rem; }
+
+/* ===== v3.6-simple ===== */
+.help-block {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .75rem;
+  margin-bottom: 1.05rem;
+}
+@media (max-width: 900px) { .help-block { grid-template-columns: 1fr; } }
+.help-card {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 12px; padding: .85rem 1rem; font-size: .88rem;
+}
+.help-card h4 {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--accent); margin-bottom: .35rem; font-weight: 800;
+}
+.help-card p { color: var(--muted); line-height: 1.5; margin: 0; }
+.how-works {
+  margin-bottom: 1.1rem; border: 1px solid var(--border);
+  border-radius: 14px; background: var(--bg-card); overflow: hidden;
+}
+.how-works > summary {
+  cursor: pointer; list-style: none; padding: .95rem 1.15rem;
+  font-weight: 750; font-size: .98rem; display: flex; align-items: center;
+  justify-content: space-between; gap: .75rem; user-select: none;
+}
+.how-works > summary::-webkit-details-marker { display: none; }
+.how-works > summary::after { content: "▾"; color: var(--muted); font-size: .9rem; }
+.how-works[open] > summary::after { content: "▴"; }
+.how-works .how-body { padding: 0 1.15rem 1.15rem; border-top: 1px solid var(--border-soft); }
+.how-works ol.how-steps { margin: .85rem 0 0; padding-left: 1.25rem; color: var(--muted); font-size: .9rem; }
+.how-works ol.how-steps li { margin-bottom: .45rem; }
+.how-works ol.how-steps strong { color: var(--text); }
+.how-works .how-note {
+  margin-top: .75rem; padding: .7rem .85rem; border-radius: 10px;
+  background: var(--orange-soft); border: 1px solid var(--orange);
+  font-size: .84rem; color: var(--text);
+}
+.hold-banner {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1rem;
+  padding: .95rem 1.1rem; margin-bottom: 1.05rem; border-radius: 14px;
+  border: 2px solid var(--orange); background: var(--orange-soft);
+}
+.hold-banner .hold-title { font-weight: 800; font-size: 1.05rem; color: var(--orange); letter-spacing: -.02em; }
+.hold-banner .hold-msg { font-size: .88rem; color: var(--text); flex: 1; min-width: 220px; }
+.call-board { display: flex; flex-direction: column; gap: .7rem; }
+.call-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1rem 1.1rem; cursor: pointer;
+  transition: .15s ease; box-shadow: var(--shadow-sm);
+  display: grid; grid-template-columns: 52px 1fr auto; gap: .75rem 1rem;
+  align-items: start;
+}
+.call-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.call-card:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+.call-card .rank {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--grad); color: #fff; font-weight: 800; font-size: 1.1rem;
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.call-card .rank.tier-regio { background: linear-gradient(135deg, #5b8def, #34d399); }
+.call-card .rank.tier-verder { background: linear-gradient(135deg, #64748b, #94a3b8); }
+.call-card .co-name { font-weight: 800; font-size: 1.05rem; letter-spacing: -.02em; margin-bottom: .2rem; }
+.call-card .loc { font-size: .84rem; color: var(--muted); margin-bottom: .35rem; }
+.call-card .loc strong { color: var(--text); font-weight: 650; }
+.call-card .meta-row { display: flex; flex-wrap: wrap; gap: .35rem .75rem; font-size: .82rem; color: var(--muted); margin-bottom: .35rem; }
+.call-card .meta-row a { font-family: var(--mono); font-size: .8rem; }
+.call-card .hook {
+  font-size: .84rem; color: var(--text); line-height: 1.45;
+  padding: .45rem .6rem; border-radius: 8px; background: var(--bg-elev);
+  border: 1px solid var(--border-soft); margin-top: .25rem;
+}
+.call-card .side { display: flex; flex-direction: column; align-items: flex-end; gap: .35rem; min-width: 110px; }
+.call-card .side .btn { white-space: nowrap; }
+.badge.hold { border-color: var(--orange); color: var(--orange); background: var(--orange-soft); }
+.badge.ready { border-color: var(--green); color: var(--green); background: var(--green-soft); }
+.badge.gap { border-color: var(--muted); color: var(--muted); }
+.nav-btn.nav-primary {
+  background: var(--accent-soft); color: var(--accent); font-weight: 750;
+  border: 1px solid transparent;
+}
+.nav-btn.nav-primary.active { border-color: var(--accent); }
+.nav-sec.nav-sec-soft { opacity: .75; margin-top: .35rem; }
+.soft-panel details.soft-block {
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--bg-elev); margin-bottom: 1rem; padding: 0;
+}
+.soft-panel details.soft-block > summary {
+  cursor: pointer; padding: .85rem 1rem; font-weight: 700; font-size: .92rem;
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+}
+.soft-panel details.soft-block > summary::-webkit-details-marker { display: none; }
+.soft-panel details.soft-block > summary::after { content: "toon ▾"; font-size: .72rem; color: var(--muted); font-weight: 600; }
+.soft-panel details.soft-block[open] > summary::after { content: "verberg ▴"; }
+.soft-panel details.soft-block .soft-inner { padding: 0 1rem 1rem; }
+.belkaart-dm {
+  margin-top: .85rem; padding: .75rem .85rem; border-radius: 10px;
+  background: var(--green-soft); border: 1px solid var(--green); font-size: .88rem;
+}
+.belkaart-dm .dm-name { font-weight: 800; font-size: 1rem; }
+.belkaart-steps {
+  margin-top: .85rem; padding: .75rem .85rem; border-radius: 10px;
+  background: var(--bg-elev); border: 1px solid var(--border); font-size: .84rem; color: var(--muted);
+}
+.belkaart-steps ol { margin: .4rem 0 0 1.1rem; }
+.belkaart-steps li { margin-bottom: .25rem; }
+.main { max-width: 1100px; }
+@media (max-width: 1280px) {
+  .main { padding: 1.1rem 1.15rem 2.5rem; }
+  .call-card { grid-template-columns: 44px 1fr; }
+  .call-card .side { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
+}
+.call-board-meta { font-size: .82rem; color: var(--muted); margin: -.35rem 0 .85rem; }
+.more-links { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .5rem; }
+
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav-brand">
+      <div class="nav-mark" aria-hidden="true">🎛️</div>
+      <div>
+        <h1>Command Center</h1>
+        <p>upgrAIde · v3.6-simple</p>
+      </div>
+    </div>
+    <div class="nav-sec">Primair</div>
+    <button type="button" class="nav-btn nav-primary active" data-panel="bellen">📞 Vandaag bellen</button>
+    <button type="button" class="nav-btn" data-panel="start">🚀 Eerste 10 min</button>
+    <div class="nav-sec nav-sec-soft">Secundair</div>
+    <button type="button" class="nav-btn" data-panel="home">🏠 CEO / Home</button>
+    <button type="button" class="nav-btn" data-panel="pipeline">📊 Pipeline</button>
+    <button type="button" class="nav-btn" data-panel="team">👥 Team</button>
+    <button type="button" class="nav-btn" data-panel="bots">🤖 Bots</button>
+    <button type="button" class="nav-btn" data-panel="scoreboard">📈 Scoreboard</button>
+    <button type="button" class="nav-btn" data-panel="delivery">📦 Delivery</button>
+    <button type="button" class="nav-btn" data-panel="linkedin">🔗 LinkedIn</button>
+    <button type="button" class="nav-btn" data-panel="systeem">🗺️ Systeem</button>
+    <div class="nav-sec">Naslag</div>
+    <button type="button" class="nav-btn" data-panel="glossary">📖 Woordenlijst</button>
+    <button type="button" class="nav-btn" data-panel="bronnen">📚 Bronnen</button>
+    <div class="nav-foot">
+      <span class="badge hold" id="navHoldBadge">HOLD · niet bellen</span>
+      <span class="badge off">Publicatie UIT</span>
+      <span class="badge info">v3.6-simple</span>
+      <button type="button" class="theme-btn" id="themeToggle">☾ / ☀ thema</button>
+      <a class="btn sm" href="https://crm.upgraide.be" target="_blank" rel="noopener" style="text-align:center;text-decoration:none;">Open CRM ↗</a>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    
+    <section class="panel active" id="panel-bellen">
+      <div class="topbar">
+        <div>
+          <h2>Vandaag bellen</h2>
+          <p class="sub">Eén rustig scherm: WVL-first lijst · stad + provincie · belkaart · resultaat loggen.</p>
+        </div>
+        <div class="btn-row">
+          <span class="badge hold" id="bellenHoldBadge">HOLD</span>
+          <button type="button" class="btn sm" data-goto="glossary">Woordenlijst</button>
+        </div>
+      </div>
+
+      <div class="callout warn" id="dualEntityBannerBellen" role="status">
+        <strong>⚠️ Dual-entity:</strong> dit hub = <strong>upgrAIde</strong> — niet Homework Admin / Toto.
+        <p class="finance-note">Facturen of Billit kunnen nog Homework tonen. Check entity vóór je iets stuurt.</p>
+      </div>
+
+      <div class="hold-banner" id="holdBanner" role="status">
+        <span class="hold-title">⏸ HOLD</span>
+        <span class="hold-msg" id="holdBannerMsg">Bellen staat op HOLD tot Sander zegt «mag bellen». Je mag wel voorbereiden: lijst bekijken, belkaart openen, scripts lezen.</span>
+        <span class="badge hold" id="holdStatusChip">calling = HOLD</span>
+      </div>
+
+      <details class="how-works" id="howWorks">
+        <summary>Hoe dit dashboard werkt <span class="badge info" style="font-weight:600;">stap voor stap</span></summary>
+        <div class="how-body">
+          <ol class="how-steps">
+            <li><strong>Open dit dashboard</strong> op http://localhost:8765 (na update: hard refresh <kbd>Ctrl+Shift+R</kbd>).</li>
+            <li><strong>Kijk naar #1</strong> in de WVL-first lijst hieronder — West-Vlaanderen eerst, dan regio/OV, dan verder.</li>
+            <li><strong>Open detail / belkaart</strong> — klik de kaart: telefoon, call-hook, DM-naam, gaps.</li>
+            <li><strong>Scripts</strong> staan op Desktop <code>upgraide-sales-scripts</code> (of box <code>/workspace/upgraide/sales/</code>) — cheat-sheet + WVL-scripts.</li>
+            <li><strong>Log het resultaat</strong> onderaan in het call-log (bereikt, VM, callback, …) — blijft in jouw browser (localStorage).</li>
+          </ol>
+          <div class="how-note">
+            <strong>Belangrijk:</strong> calling is <strong>HOLD</strong> tot Sander expliciet «mag bellen» zegt. Geen outbound-automatisering. Geen live Notion-sync nodig om dit scherm te gebruiken.
+          </div>
+        </div>
+      </details>
+
+      <div class="help-block">
+        <div class="help-card">
+          <h4>Wat is dit?</h4>
+          <p>Je dagelijkse bel-lijst uit Research v3, gesorteerd WVL-first. Elke kaart toont bedrijf, locatie (stad + provincie), telefoon, call-hook en de decision maker (DM) als die bekend is.</p>
+        </div>
+        <div class="help-card">
+          <h4>Wat doe jij?</h4>
+          <p>Begin bij #1. Open de belkaart, lees de hook, check of er een DM-naam is. Bij HOLD: alleen voorbereiden. Na «mag bellen»: bellen en resultaat loggen. Klaar? Ga naar #2.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1rem;">
+        <h3>📞 Calling-lijst <span class="hint-tag">WVL-first · Research v3</span></h3>
+        <p class="call-board-meta" id="callingBoardMeta">Laden…</p>
+        <div class="call-board" id="callingBoard" aria-label="WVL-first calling lijst"></div>
+        <div class="more-links">
+          <button type="button" class="btn sm" id="btnLoadV3FromBellen">Lijst in pipeline laden</button>
+          <button type="button" class="btn sm ghost" data-goto="pipeline">Meer: Hot AI / archief / kanban →</button>
+        </div>
+      </div>
+
+      <details class="soft-block" id="bellenCallLogWrap" style="border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);margin-bottom:1rem;padding:0;">
+        <summary style="cursor:pointer;padding:.85rem 1rem;font-weight:700;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          📝 Call-log (resultaat bijhouden)
+          <span style="font-size:.72rem;color:var(--muted);font-weight:600;">toon / verberg</span>
+        </summary>
+        <div style="padding:0 1rem 1rem;">
+          <div class="help-block" style="margin-top:.25rem;">
+            <div class="help-card">
+              <h4>Wat is dit?</h4>
+              <p>Korte bel-notities in jouw browser (<code>upg-cc-call-log</code>). Geen CRM-sync — export CSV als je wilt delen.</p>
+            </div>
+            <div class="help-card">
+              <h4>Wat doe jij?</h4>
+              <p>Na elk gesprek (of poging): bedrijf + resultaat + korte notitie. Zo blijft Lynn/Sander dezelfde geschiedenis zien op deze machine.</p>
+            </div>
+          </div>
+          <div class="card" id="callLogCard">
+        <h3>📞 Call-log <span class="hint-tag">localStorage · blijft bewaard</span></h3>
+        <p class="lede">Simpele bel-notities: bedrijf · resultaat · notitie · timestamp. Geen CRM-sync.</p>
+        <div class="call-log-form">
+          <div class="field">
+            <label>Bedrijf</label>
+            <input type="text" id="callLogBedrijf" placeholder="bv. Lima" />
+          </div>
+          <div class="field">
+            <label>Resultaat</label>
+            <select id="callLogResultaat">
+              <option value="bereikt">bereikt</option>
+              <option value="VM">VM</option>
+              <option value="reception_no_DM">reception_no_DM</option>
+              <option value="busy_callback">busy_callback</option>
+              <option value="mail_requested">mail_requested</option>
+              <option value="not_interested">not_interested</option>
+              <option value="HOLD_skip">HOLD_skip</option>
+              <option value="next">next</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Notitie</label>
+            <input type="text" id="callLogNotitie" placeholder="kort" />
+          </div>
+          <button type="button" class="btn primary sm" id="btnAddCallLog">+ Rij</button>
+        </div>
+        <div class="btn-row" style="margin-bottom:.65rem;">
+          <button type="button" class="btn sm" id="btnExportCallLog">Export CSV</button>
+          <button type="button" class="btn sm ghost" id="btnClearCallLog">Call-log wissen</button>
+          <span class="mono" id="callLogCount"></span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="call-log-table" id="callLogTable">
+            <thead><tr><th>Timestamp</th><th>Bedrijf</th><th>Resultaat</th><th>Notitie</th><th></th></tr></thead>
+            <tbody id="callLogBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      
+        </div>
+      </details>
+
+      <details class="soft-block" style="border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);margin-bottom:1rem;padding:0;">
+        <summary style="cursor:pointer;padding:.85rem 1rem;font-weight:700;font-size:.92rem;list-style:none;">📖 Mini-woordenlijst (deze page)</summary>
+        <div style="padding:0 1rem 1rem;" class="gloss-grid" id="bellenMiniGloss"></div>
+      </details>
+    </section>
+
+    <section class="panel" id="panel-start">
+      <div class="topbar">
+        <div>
+          <h2>Eerste 10 minuten</h2>
+          <p class="sub">Onboarding voor Sander &amp; Lynn — geen aannames over jargon. Daarna: Home.</p>
+        </div>
+        <button type="button" class="btn primary sm" data-goto="bellen">Naar Vandaag bellen →</button>
+      </div>
+      <div class="callout info">
+        <strong>Wat is dit?</strong> Een lokale web-cockpit naast Notion. Metrics zitten in jouw browser (localStorage). Er is <em>geen</em> live sync met CRM/Notion. Cijfers die leeg zijn, blijven leeg — we verzinnen niets.
+      </div>
+      <div class="card">
+        <h3>Checklist — eerste 10 min</h3>
+        <ol class="step-list" id="onboardSteps"></ol>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Harde regels <span class="hint-tag">altijd</span></h3>
+          <ul style="padding-left:1.1rem;font-size:.9rem;color:var(--muted);">
+            <li style="margin-bottom:.4rem;"><strong style="color:var(--text);">Publicatie UIT</strong> — niets posten op LinkedIn tot jij plakt of Primary “publicatie aan” zegt.</li>
+            <li style="margin-bottom:.4rem;"><strong style="color:var(--text);">Dual-entity</strong> <span class="tip" data-tip="upgrAIde ≠ Homework Admin / Toto" tabindex="0">ⓘ</span> — dit hub is alleen upgrAIde.</li>
+            <li style="margin-bottom:.4rem;"><strong style="color:var(--text);">Geen fake metrics</strong> — “nog leeg” is oké.</li>
+            <li><strong style="color:var(--text);">Bots aansturen</strong> — kopieer prompts; er is geen Send-knop vanuit de browser.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Snel naar…</h3>
+          <div class="btn-row">
+            <button type="button" class="btn primary sm" data-goto="bellen">Vandaag bellen</button>
+            <button type="button" class="btn sm" data-goto="home">CEO / Home</button>
+            <button type="button" class="btn sm" data-goto="pipeline">Pipeline</button>
+            <button type="button" class="btn sm" data-goto="glossary">Woordenlijst</button>
+          </div>
+          <p class="mono" style="margin-top:.85rem;">Pad: /workspace/upgraide/dashboard/</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel soft-panel" id="panel-home">
+      <div class="topbar">
+        <div>
+          <h2>CEO / Home</h2>
+          <p class="sub">Secundair overzicht — bellen doe je op <strong>Vandaag bellen</strong>. Hier: ×3/×4, week, vlaggen.</p>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn sm primary" data-goto="bellen">← Naar bellen</button>
+          <button type="button" class="btn sm" id="btnExportData">Export data.json</button>
+          <button type="button" class="btn sm" id="btnImportData">Import JSON</button>
+          <input type="file" id="importFile" accept="application/json,.json" hidden />
+        </div>
+      </div>
+      <div class="help-block">
+        <div class="help-card">
+          <h4>Wat is dit?</h4>
+          <p>CEO-cockpit: groeipad ×3/×4, weekcijfers en rode vlaggen. Handmatig — geen live metrics. Niet je primaire bel-scherm.</p>
+        </div>
+        <div class="help-card">
+          <h4>Wat doe jij?</h4>
+          <p>Even checken of parallel setups of Lynn-uren rood staan. Voor bellen: terug naar <em>Vandaag bellen</em>. Prompts hieronder alleen als je Primary/Grok Bot wilt briefen.</p>
+        </div>
+      </div>
+      <div class="callout warn" id="dualEntityBanner" role="status">
+        <strong>⚠️ Dual-entity:</strong> upgrAIde.be ≠ Homework Admin — Billit Toto kan legacy tonen
+        <p class="finance-note">Finance-note: facturen/Billit kunnen nog Homework Admin of Toto tonen — check entity vóór je stuurt. Dit hub = alleen upgrAIde.</p>
+      </div>
+      <details class="soft-block" open>
+        <summary>Statuschips</summary>
+        <div class="soft-inner"><div class="ceo-strip" id="ceoStrip" aria-label="CEO live status"></div></div>
+      </details>
+      <details class="soft-block">
+        <summary>⚡ CEO-prompts (copy → Grok Bot)</summary>
+        <div class="soft-inner">
+          <div class="card" id="ceoPromptsCard" style="margin:0;box-shadow:none;border:none;padding:0;background:transparent;">
+            <p class="lede">Drie vaste CEO-commando’s. Kopieer → plak in chat. Geen SendToAgent.</p>
+            <div class="ceo-prompts" id="ceoPrompts"></div>
+          </div>
+        </div>
+      </details>
+      <div class="kpis" id="homeKpis"></div>
+      <div class="card">
+        <h3>🎯 Deals/maand pad <span class="hint-tag">2 → 6 → 8</span></h3>
+        <div class="progress-track">
+          <div class="progress-line"><div class="progress-line-fill" id="progressFill" style="width:0%"></div></div>
+          <div class="progress-step" id="step-start"><div class="bubble">2</div><div class="lbl">Start</div></div>
+          <div class="progress-step" id="step-x3"><div class="bubble">6</div><div class="lbl">×3</div></div>
+          <div class="progress-step" id="step-x4"><div class="bubble">8</div><div class="lbl">×4</div></div>
+        </div>
+        <div class="gap-box" id="gapBox"></div>
+        <div class="field" style="max-width:160px;margin-top:.75rem;">
+          <label>Huidige deals/maand <span class="manual-tag">handmatig</span></label>
+          <input type="number" id="currentDeals" min="0" max="20" step="0.5" />
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>📅 Deze week vs ×3 <span class="hint-tag">editable</span></h3>
+          <div class="field" style="margin-bottom:.75rem;max-width:220px;">
+            <label>Week</label>
+            <select id="homeWeekSelect"></select>
+          </div>
+          <div class="field-grid" id="homeWeekFields"></div>
+          <div class="btn-row" style="margin-top:.85rem;">
+            <button type="button" class="btn primary sm" id="btnSaveWeek">Opslaan (localStorage)</button>
+            <button type="button" class="btn sm" id="btnSyncExport">Sync → data.json export</button>
+          </div>
+          <p class="mono" style="margin-top:.5rem;">Opslag: localStorage · geen live Notion-sync</p>
+        </div>
+        <div class="card">
+          <h3>🚩 Rode vlaggen</h3>
+          <div id="redFlags"></div>
+          <div class="field-grid" style="margin-top:.75rem;">
+            <div class="field">
+              <label>Parallel setups <span class="tip" data-tip="Hoeveel klant-implementaties tegelijk. Hard limiet: 3." tabindex="0">ⓘ</span></label>
+              <input type="number" id="flagParallel" min="0" max="10" />
+            </div>
+            <div class="field">
+              <label>Lynn sales-uren (week)</label>
+              <input type="number" id="flagLynnHours" min="0" max="60" step="0.5" placeholder="nog leeg" />
+            </div>
+            <div class="field">
+              <label>Build-achterstand?</label>
+              <select id="flagBuild"><option value="false">Nee</option><option value="true">Ja</option></select>
+            </div>
+          </div>
+          <button type="button" class="btn sm" id="btnSaveFlags" style="margin-top:.65rem;">Vlaggen opslaan</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>✅ Vandaag doen</h3>
+        <div id="todayChecklist"></div>
+        <button type="button" class="btn sm ghost" id="btnResetChecklist" style="margin-top:.5rem;">Checklist resetten</button>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-bots">
+      <div class="topbar">
+        <div>
+          <h2>Bots aansturen</h2>
+          <p class="sub">Alle upgrAIde-bots · status · copy-paste prompts voor Primary/Grok Bot. Geen SendToAgent vanuit de browser.</p>
+        </div>
+      </div>
+      <div class="action-banner">
+        <strong>Hoe werkt dit?</strong> Klik een bot → kies een template → <em>Kopieer prompt</em> → plak in je chat met Grok Bot en zeg bv. “stuur dit naar Primary” of praat rechtstreeks. De browser stuurt niets zelf.
+      </div>
+      <div class="bot-grid" id="botGrid"></div>
+    </section>
+
+
+    <section class="panel soft-panel" id="panel-team">
+      <div class="topbar">
+        <div>
+          <h2>Team-paneel</h2>
+          <p class="sub">Secundair — owner · focus · deadline · status. Primair werk = <strong>Vandaag bellen</strong>.</p>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn sm" data-goto="bellen">← Bellen</button>
+          <button type="button" class="btn sm" id="btnMarkResearchHalf">Mark Research half-check 17:30</button>
+          <button type="button" class="btn sm" id="btnResetTeam">Presets herladen</button>
+          <button type="button" class="btn primary sm" id="btnSaveTeam">Opslaan</button>
+        </div>
+      </div>
+      <div class="help-block">
+        <div class="help-card"><h4>Wat is dit?</h4><p>Handmatige teamstatus (wie doet wat vandaag). Geen live sync — alleen lokaal in je browser.</p></div>
+        <div class="help-card"><h4>Wat doe jij?</h4><p>Kort bijwerken als er iets verandert. Voor bellen: terug naar Vandaag bellen. Dual-entity: Finance Homework ≠ upgrAIde.</p></div>
+      </div>
+      <p class="team-meta" id="teamLastUpdated">Laatst bijgewerkt: —</p>
+      <div class="callout info">
+        <strong>CEO-control:</strong> pas status/focus handmatig aan. Niets sync’t naar Notion — dit is jouw snelle stand-van-zakenbord.
+        <p class="finance-note" style="margin-top:.4rem;">Finance: dual-entity Billit — Homework Admin/Toto ≠ upgrAIde; legacy labels mogelijk.</p>
+      </div>
+      <div class="card">
+        <div class="team-table-wrap">
+          <table class="team-table" id="teamTable">
+            <thead>
+              <tr><th>Owner</th><th>Focus vandaag</th><th>Deadline</th><th>Status</th></tr>
+            </thead>
+            <tbody id="teamTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-systeem">
+      <div class="topbar">
+        <div>
+          <h2>Hoe alles in elkaar zit</h2>
+          <p class="sub">Visuele uitleg — lead-engine, marketingketen, dual-entity, ×3/×4. Klik ⓘ bij jargon.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>1. Commerciële motor <span class="hint-tag">lead → cash → blij</span></h3>
+        <p class="lede">Van zichtbaarheid tot tevreden klant. Elke pijl = handoff tussen mensen/bots.</p>
+        <div class="diagram">
+          <div class="flow">
+            <div class="flow-node hl"><div class="t">Lead-engine</div><div class="d">LinkedIn + Research<br/>outbound <span class="tip" data-tip="Wij nemen initiatief: lijst → DM/bel." tabindex="0">ⓘ</span></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><div class="t">Sales</div><div class="d">Lynn · QL <span class="tip" data-tip="Qualified Lead: past bij ICP én klaar voor gesprek." tabindex="0">ⓘ</span><br/>calls · CRM</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><div class="t">Delivery</div><div class="d">Kickoff <span class="tip" data-tip="Startdag implementatie." tabindex="0">ⓘ</span><br/>max 3 parallel</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><div class="t">CS</div><div class="d">Onboarding<br/>health · referrals</div></div>
+          </div>
+        </div>
+        <p class="mono">Motoren: LinkedIn inbound · Research outbound · Warm Lynn · CS referrals</p>
+      </div>
+
+      <div class="card">
+        <h3>2. Marketingketen LinkedIn <span class="hint-tag">content fabriek</span></h3>
+        <p class="lede">Niets springt over Review. Publicatie is een aparte poort — nu dicht.</p>
+        <div class="diagram">
+          <div class="flow">
+            <div class="flow-node"><div class="t">Regie</div><div class="d">kalender · CTA</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><div class="t">Copy</div><div class="d">teksten P/S/L</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><div class="t">Visuals</div><div class="d">1200×627</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><div class="t">Review</div><div class="d">GO / edits</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node warn-node"><div class="t">Publicatie</div><div class="d">nu UIT 🔒</div></div>
+          </div>
+        </div>
+        <div class="callout warn" style="margin-top:.85rem;margin-bottom:0;">
+          <strong>Review-GO / publicatie UIT</strong> in gewone taal: de posts mogen inhoudelijk online — maar er staat nog niets live. Jij (of Lynn) plakt handmatig, of Primary zet publicatie aan. Tot dan: nul posts.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>3. Dual-entity <span class="tip" data-tip="upgrAIde en Homework Admin/Toto zijn gescheiden bedrijven/merken." tabindex="0">ⓘ</span></h3>
+        <div class="dual-box">
+          <div class="side yes">
+            <strong style="color:var(--green);">✓ upgrAIde</strong>
+            <p style="font-size:.84rem;color:var(--muted);margin-top:.4rem;">Dit dashboard · LinkedIn · CRM · pipeline · bots · delivery kit. Merk: upgraide.be.</p>
+          </div>
+          <div class="vs">≠</div>
+          <div class="side no">
+            <strong style="color:var(--red);">✗ Homework / Toto</strong>
+            <p style="font-size:.84rem;color:var(--muted);margin-top:.4rem;">Legacy / ander entity. Geen content, geen leads, geen “per ongeluk” in dit hub.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>4. ×3 / ×4 pad <span class="tip" data-tip="Van ~2 naar 6 of 8 deals per maand." tabindex="0">ⓘ</span></h3>
+        <div class="diagram">
+          <svg viewBox="0 0 640 140" width="100%" height="140" role="img" aria-label="Groeipad deals per maand">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#5b8def"/><stop offset="55%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#ec4899"/>
+              </linearGradient>
+            </defs>
+            <line x1="60" y1="90" x2="580" y2="90" stroke="#243049" stroke-width="4" stroke-linecap="round"/>
+            <line x1="60" y1="90" x2="280" y2="90" stroke="url(#g1)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="80" cy="90" r="14" fill="#34d399"/><text x="80" y="95" text-anchor="middle" fill="#070a10" font-size="12" font-weight="700">2</text>
+            <text x="80" y="55" text-anchor="middle" fill="#8b96ab" font-size="12">Start</text>
+            <circle cx="300" cy="90" r="16" fill="#5b8def"/><text x="300" y="95" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">6</text>
+            <text x="300" y="55" text-anchor="middle" fill="#5b8def" font-size="12" font-weight="700">×3</text>
+            <text x="300" y="125" text-anchor="middle" fill="#8b96ab" font-size="11">~€634k jaar · ARR ~€527k</text>
+            <circle cx="520" cy="90" r="16" fill="#a78bfa" opacity=".85"/><text x="520" y="95" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">8</text>
+            <text x="520" y="55" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="700">×4</text>
+            <text x="520" y="125" text-anchor="middle" fill="#8b96ab" font-size="11">~€845k jaar · ARR ~€703k</text>
+          </svg>
+        </div>
+        <p style="font-size:.84rem;color:var(--muted);">Prijzen = <strong style="color:var(--text);">richtlijn</strong> (blended setup ~€5.150 / MRR <span class="tip" data-tip="Monthly Recurring Revenue — vaste maandelijkse omzet." tabindex="0">ⓘ</span> ~€610), scoped per deal — geen vaste menukaart.</p>
+      </div>
+
+      <div class="card">
+        <h3>5. Pakketten</h3>
+        <div class="grid-2" id="pakketCards"></div>
+      </div>
+    </section>
+
+    <section class="panel soft-panel" id="panel-pipeline">
+      <div class="topbar">
+        <div>
+          <h2>Pipeline &amp; Prospects</h2>
+          <p class="sub">Secundair: kanban/CRUD · Hot AI · FRONNT-archief. Dagelijks bellen = tab <strong>Vandaag bellen</strong>.</p>
+        </div>
+        <div class="btn-row">
+          <div class="view-toggle">
+            <button type="button" class="active" data-view="kanban">Kanban</button>
+            <button type="button" data-view="table">Tabel</button>
+          </div>
+          <button type="button" class="btn primary sm" id="btnAddDeal">+ Deal</button>
+          <button type="button" class="btn sm" id="btnExportPipe">Export JSON</button>
+          <button type="button" class="btn sm" id="btnImportPipe">Import JSON</button>
+          <input type="file" id="importPipeFile" accept="application/json,.json" hidden />
+          <a class="btn sm" href="https://crm.upgraide.be" target="_blank" rel="noopener" style="text-decoration:none;">Open CRM ↗</a>
+        </div>
+      </div>
+
+      <div class="help-block">
+        <div class="help-card">
+          <h4>Wat is dit?</h4>
+          <p>Hier beheer je deals (kanban), laad je lijsten in de pipeline, en zie je Hot AI / FRONNT-archief. De WVL-first bel-lijst staat primair op <em>Vandaag bellen</em>.</p>
+        </div>
+        <div class="help-card">
+          <h4>Wat doe jij?</h4>
+          <p>Alleen nodig als je deals wilt bijwerken of archief wilt laden. Voor de dagelijkse call-flow: blijf op Vandaag bellen. Call-log staat daar ook.</p>
+        </div>
+      </div>
+      <p class="callout info" style="margin-bottom:1rem;">📞 <strong>Call-log</strong> staat op <button type="button" class="btn sm" data-goto="bellen">Vandaag bellen</button> — open dat panel om resultaten te loggen.</p>
+      <details class="soft-block">
+        <summary>🔥 Top 3 hottest (secundair)</summary>
+        <div class="soft-inner">
+          <div id="top3Hottest" class="hot-strip" aria-label="Top 3 hottest calls"></div>
+        </div>
+      </details>
+
+      <details class="soft-block">
+        <summary>🎯 Research v3 tabel (zelfde lijst als Vandaag bellen)</summary>
+        <div class="soft-inner">
+          <div class="callout info v3-default-primary" id="prospectsV3Card">
+            <h3>🎯 Research v3 WVL-first calling <span class="badge ok">DEFAULT</span> <span class="badge info">v3-default · broad sector mix</span></h3>
+            <p class="lede">Zelfde data als <em>Vandaag bellen</em> — tabelweergave. Primair scherm blijft de calling-kaarten.</p>
+            <div id="prospectsV3Box" class="mt"></div>
+            <div class="btn-row" style="margin-top:.75rem;">
+              <button type="button" class="btn primary sm" id="btnLoadV3">WVL-first calling in pipeline laden</button>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="soft-block">
+        <summary>🔥 Hot AI-intent (secundair)</summary>
+        <div class="soft-inner">
+          <div class="callout info hot-ai-primary" id="hotAiIntentCard">
+            <h3>🔥 Hot AI-intent <span class="badge ok">prominent</span> <span class="badge info">AI/ERP-signaal</span></h3>
+            <p class="lede">Snelle bel-lijst op AI/ERP-signalen — niet WVL-first volgorde. Gebruik bewust.</p>
+            <div id="hotAiIntentBox"></div>
+            <div class="btn-row" style="margin-top:.75rem;">
+              <button type="button" class="btn primary sm" id="btnLoadHotAi">Hotlist in pipeline laden</button>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="soft-block">
+        <summary>📦 FRONNT v2 archief (niet default)</summary>
+        <div class="soft-inner">
+          <div class="callout prospects-v2-interim archief-callout" id="fronntTop15Card">
+            <strong>FRONNT Top 15 · v2 archief</strong> <span class="badge warn">archief / niet default</span>
+            <p style="margin:.55rem 0 0;font-weight:700;">Niet de default call-lijst. Default = Research v3 WVL-first.</p>
+            <p style="margin:.45rem 0 0;">Alleen laden als je bewust wilt.</p>
+            <div id="prospectsV2Box" class="mt"></div>
+            <div class="btn-row" style="margin-top:.75rem;">
+              <button type="button" class="btn sm" id="btnLoadV2">Top 15 (archief) in pipeline laden</button>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div class="card" id="selfLoadCard">
+        <h3>📥 Zelf inladen</h3>
+        <p class="lede">CSV of JSON van je eigen lijst. Kolommen (CSV header): bedrijf, contact, pakket, fase, bron, owner, volgende, due, notities — of korter: name/bedrijf, city, fte, linkedin, why, outreach (prospect-stijl → wordt Lead).</p>
+        <div class="btn-row">
+          <button type="button" class="btn sm" id="btnDownloadCsvTpl">CSV-voorbeeld</button>
+          <button type="button" class="btn sm" id="btnImportCsv">Import CSV</button>
+          <button type="button" class="btn sm" id="btnImportProspectsJson">Import Top-lijst JSON</button>
+          <button type="button" class="btn sm" id="btnMergePipe">Import pipeline JSON (merge)</button>
+        </div>
+        <input type="file" id="importCsvFile" accept=".csv,text/csv" hidden />
+        <input type="file" id="importProspectsFile" accept=".json,application/json" hidden />
+        <input type="file" id="importPipeMergeFile" accept=".json,application/json" hidden />
+        <div class="field" style="margin-top:.85rem;">
+          <label>Of plak CSV / JSON hier</label>
+          <textarea id="pasteImport" rows="5" placeholder="bedrijf,contact,fase&#10;Acme BV,Jan,Lead"></textarea>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn primary sm" id="btnPasteImport">Plakken verwerken</button>
+          <label style="display:flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--muted);"><input type="checkbox" id="importReplace" /> Vervang hele pipeline (ipv merge)</label>
+        </div>
+        <p class="mono" id="importHint" style="margin-top:.5rem;">Merge = voeg toe als bedrijf nog niet bestaat. Replace = wissen + laden.</p>
+      </div>
+
+      <div class="card">
+        <h3>🗄 Archief — Top 10 v1 <span class="badge warn">deprecated · te klein/lokaal</span></h3>
+        <p class="lede">Oude week-1 research (corridor Oostkamp–Waregem). Niet meer als actieve Top 10 gebruiken. Bestand bestaat nog als archief.</p>
+        <p class="path-chip" id="archiefPad"></p>
+        <ul class="archive-list" id="archiefList" style="margin-top:.65rem;"></ul>
+        <div class="btn-row" style="margin-top:.75rem;">
+          <button type="button" class="btn sm ghost" id="btnLoadArchief">Optioneel: archief → pipeline (alleen als je bewust wilt)</button>
+        </div>
+      </div>
+
+      <div class="card" style="padding:.75rem 1rem;">
+        <div class="btn-row">
+          <span class="mono" id="pipeCount"></span>
+          <button type="button" class="btn sm danger" id="btnClearPipe">Pipeline wissen</button>
+        </div>
+      </div>
+      <div id="pipeKanban" class="kanban"></div>
+      <div id="pipeTable" class="card" style="display:none;overflow-x:auto;"></div>
+    </section>
+
+    <section class="panel" id="panel-scoreboard">
+      <div class="topbar">
+        <div>
+          <h2>Scoreboard <span class="tip" data-tip="Weekcijfers vs ×3-targets. Handmatig — geen fake live sync." tabindex="0">ⓘ</span></h2>
+          <p class="sub">Weekkiezer · actuals vs targets ×3 · <span class="manual-tag">handmatig</span></p>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn primary sm" id="btnExportWeekJson">Export week JSON</button>
+          <a class="btn sm" href="https://app.notion.com/p/e4079ada22b24704b64fc8ff82dc4f05" target="_blank" rel="noopener" style="text-decoration:none;">Notion scoreboard ↗</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="field" style="max-width:240px;margin-bottom:1rem;">
+          <label>Week</label>
+          <select id="scoreWeekSelect"></select>
+        </div>
+        <div class="field-grid" id="scoreFields" style="margin-bottom:1rem;"></div>
+        <div class="btn-row">
+          <button type="button" class="btn primary sm" id="btnSaveScore">Opslaan</button>
+          <button type="button" class="btn sm" id="btnExportWeekJson2">Export week JSON</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>📊 Bars vs ×3 targets</h3>
+        <p class="lede">QL <span class="tip" data-tip="Qualified Lead." tabindex="0">ⓘ</span> · Calls · Discovery · Offertes · Deals — leeg = streepje, geen nul-fake.</p>
+        <div class="bar-chart" id="scoreBars"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-delivery">
+      <div class="topbar">
+        <div>
+          <h2>Delivery</h2>
+          <p class="sub">Max 3 parallel setups <span class="tip" data-tip="Tegelijk lopende implementaties. Overflow = wachtlijst." tabindex="0">ⓘ</span> · kickoff tracker · kit</p>
+        </div>
+        <a class="btn sm" href="https://app.notion.com/p/39639080d3604a979148418248f1ac8c" target="_blank" rel="noopener" style="text-decoration:none;">Notion kickoffs ↗</a>
+      </div>
+      <div class="card">
+        <h3>🎚️ Parallel slots <span class="hint-tag" id="slotCapacity"></span></h3>
+        <div class="grid-3" id="deliverySlots"></div>
+        <button type="button" class="btn sm" id="btnSaveSlots" style="margin-top:.75rem;">Slots opslaan</button>
+      </div>
+      <div class="card">
+        <h3>📁 Delivery kit</h3>
+        <p class="mono" style="margin-bottom:.65rem;">/workspace/upgraide/delivery/</p>
+        <div class="doc-grid" id="deliveryDocs"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-linkedin">
+      <div class="topbar">
+        <div>
+          <h2>Posts / LinkedIn</h2>
+          <p class="sub">W1–W4 okt 2026 · <span class="badge off">Publicatie UIT</span></p>
+        </div>
+      </div>
+      <div class="callout warn">
+        <strong>Wat betekent “Review-GO / publicatie UIT”?</strong><br/>
+        Review zegt: copy + beeld zijn oké om te plaatsen. Publicatie UIT zegt: er is nog <em>niets</em> gepost. Sander of Lynn plakt handmatig — of Primary zet publicatie aan. Bots posten niet.
+      </div>
+      <div class="card">
+        <h3>👀 LinkedIn preview (feed-mock)</h3>
+        <p style="margin:.35rem 0 .65rem;color:var(--muted);font-size:.88rem;">Zie post + Sander-comment (~2u) + Lynn precies zoals op LinkedIn. Alleen lokaal — <strong>publicatie UIT</strong>.</p>
+        <p class="mono" style="margin-bottom:.5rem;">Open: <code>/workspace/upgraide/linkedin-preview/index.html</code></p>
+        <p style="font-size:.8rem;color:var(--muted);">Of serve: <code>python3 -m http.server 8766 --directory /workspace/upgraide/linkedin-preview</code> → localhost:8766</p>
+      </div>
+      <div class="card">
+        <h3>📅 Overzicht W1–W4</h3>
+        <div id="liWeeks"></div>
+        <p class="mono" style="margin-top:.85rem;">Bron: /workspace/upgraide/regie-4-wekenkalender-okt-2026.md · Ritme Di–Vr · CTA op elk slot</p>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-glossary">
+      <div class="topbar">
+        <div>
+          <h2>Woordenlijst</h2>
+          <p class="sub">Elke jargonterm in gewone taal (nl-BE). Ook ⓘ elders in de UI.</p>
+        </div>
+      </div>
+      <div class="callout info gloss-tip" id="glossHotAiTip">
+        <strong>Tip — snel:</strong>
+        <strong>WVL-first</strong> = eerst West-Vlaanderen bellen.
+        <strong>HOLD</strong> = nog niet bellen tot Sander «mag bellen» zegt.
+        <strong>dm_call_ready</strong> = decision maker met e-mail of direct nummer bekend.
+        <strong>dual-entity</strong> = upgrAIde ≠ Homework Admin.
+        <strong>Keten</strong> = administratieve flow (offerte → factuur), geen winkelketen.
+      </div>
+      <div class="gloss-grid" id="glossGrid"></div>
+    </section>
+
+    <section class="panel" id="panel-bronnen">
+      <div class="topbar">
+        <div>
+          <h2>Bronnen</h2>
+          <p class="sub">Notion · CRM · box-paden</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Notion</h3>
+        <div class="btn-row" id="notionLinks"></div>
+      </div>
+      <div class="card">
+        <h3>Bestanden (box)</h3>
+        <div id="fileLinks" class="mono"></div>
+      </div>
+      <div class="card">
+        <h3>Extern</h3>
+        <div class="btn-row">
+          <a class="btn sm" href="https://crm.upgraide.be" target="_blank" rel="noopener" style="text-decoration:none;">CRM</a>
+          <a class="btn sm" href="https://upgraide.be" target="_blank" rel="noopener" style="text-decoration:none;">upgraide.be</a>
+        </div>
+      </div>
+      <footer class="note">
+        <span><strong>Dual-entity:</strong> upgrAIde ≠ Homework / Toto</span>
+        <span><strong>Publicatie:</strong> UIT</span>
+        <span><strong>Metrics:</strong> handmatig / localStorage — geen fake live</span>
+        <span><strong>Versie:</strong> 3.6-simple</span>
+      </footer>
+    </section>
+  </main>
+</div>
+
+<div class="modal-bg" id="dealModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h3 id="dealModalTitle">Deal</h3>
+    <div class="field-grid">
+      <div class="field"><label>Bedrijf *</label><input id="dBedrijf" /></div>
+      <div class="field"><label>Contact</label><input id="dContact" /></div>
+      <div class="field"><label>Pakket</label>
+        <select id="dPakket"><option>n.n.b.</option><option>Keten Start</option><option>Bot-team Grow</option></select>
+      </div>
+      <div class="field"><label>Fase</label><select id="dFase"></select></div>
+      <div class="field"><label>Bron</label>
+        <select id="dBron"><option>Outbound</option><option>LinkedIn inbound</option><option>Warm Lynn</option><option>CS referrals</option><option>Anders</option></select>
+      </div>
+      <div class="field"><label>Owner</label>
+        <select id="dOwner"><option>Lynn</option><option>Sander</option><option>CS</option><option>Anders</option></select>
+      </div>
+      <div class="field" style="grid-column:1/-1;"><label>Volgende actie</label><input id="dVolgende" /></div>
+      <div class="field"><label>Due</label><input type="date" id="dDue" /></div>
+      <div class="field" style="grid-column:1/-1;"><label>Notities</label><textarea id="dNotities"></textarea></div>
+    </div>
+    <input type="hidden" id="dId" />
+    <div class="modal-actions">
+      <button type="button" class="btn danger sm" id="btnDeleteDeal">Verwijder</button>
+      <button type="button" class="btn sm" id="btnCancelDeal">Annuleer</button>
+      <button type="button" class="btn primary sm" id="btnSaveDeal">Opslaan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="docModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h3 id="docModalTitle">Document</h3>
+    <p class="mono" id="docModalPath"></p>
+    <p id="docModalPreview" style="margin-top:.75rem;font-size:.9rem;white-space:pre-wrap;"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn sm" id="btnCloseDoc">Sluiten</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="botModal" role="dialog" aria-modal="true">
+  <div class="modal wide">
+    <h3 id="botModalTitle">Bot</h3>
+    <p id="botModalRol" class="lede" style="margin-top:-.5rem;"></p>
+    <div class="bot-nu" id="botModalNu" style="font-size:.85rem;margin-bottom:.75rem;padding:.55rem .7rem;background:var(--bg-elev);border-radius:8px;border:1px solid var(--border);"></div>
+    <div class="action-banner" style="margin-bottom:.75rem;">
+      <strong>Actiekaart:</strong> zeg dit tegen Grok Bot (Primary). Kopieer → plak in chat. Geen automatische send.
+    </div>
+    <div id="botTemplates"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn sm" id="btnCloseBot">Sluiten</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-bg" id="prospectDetailModal" role="dialog" aria-modal="true" aria-labelledby="prospectDetailTitle">
+  <div class="modal wide">
+    <h3 id="prospectDetailTitle">Prospect</h3>
+    <p class="mono" id="prospectDetailSub"></p>
+    <p class="lede" style="margin-top:-.35rem;">Belkaart — lees hook + DM, log daarna het resultaat.</p>
+    <div id="prospectDetailBody"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn sm" id="btnCloseProspectDetail">Sluiten</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var LS = {
+    theme: "upg-cc-theme",
+    pipeline: "upg-cc-pipeline",
+    weeks: "upg-cc-weeks",
+    flags: "upg-cc-flags",
+    checklist: "upg-cc-checklist",
+    slots: "upg-cc-slots",
+    dealsCurrent: "upg-cc-deals-current",
+    pipeBootstrapped: "upg-cc-pipe-boot",
+    versionSeen: "upg-cc-v3-seen",
+    customTop15: "upg-cc-custom-top15",
+    teamStatus: "upg-cc-team-status",
+    teamUpdated: "upg-cc-team-updated",
+    callLog: "upg-cc-call-log"
+  };
+  var DATA = null;
+  var FASES = ["Lead","QL","Call","Discovery","Offerte","Won","Lost"];
+  var METRICS = ["leads","ql","calls","discovery","offertes","deals"];
+  var METRIC_LABELS = { leads:"Leads", ql:"QL", calls:"Calls", discovery:"Discovery", offertes:"Offertes", deals:"Deals" };
+  var GLOSS = {};
+  var pipeView = "kanban";
+  var activeWeekId = null;
+
+  function $(id) { return document.getElementById(id); }
+  function toast(msg) {
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(function () { t.classList.remove("show"); }, 2800);
+  }
+  function loadJSON(key, fallback) {
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) { return fallback; }
+  }
+  function saveJSON(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+  function uid() { return "d-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function tip(term) {
+    var u = GLOSS[term] || GLOSS[term.toLowerCase()];
+    if (!u) return "";
+    return ' <span class="tip" data-tip="' + esc(u) + '" tabindex="0">ⓘ</span>';
+  }
+
+  /* Theme */
+  (function initTheme() {
+    var saved = localStorage.getItem(LS.theme);
+    if (saved === "light") document.documentElement.setAttribute("data-theme", "light");
+    $("themeToggle").addEventListener("click", function () {
+      var light = document.documentElement.getAttribute("data-theme") === "light";
+      if (light) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem(LS.theme, "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem(LS.theme, "light");
+      }
+    });
+  })();
+
+  function showPanel(name) {
+    document.querySelectorAll(".nav-btn[data-panel]").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-panel") === name);
+    });
+    document.querySelectorAll(".panel").forEach(function (p) { p.classList.remove("active"); });
+    var el = $("panel-" + name);
+    if (el) el.classList.add("active");
+  }
+  document.querySelectorAll(".nav-btn[data-panel]").forEach(function (btn) {
+    btn.addEventListener("click", function () { showPanel(btn.getAttribute("data-panel")); });
+  });
+  document.querySelectorAll("[data-goto]").forEach(function (btn) {
+    btn.addEventListener("click", function () { showPanel(btn.getAttribute("data-goto")); });
+  });
+
+  function getPipeline() { return loadJSON(LS.pipeline, []); }
+  function setPipeline(arr) { saveJSON(LS.pipeline, arr); renderPipeline(); renderRedFlags(); updateHomeKpis(); }
+
+  /* —— v3.2 zelf-inladen helpers —— */
+  function parseCSV(text) {
+    text = String(text || "").replace(/^\uFEFF/, "").trim();
+    if (!text) return [];
+    var firstLine = text.split(/\r?\n/)[0] || "";
+    var delim = (firstLine.split(";").length > firstLine.split(",").length) ? ";" : ",";
+    var rows = [];
+    var i = 0, field = "", row = [], inQ = false;
+    function pushField() { row.push(field); field = ""; }
+    function pushRow() {
+      if (row.length === 1 && row[0] === "" && !inQ) { row = []; return; }
+      rows.push(row); row = [];
+    }
+    while (i < text.length) {
+      var c = text[i];
+      if (inQ) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+          inQ = false; i++; continue;
+        }
+        field += c; i++; continue;
+      }
+      if (c === '"') { inQ = true; i++; continue; }
+      if (c === delim) { pushField(); i++; continue; }
+      if (c === "\r") { i++; continue; }
+      if (c === "\n") { pushField(); pushRow(); i++; continue; }
+      field += c; i++;
+    }
+    pushField();
+    if (row.length > 1 || (row.length === 1 && row[0] !== "")) pushRow();
+    if (!rows.length) return [];
+    var headers = rows[0].map(function (h) { return normalizeHeader(h); });
+    var out = [];
+    for (var r = 1; r < rows.length; r++) {
+      var obj = {};
+      var empty = true;
+      for (var c = 0; c < headers.length; c++) {
+        var key = headers[c] || ("col" + c);
+        var val = rows[r][c] != null ? String(rows[r][c]).trim() : "";
+        if (val) empty = false;
+        obj[key] = val;
+      }
+      if (!empty) out.push(obj);
+    }
+    return out;
+  }
+
+  function normalizeHeader(h) {
+    var s = String(h == null ? "" : h).trim().toLowerCase()
+      .replace(/^\ufeff/, "")
+      .replace(/\s+/g, " ");
+    var map = {
+      "name": "bedrijf", "company": "bedrijf", "bedrijf": "bedrijf", "firma": "bedrijf", "organisatie": "bedrijf",
+      "contact": "contact", "contactpersoon": "contact", "persoon": "contact",
+      "pakket": "pakket", "package": "pakket",
+      "fase": "fase", "stage": "fase", "status": "fase", "phase": "fase",
+      "bron": "bron", "source": "bron",
+      "owner": "owner", "eigenaar": "owner", "owner_name": "owner",
+      "volgende": "volgende", "next": "volgende", "next_step": "volgende", "nextstep": "volgende", "actie": "volgende",
+      "due": "due", "deadline": "due", "datum": "due", "due_date": "due",
+      "notities": "notities", "notes": "notities", "note": "notities", "opmerkingen": "notities",
+      "city": "city", "stad": "city", "plaats": "city",
+      "fte": "fte", "employees": "fte", "medewerkers": "fte",
+      "linkedin": "linkedin", "li": "linkedin", "linkedin_url": "linkedin",
+      "why": "why", "waarom": "why", "reason": "why",
+      "outreach": "outreach", "approach": "outreach",
+      "rank": "rank", "rang": "rank", "#" : "rank",
+      "id": "id"
+    };
+    return map[s] || s.replace(/[^a-z0-9_]+/g, "_");
+  }
+
+  function rowsToDeals(rows) {
+    var out = [];
+    (rows || []).forEach(function (r, i) {
+      var bedrijf = (r.bedrijf || r.name || "").trim();
+      if (!bedrijf) return;
+      var fase = (r.fase || "Lead").trim();
+      if (FASES.indexOf(fase) < 0) fase = "Lead";
+      out.push({
+        id: r.id || ("imp-" + Date.now() + "-" + i),
+        bedrijf: bedrijf,
+        contact: (r.contact || "").trim(),
+        pakket: (r.pakket || "n.n.b.").trim() || "n.n.b.",
+        fase: fase,
+        bron: (r.bron || "Outbound").trim() || "Outbound",
+        owner: (r.owner || "Lynn").trim() || "Lynn",
+        volgende: (r.volgende || r.outreach || "").trim(),
+        due: (r.due || "").trim(),
+        notities: (r.notities || r.why || "").trim()
+      });
+    });
+    return out;
+  }
+
+  function prospectRowsToDeals(rows) {
+    var out = [];
+    (rows || []).forEach(function (r, i) {
+      var name = (r.name || r.bedrijf || "").trim();
+      if (!name) return;
+      var noteParts = [];
+      if (r.why) noteParts.push(String(r.why));
+      if (r.city) noteParts.push("stad: " + r.city);
+      if (r.fte) noteParts.push("FTE: " + r.fte);
+      if (r.linkedin) noteParts.push(r.linkedin);
+      out.push({
+        id: "imp-" + Date.now() + "-" + i,
+        bedrijf: name,
+        contact: (r.contact || "zaakvoerder / te bevestigen").trim(),
+        pakket: (r.pakket || "n.n.b.").trim() || "n.n.b.",
+        fase: "Lead",
+        bron: (r.bron || "Outbound").trim() || "Outbound",
+        owner: (r.owner || "Lynn").trim() || "Lynn",
+        volgende: (r.outreach || r.volgende || "").trim(),
+        due: (r.due || "").trim(),
+        notities: noteParts.join(" · ")
+      });
+    });
+    return out;
+  }
+
+  function mergeDeals(incoming, replace) {
+    incoming = incoming || [];
+    if (!incoming.length) { toast("Geen deals om te laden"); return 0; }
+    if (replace) {
+      setPipeline(incoming);
+      toast("Pipeline vervangen (" + incoming.length + ")");
+      return incoming.length;
+    }
+    var existing = getPipeline();
+    var added = 0;
+    incoming.forEach(function (d) {
+      var key = String(d.bedrijf || "").trim().toLowerCase();
+      if (!key) return;
+      if (existing.some(function (e) { return String(e.bedrijf || "").trim().toLowerCase() === key; })) return;
+      existing.push(d);
+      added++;
+    });
+    setPipeline(existing);
+    toast(added ? ("+" + added + " leads toegevoegd") : "Geen nieuwe bedrijven (alles bestond al)");
+    return added;
+  }
+
+  function extractProspectRows(obj) {
+    if (Array.isArray(obj)) return obj;
+    if (obj && Array.isArray(obj.top15)) return obj.top15;
+    if (obj && obj.prospectsV2 && Array.isArray(obj.prospectsV2.top15)) return obj.prospectsV2.top15;
+    if (obj && obj.prospects_v2 && Array.isArray(obj.prospects_v2.top15)) return obj.prospects_v2.top15;
+    return null;
+  }
+
+  function parseMaybeJsonOrCsv(text) {
+    text = String(text || "").trim();
+    if (!text) throw new Error("Lege input");
+    if (text.charAt(0) === "{" || text.charAt(0) === "[") {
+      var obj = JSON.parse(text);
+      var prosp = extractProspectRows(obj);
+      if (prosp) return { kind: "prospects", rows: prosp };
+      if (Array.isArray(obj)) {
+        // deal-array if looks like deals, else prospect-array
+        var sample = obj[0] || {};
+        if (sample.bedrijf != null || sample.fase != null || sample.pakket != null || sample.owner != null) {
+          return { kind: "deals", rows: obj };
+        }
+        if (sample.name != null || sample.rank != null || sample.outreach != null || sample.why != null) {
+          return { kind: "prospects", rows: obj };
+        }
+        return { kind: "deals", rows: obj };
+      }
+      if (obj && Array.isArray(obj.pipeline)) return { kind: "deals", rows: obj.pipeline };
+      if (obj && Array.isArray(obj.deals)) return { kind: "deals", rows: obj.deals };
+      throw new Error("JSON-vorm niet herkend (verwacht array, {pipeline}, of {top15})");
+    }
+    return { kind: "csv", rows: parseCSV(text) };
+  }
+
+  function applyParsedImport(parsed, replace) {
+    if (!parsed) return;
+    var deals;
+    if (parsed.kind === "prospects") {
+      deals = prospectRowsToDeals(parsed.rows);
+    } else if (parsed.kind === "csv") {
+      var rows = parsed.rows || [];
+      var looksProspect = rows.length && rows.some(function (r) {
+        return (r.name || r.why || r.outreach || r.city || r.fte || r.linkedin) && !r.fase && !r.pakket && !r.owner;
+      });
+      // also: if name mapped already to bedrijf but why/outreach present without deal fields
+      if (!looksProspect && rows.length) {
+        looksProspect = rows.some(function (r) {
+          return (r.why || r.outreach || r.city || r.fte || r.linkedin) && !(r.fase || r.contact || r.bron);
+        });
+      }
+      deals = looksProspect ? prospectRowsToDeals(rows) : rowsToDeals(rows);
+    } else {
+      deals = rowsToDeals(parsed.rows);
+    }
+    mergeDeals(deals, !!replace);
+  }
+
+  function applyCustomTop15(rows) {
+    rows = rows || [];
+    if (!DATA) DATA = {};
+    if (!DATA.prospectsV2) DATA.prospectsV2 = {};
+    DATA.prospectsV2.top15 = rows;
+    saveJSON(LS.customTop15, rows);
+    renderProspectsV2();
+    toast("Top-lijst geladen — klik ‘Top 15 in pipeline laden’");
+  }
+
+  var CSV_TPL_INLINE = "bedrijf,contact,pakket,fase,bron,owner,volgende,due,notities\n" +
+    "Acme Digital BV,Jan Janssen,AI Starter,Lead,Outbound,Lynn,Bel intro,,KMO ~35 FTE · webshop\n" +
+    "Nordic Craft NV,Marie Peeters,Ops Copilot,QL,Referral,Lynn,Discovery boeken,2026-10-10,Warm via partner\n" +
+    "Helix Logistics,Tom Declercq,n.n.b.,Lead,Outbound,Lynn,LI connect + mail,,Waregem · groei-signaal";
+
+  function downloadText(filename, content, mime) {
+    var blob = new Blob([content], { type: mime || "text/plain;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function readFileAsText(file, cb) {
+    var reader = new FileReader();
+    reader.onload = function () { cb(null, reader.result); };
+    reader.onerror = function () { cb(new Error("Bestand lezen mislukt")); };
+    reader.readAsText(file);
+  }
+  function getWeeksStore() { return loadJSON(LS.weeks, {}); }
+  function getWeekActuals(weekId) {
+    var store = getWeeksStore();
+    if (store[weekId]) return store[weekId];
+    return { leads: null, ql: null, calls: null, discovery: null, offertes: null, deals: null };
+  }
+  function setWeekActuals(weekId, obj) {
+    var store = getWeeksStore();
+    store[weekId] = obj;
+    saveJSON(LS.weeks, store);
+  }
+  function getFlags() { return loadJSON(LS.flags, Object.assign({}, DATA.flags_manual_default)); }
+  function getChecklist() {
+    return loadJSON(LS.checklist, DATA.vandaag_checklist_default.map(function (c) { return Object.assign({}, c); }));
+  }
+  function getSlots() {
+    return loadJSON(LS.slots, DATA.delivery_slots_default.map(function (s) { return Object.assign({}, s); }));
+  }
+  function getCurrentDeals() {
+    var v = localStorage.getItem(LS.dealsCurrent);
+    if (v !== null && v !== "") return parseFloat(v);
+    return DATA.kpis.deals_per_maand.current || DATA.kpis.deals_per_maand.start;
+  }
+
+  function updateHomeKpis() {
+    var pipe = getPipeline();
+    var open = pipe.filter(function (d) { return d.fase !== "Won" && d.fase !== "Lost"; }).length;
+    var won = pipe.filter(function (d) { return d.fase === "Won"; }).length;
+    var slots = getSlots();
+    var busy = slots.filter(function (s) { return s.status !== "Vrij" && s.klant; }).length;
+    var html = "";
+    html += kpi("Deals / maand", getCurrentDeals() + " / 6", "huidig vs ×3", true);
+    html += kpi("Pipeline open", String(open), "excl. Won/Lost");
+    html += kpi("Won (hub)", String(won), "localStorage");
+    html += kpi("Parallel bezet", busy + " / 3", busy > 3 ? "OVER LIMIT" : "hard limit 3");
+    html += kpi("Blended richtlijn", "€5.150 / €610", "setup · MRR — niet final");
+    $("homeKpis").innerHTML = html;
+    renderProgress();
+  }
+  function kpi(label, value, sub, accent) {
+    return '<div class="kpi' + (accent ? " accent" : "") + '"><div class="label">' + label + '</div><div class="value">' + value + '</div><div class="sub">' + sub + '</div></div>';
+  }
+  function renderProgress() {
+    var cur = getCurrentDeals();
+    var start = 2, x3 = 6, x4 = 8;
+    var pct = 0;
+    if (cur <= start) pct = (cur / start) * 33;
+    else if (cur <= x3) pct = 33 + ((cur - start) / (x3 - start)) * 33;
+    else pct = 66 + Math.min(34, ((cur - x3) / (x4 - x3)) * 34);
+    $("progressFill").style.width = Math.max(0, Math.min(100, pct)) + "%";
+    ["step-start","step-x3","step-x4"].forEach(function (id) { $(id).classList.remove("done", "current"); });
+    if (cur >= x4) { $("step-start").classList.add("done"); $("step-x3").classList.add("done"); $("step-x4").classList.add("done"); }
+    else if (cur >= x3) { $("step-start").classList.add("done"); $("step-x3").classList.add("done"); $("step-x4").classList.add("current"); }
+    else if (cur >= start) { $("step-start").classList.add("done"); $("step-x3").classList.add("current"); }
+    else { $("step-start").classList.add("current"); }
+    var gap3 = Math.max(0, x3 - cur);
+    var gap4 = Math.max(0, x4 - cur);
+    $("gapBox").innerHTML = "Nu op <strong>" + cur + "</strong> deals/maand. Gap tot ×3: <strong>" + gap3 + "</strong> · tot ×4: <strong>" + gap4 + "</strong>. Scenario jaaromzet ×3 ≈ €634k · ×4 ≈ €845k (richtlijn, geen belofte).";
+    $("currentDeals").value = cur;
+  }
+
+  function fillWeekSelects() {
+    var opts = DATA.weeks.map(function (w) {
+      return '<option value="' + w.id + '">' + w.id + " · " + w.label + "</option>";
+    }).join("");
+    $("homeWeekSelect").innerHTML = opts;
+    $("scoreWeekSelect").innerHTML = opts;
+    if (!activeWeekId) activeWeekId = DATA.weeks[0].id;
+    $("homeWeekSelect").value = activeWeekId;
+    $("scoreWeekSelect").value = activeWeekId;
+  }
+  function renderWeekFields(containerId, weekId) {
+    var act = getWeekActuals(weekId);
+    var t = DATA.targets_x3_week;
+    var html = "";
+    METRICS.forEach(function (m) {
+      var val = act[m];
+      var label = METRIC_LABELS[m] + (m === "ql" ? tip("QL") : "");
+      html += '<div class="field"><label>' + label + ' <span class="manual-tag">t ' + t[m] + '</span></label>';
+      html += '<input type="number" data-metric="' + m + '" step="' + (m === "deals" ? "0.5" : "1") + '" min="0" placeholder="nog leeg" value="' + (val === null || val === undefined ? "" : val) + '" /></div>';
+    });
+    $(containerId).innerHTML = html;
+  }
+  function readWeekFields(containerId) {
+    var obj = {};
+    $(containerId).querySelectorAll("input[data-metric]").forEach(function (inp) {
+      var v = inp.value.trim();
+      obj[inp.getAttribute("data-metric")] = v === "" ? null : parseFloat(v);
+    });
+    return obj;
+  }
+
+  function renderRedFlags() {
+    var flags = getFlags();
+    var slots = getSlots();
+    var busy = slots.filter(function (s) { return s.status !== "Vrij"; }).length;
+    var parallel = flags.parallel_setups != null ? flags.parallel_setups : busy;
+    var buildBehind = flags.build_achterstand || slots.some(function (s) { return s.status === "Build achter" || s.status === "Blocked"; });
+    var lynn = flags.lynn_sales_uren;
+    var html = "";
+    if (parallel > 3) html += '<div class="flag red"><span>🚨</span><div><strong>Parallel setups &gt; 3</strong><br/>Nu ' + parallel + ' — overflow = wachtlijst. Hard limit 3.</div></div>';
+    else if (parallel === 3) html += '<div class="flag orange"><span>⚠️</span><div><strong>Capaciteit vol</strong><br/>3/3 parallel bezet. Nieuwe deals → wachtlijst.</div></div>';
+    else html += '<div class="flag ok"><span>✓</span><div><strong>Parallel OK</strong> — ' + parallel + '/3 bezet <span class="manual-tag">(handmatig)</span></div></div>';
+    if (buildBehind) html += '<div class="flag red"><span>🚨</span><div><strong>Build-achterstand</strong><br/>Minstens één slot Build achter / Blocked of vlag aan.</div></div>';
+    else html += '<div class="flag ok"><span>✓</span><div><strong>Geen build-achterstand gemeld</strong> <span class="manual-tag">(handmatig)</span></div></div>';
+    if (lynn === null || lynn === "" || isNaN(lynn)) html += '<div class="flag orange"><span>⚠️</span><div><strong>Lynn sales-uren</strong> — nog leeg. Vul in (warn &lt; 8u/week).</div></div>';
+    else if (lynn < 8) html += '<div class="flag red"><span>🚨</span><div><strong>Lynn sales-uren laag</strong> — ' + lynn + 'u (drempel 8u).</div></div>';
+    else html += '<div class="flag ok"><span>✓</span><div><strong>Lynn sales-uren</strong> — ' + lynn + 'u</div></div>';
+    $("redFlags").innerHTML = html;
+    $("flagParallel").value = flags.parallel_setups != null ? flags.parallel_setups : parallel;
+    $("flagLynnHours").value = (lynn === null || lynn === undefined) ? "" : lynn;
+    $("flagBuild").value = buildBehind ? "true" : "false";
+  }
+
+  function renderChecklist() {
+    var list = getChecklist();
+    var html = "";
+    list.forEach(function (item, i) {
+      html += '<div class="check-item' + (item.done ? " done" : "") + '">';
+      html += '<input type="checkbox" data-idx="' + i + '"' + (item.done ? " checked" : "") + ' />';
+      html += '<div><div class="who">' + esc(item.owner) + '</div><span>' + esc(item.tekst) + '</span></div></div>';
+    });
+    $("todayChecklist").innerHTML = html;
+    $("todayChecklist").querySelectorAll("input").forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        var list2 = getChecklist();
+        list2[parseInt(cb.getAttribute("data-idx"), 10)].done = cb.checked;
+        saveJSON(LS.checklist, list2);
+        renderChecklist();
+      });
+    });
+  }
+
+
+
+  /* —— v3.5 call-ready v3 list / call-log / team / week export —— */
+  function formatLocalTs(d) {
+    try {
+      return new Intl.DateTimeFormat("nl-BE", {
+        timeZone: "Europe/Brussels",
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit"
+      }).format(d) + " (Brussels)";
+    } catch (e) {
+      return d.toISOString();
+    }
+  }
+  function getCallLog() { return loadJSON(LS.callLog, []); }
+  function setCallLog(rows) { saveJSON(LS.callLog, rows); renderCallLog(); }
+  function renderCallLog() {
+    var body = $("callLogBody");
+    if (!body) return;
+    var rows = getCallLog().slice().reverse();
+    var html = "";
+    if (!rows.length) {
+      html = '<tr><td colspan="5" class="muted">Nog geen calls gelogd</td></tr>';
+    } else {
+      rows.forEach(function (r) {
+        html += '<tr data-id="' + esc(r.id) + '">';
+        html += '<td class="mono">' + esc(r.tsLabel || r.ts || "") + '</td>';
+        html += '<td>' + esc(r.bedrijf || "") + '</td>';
+        html += '<td><span class="badge info">' + esc(r.resultaat || "") + '</span></td>';
+        html += '<td>' + esc(r.notitie || "") + '</td>';
+        html += '<td><button type="button" class="btn sm ghost" data-del-call="' + esc(r.id) + '">×</button></td>';
+        html += '</tr>';
+      });
+    }
+    body.innerHTML = html;
+    var cnt = $("callLogCount");
+    if (cnt) cnt.textContent = getCallLog().length + " rijen";
+    body.querySelectorAll("[data-del-call]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-del-call");
+        setCallLog(getCallLog().filter(function (x) { return x.id !== id; }));
+        toast("Call-rij verwijderd");
+      });
+    });
+  }
+  function addCallLogRow() {
+    var bedrijf = ($("callLogBedrijf").value || "").trim();
+    var resultaat = $("callLogResultaat").value;
+    var notitie = ($("callLogNotitie").value || "").trim();
+    if (!bedrijf) { toast("Bedrijf verplicht"); return; }
+    var now = new Date();
+    var row = {
+      id: uid(),
+      bedrijf: bedrijf,
+      resultaat: resultaat,
+      notitie: notitie,
+      ts: now.toISOString(),
+      tsLabel: formatLocalTs(now)
+    };
+    var rows = getCallLog();
+    rows.push(row);
+    setCallLog(rows);
+    $("callLogBedrijf").value = "";
+    $("callLogNotitie").value = "";
+    toast("Call gelogd");
+  }
+  function exportCallLogCsv() {
+    var rows = getCallLog();
+    if (!rows.length) { toast("Call-log leeg"); return; }
+    var lines = ["timestamp,bedrijf,resultaat,notitie"];
+    rows.forEach(function (r) {
+      function q(v) {
+        var s = String(v == null ? "" : v).replace(/"/g, '""');
+        return '"' + s + '"';
+      }
+      lines.push([q(r.tsLabel || r.ts || ""), q(r.bedrijf), q(r.resultaat), q(r.notitie)].join(","));
+    });
+    downloadText("upg-call-log.csv", lines.join("\n"), "text/csv;charset=utf-8");
+    toast("Call-log CSV gedownload");
+  }
+  function touchTeamUpdated() {
+    var label = formatLocalTs(new Date());
+    localStorage.setItem(LS.teamUpdated, label);
+    renderTeamUpdated();
+  }
+  function renderTeamUpdated() {
+    var el = $("teamLastUpdated");
+    if (!el) return;
+    var v = localStorage.getItem(LS.teamUpdated);
+    el.textContent = "Laatst bijgewerkt: " + (v || "—");
+  }
+  function markResearchHalfCheck() {
+    var rows = collectTeamFromDom();
+    var found = false;
+    rows.forEach(function (r) {
+      if ((r.id === "research") || (String(r.owner || "").toLowerCase() === "research")) {
+        r.focus = "half-check @17:30 — v3 prospects";
+        r.deadline = "vandaag 17:30";
+        r.status = "bezig";
+        found = true;
+      }
+    });
+    if (!found) {
+      rows.unshift({ id: "research", owner: "Research", focus: "half-check @17:30 — v3 prospects", deadline: "vandaag 17:30", status: "bezig" });
+    }
+    setTeamRows(rows);
+    touchTeamUpdated();
+    renderTeamPanel();
+    renderCeoStrip();
+    toast("Research half-check 17:30 gemarkeerd");
+  }
+  function exportWeekJson() {
+    var wid = activeWeekId || ($("scoreWeekSelect") && $("scoreWeekSelect").value);
+    if (!wid) { toast("Geen week geselecteerd"); return; }
+    var actuals = getWeeksStore()[wid] || {};
+    var weekMeta = null;
+    (DATA.weeks || []).forEach(function (w) { if (w.id === wid) weekMeta = w; });
+    var payload = {
+      week_id: wid,
+      week: weekMeta,
+      targets_x3_week: DATA.targets_x3_week || null,
+      actuals: actuals,
+      exported_at: new Date().toISOString(),
+      note: "Handmatige week-export — geen fake metrics"
+    };
+    downloadJSON(payload, "upgraide-week-" + wid + ".json");
+    toast("Week JSON gedownload");
+  }
+
+  /* —— v3.3 CEO strip / team / prompts —— */
+  var TEAM_PRESETS = [
+    { id: "research", owner: "Research", focus: "🟡 DM-gaps 17:11 — Didier/Huysman klaar; Braet/Certis/Neopack nog zonder direct mail/GSM (LI DM + switchboard wel)", deadline: "17:11 check done", status: "risico" },
+    { id: "sales", owner: "Sales", focus: "v3 Top15 + hot AI Lima→Wim→Neopack", deadline: "Di–Do", status: "actief" },
+    { id: "regie-copy", owner: "Regie/Copy", focus: "LinkedIn week (publicatie UIT)", deadline: "week", status: "actief" },
+    { id: "planning", owner: "Planning", focus: "weekboard", deadline: "week", status: "stand-by" },
+    { id: "finance", owner: "Finance", focus: "dual-entity Billit", deadline: "doorlopend", status: "stand-by" },
+    { id: "cs", owner: "CS", focus: "onboarding idle tot deal", deadline: "—", status: "idle" },
+    { id: "botmaker", owner: "Botmaker", focus: "delivery templates ready", deadline: "klaar", status: "klaar" },
+    { id: "cockpit", owner: "Cockpit", focus: "dashboard hub", deadline: "v3.6-simple", status: "actief" }
+  ];
+  var CEO_PROMPTS_DEFAULT = [
+    {
+      id: "research-v3",
+      label: "Research v3 = DONE",
+      text: "Research v3 is DONE en default calling. Top15 broad sector mix + Hot AI-intent + Top3 Lima→Wim→Neopack. FRONNT v2 = archief. Geen fake metrics."
+    },
+    {
+      id: "sales-di-do",
+      label: "Brief Sales Di–Do lijst",
+      text: "Sales: brief Di–Do call-lijst uit Research v3 (default Top15) + Hot AI-intent (Lima→Wim→Neopack). Per lead: tel, hook, doel van de call. FRONNT Top15 = archief / niet default."
+    },
+    {
+      id: "escalatie-deadline",
+      label: "Escalatie: deadline mist",
+      text: "Escalatie Primary: een deadline mist. Zeg welke (Sales Di–Do / delivery / andere — Research v3 is DONE), impact, en 3 concrete herstelstappen vandaag — zonder fake cijfers."
+    }
+  ];
+  var STATUS_OPTS = ["actief", "bezig", "stand-by", "idle", "klaar", "Done v3", "geblokkeerd", "risico"];
+
+  function getTeamRows() {
+    var saved = loadJSON(LS.teamStatus, null);
+    if (Array.isArray(saved) && saved.length) return saved;
+    var fromData = (DATA && DATA.team_presets) || TEAM_PRESETS;
+    return fromData.map(function (r) { return Object.assign({}, r); });
+  }
+  function setTeamRows(rows) { saveJSON(LS.teamStatus, rows); }
+
+  function renderCeoStrip() {
+    var el = $("ceoStrip");
+    if (!el) return;
+    var flags = loadJSON(LS.flags, (DATA && DATA.flags_manual_default) || {});
+    var parallel = flags.parallel_setups != null ? flags.parallel_setups : 0;
+    var slots = (function () {
+      try {
+        var s = loadJSON(LS.slots, null);
+        if (s && s.length) return s.filter(function (x) { return x && x.klant; }).length;
+      } catch (e) {}
+      return parallel;
+    })();
+    var busy = Math.max(parallel, slots);
+    var hold = callingStatus();
+    var holdCls = (hold === "HOLD") ? "warn" : "ok";
+    var chips = [
+      { cls: holdCls, k: "Calling", v: hold },
+      { cls: "ok", k: "Research v3", v: "DONE / WVL-first" },
+      { cls: "off", k: "FRONNT Top15", v: "archief" },
+      { cls: busy > 3 ? "warn" : "info", k: "Parallel setups", v: busy + " / 3-cap" }
+    ];
+    el.innerHTML = chips.map(function (c) {
+      return '<span class="ceo-chip"><span class="dot ' + c.cls + '"></span><span class="chip-k">' + esc(c.k) + '</span> ' + esc(c.v) + '</span>';
+    }).join("");
+  }
+
+  function renderCeoPrompts() {
+    var box = $("ceoPrompts");
+    if (!box) return;
+    var prompts = (DATA && DATA.ceo_prompts) || CEO_PROMPTS_DEFAULT;
+    var html = "";
+    prompts.forEach(function (p, i) {
+      var pid = "ceo-prompt-" + (p.id || i);
+      html += '<div class="ceo-prompt-card">';
+      html += '<strong>' + esc(p.label) + '</strong>';
+      html += '<div class="prompt-box" id="' + pid + '">' + esc(p.text) + '</div>';
+      html += '<button type="button" class="btn sm primary" data-copy-ceo="' + pid + '">📋 Kopieer</button>';
+      html += '</div>';
+    });
+    box.innerHTML = html;
+    box.querySelectorAll("[data-copy-ceo]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var text = $(btn.getAttribute("data-copy-ceo")).textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { toast("CEO-prompt gekopieerd"); });
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = text; document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); toast("CEO-prompt gekopieerd"); } catch (err) { toast("Selecteer manueel"); }
+          document.body.removeChild(ta);
+        }
+      });
+    });
+  }
+
+  function renderTeamPanel() {
+    var body = $("teamTableBody");
+    if (!body) return;
+    var rows = getTeamRows();
+    var html = "";
+    rows.forEach(function (r, i) {
+      html += '<tr data-idx="' + i + '">';
+      html += '<td class="owner-cell">' + esc(r.owner) + '</td>';
+      html += '<td><input data-f="focus" value="' + esc(r.focus || "") + '" /></td>';
+      html += '<td><input data-f="deadline" value="' + esc(r.deadline || "") + '" /></td>';
+      html += '<td><select data-f="status">';
+      STATUS_OPTS.forEach(function (opt) {
+        html += '<option value="' + opt + '"' + ((r.status || "") === opt ? " selected" : "") + '>' + opt + '</option>';
+      });
+      if (r.status && STATUS_OPTS.indexOf(r.status) < 0) {
+        html += '<option value="' + esc(r.status) + '" selected>' + esc(r.status) + '</option>';
+      }
+      html += '</select></td></tr>';
+    });
+    body.innerHTML = html;
+    renderTeamUpdated();
+  }
+  function collectTeamFromDom() {
+    var rows = getTeamRows();
+    var trs = $("teamTableBody").querySelectorAll("tr");
+    trs.forEach(function (tr) {
+      var i = parseInt(tr.getAttribute("data-idx"), 10);
+      if (!rows[i]) return;
+      var focus = tr.querySelector('[data-f="focus"]');
+      var deadline = tr.querySelector('[data-f="deadline"]');
+      var status = tr.querySelector('[data-f="status"]');
+      if (focus) rows[i].focus = focus.value;
+      if (deadline) rows[i].deadline = deadline.value;
+      if (status) rows[i].status = status.value;
+    });
+    return rows;
+  }
+
+  function renderOnboarding() {
+    var html = "";
+    (DATA.onboarding_stappen || []).forEach(function (s) {
+      html += '<li><div class="step-num">' + s.n + '</div><div><strong>' + esc(s.titel) + '</strong><p>' + esc(s.tekst) + '</p></div></li>';
+    });
+    $("onboardSteps").innerHTML = html;
+  }
+
+  function renderBots() {
+    var html = "";
+    (DATA.bots || []).forEach(function (b) {
+      var st = (b.status || "").toLowerCase();
+      var cls = "badge";
+      if (st === "actief") cls += " ok";
+      else if (st === "geblokkeerd") cls += " off";
+      else cls += " warn";
+      html += '<div class="bot-card" data-bot="' + esc(b.id) + '">';
+      html += '<span class="bot-status ' + cls + '">' + esc(b.status) + '</span>';
+      html += '<div class="bot-name">' + esc(b.naam) + '</div>';
+      html += '<div class="bot-rol">' + esc(b.rol) + '</div>';
+      html += '<div class="bot-nu"><strong>Nu:</strong> ' + esc(b.nu) + '</div>';
+      html += '<button type="button" class="btn sm primary" style="margin-top:.35rem;align-self:flex-start;">Vraag aan bot →</button>';
+      html += '</div>';
+    });
+    $("botGrid").innerHTML = html;
+    $("botGrid").querySelectorAll(".bot-card").forEach(function (card) {
+      card.addEventListener("click", function () { openBotModal(card.getAttribute("data-bot")); });
+    });
+  }
+  function openBotModal(id) {
+    var b = (DATA.bots || []).find(function (x) { return x.id === id; });
+    if (!b) return;
+    $("botModalTitle").textContent = b.naam;
+    $("botModalRol").textContent = b.rol;
+    $("botModalNu").innerHTML = "<strong>Status:</strong> " + esc(b.status) + " · <strong>Nu:</strong> " + esc(b.nu);
+    var th = "";
+    (b.templates || []).forEach(function (t, i) {
+      th += '<div style="margin-bottom:.85rem;">';
+      th += '<div class="mono" style="margin-bottom:.25rem;">Template ' + (i + 1) + '</div>';
+      th += '<div class="prompt-box" id="prompt-' + id + '-' + i + '">' + esc(t) + '</div>';
+      th += '<button type="button" class="btn sm" data-copy="prompt-' + id + '-' + i + '">📋 Kopieer prompt</button>';
+      th += '</div>';
+    });
+    $("botTemplates").innerHTML = th;
+    $("botTemplates").querySelectorAll("[data-copy]").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var text = $(btn.getAttribute("data-copy")).textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { toast("Prompt gekopieerd — plak in Grok Bot"); });
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = text; document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); toast("Prompt gekopieerd"); } catch (err) { toast("Selecteer en kopieer manueel"); }
+          document.body.removeChild(ta);
+        }
+      });
+    });
+    $("botModal").classList.add("open");
+  }
+
+  function renderPakketten() {
+    var html = "";
+    (DATA.pakketten || []).forEach(function (p) {
+      if (p.id === "nnb") return;
+      var prijs = p.setup_eur != null ? ("€" + p.setup_eur.toLocaleString("nl-BE") + " setup + €" + p.mrr_eur + " MRR") : "n.n.b.";
+      html += '<div style="border:1px solid var(--border);border-radius:12px;padding:1rem;background:var(--bg-elev);">';
+      html += '<strong>' + esc(p.naam) + '</strong>';
+      if (p.id === "keten-start") html += tip("Keten Start");
+      if (p.id === "bot-team-grow") html += tip("Bot-team Grow");
+      html += '<div class="mono" style="margin:.35rem 0;">' + prijs + ' <span class="manual-tag">richtlijn</span></div>';
+      html += '<p style="font-size:.84rem;color:var(--muted);">' + esc(p.uitleg || "") + '</p>';
+      if (p.defaults) html += '<p class="mono" style="margin-top:.35rem;">Defaults: ' + p.defaults.join(" + ") + '</p>';
+      html += '</div>';
+    });
+    $("pakketCards").innerHTML = html;
+  }
+
+  function renderProspectsMeta() {
+    var a = DATA.prospects_v1_deprecated || {};
+    $("archiefPad").textContent = a.archive_file || "";
+    var html = "";
+    (a.items || []).forEach(function (it, i) {
+      html += "<li><strong>" + (i + 1) + ". " + esc(it.bedrijf) + "</strong> — <span style='color:var(--muted)'>" + esc(it.notities) + "</span></li>";
+    });
+    $("archiefList").innerHTML = html || "<li class='empty'>Geen archief</li>";
+  }
+
+  function callingOrderRank(bedrijf) {
+    var rows = DATA && DATA.prospectsV3 && DATA.prospectsV3.calling_order_wvl_first;
+    if (!Array.isArray(rows)) return null;
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i] && rows[i].name === bedrijf) return rows[i].call_rank_wvl_first || (i + 1);
+    }
+    return null;
+  }
+
+  function orderedPipeline(pipe) {
+    return pipe.map(function (d, i) { return { d: d, i: i }; }).sort(function (a, b) {
+      var ar = callingOrderRank(a.d.bedrijf);
+      var br = callingOrderRank(b.d.bedrijf);
+      var ax = ar == null ? 100000 + a.i : ar;
+      var bx = br == null ? 100000 + b.i : br;
+      return ax - bx;
+    }).map(function (x) { return x.d; });
+  }
+
+  function renderPipeline() {
+    var pipe = getPipeline();
+    var displayPipe = orderedPipeline(pipe);
+    $("pipeCount").textContent = pipe.length + " deals in hub" + (pipe.length === 0 ? " (leeg starten = ok)" : "");
+    var html = "";
+    FASES.forEach(function (fase) {
+      var cards = displayPipe.filter(function (d) { return d.fase === fase; });
+      html += '<div class="kanban-col"><h4>' + fase + (fase === "QL" ? tip("QL") : "") + ' <span>' + cards.length + '</span></h4>';
+      if (!cards.length) html += '<div class="empty" style="padding:.5rem;font-size:.75rem;">—</div>';
+      cards.forEach(function (d) {
+        html += '<div class="kanban-card" data-id="' + d.id + '"><div class="co">' + esc(d.bedrijf) + '</div>';
+        html += '<div class="meta">' + esc(d.owner || "") + ' · ' + esc(d.pakket || "") + '</div>';
+        if (d.volgende) html += '<div class="meta" style="margin-top:.25rem;">→ ' + esc(d.volgende).slice(0, 60) + '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+    });
+    $("pipeKanban").innerHTML = html;
+    $("pipeKanban").querySelectorAll(".kanban-card").forEach(function (card) {
+      card.addEventListener("click", function () { openDealModal(card.getAttribute("data-id")); });
+    });
+    var th = "<table class='data'><thead><tr><th>Bedrijf</th><th>Contact</th><th>Pakket</th><th>Fase</th><th>Owner</th><th>Volgende</th><th>Due</th><th></th></tr></thead><tbody>";
+    if (!pipe.length) th += "<tr><td colspan='8' class='empty'>Leeg — wacht op Prospects v2, of + Deal / Import</td></tr>";
+    else displayPipe.forEach(function (d) {
+      th += "<tr><td><strong>" + esc(d.bedrijf) + "</strong></td><td>" + esc(d.contact || "") + "</td><td>" + esc(d.pakket || "") + "</td><td>" + esc(d.fase) + "</td><td>" + esc(d.owner || "") + "</td><td>" + esc(d.volgende || "") + "</td><td>" + esc(d.due || "") + "</td>";
+      th += "<td><button type='button' class='btn sm' data-edit='" + d.id + "'>Edit</button></td></tr>";
+    });
+    th += "</tbody></table>";
+    $("pipeTable").innerHTML = th;
+    $("pipeTable").querySelectorAll("[data-edit]").forEach(function (b) {
+      b.addEventListener("click", function () { openDealModal(b.getAttribute("data-edit")); });
+    });
+  }
+
+  function openDealModal(id) {
+    var deal = id ? getPipeline().find(function (d) { return d.id === id; }) : null;
+    $("dealModalTitle").textContent = deal ? "Deal bewerken" : "Nieuwe deal";
+    $("dId").value = deal ? deal.id : "";
+    $("dBedrijf").value = deal ? deal.bedrijf : "";
+    $("dContact").value = deal ? (deal.contact || "") : "";
+    $("dPakket").value = deal ? (deal.pakket || "n.n.b.") : "n.n.b.";
+    $("dFase").innerHTML = FASES.map(function (f) { return "<option>" + f + "</option>"; }).join("");
+    $("dFase").value = deal ? deal.fase : "Lead";
+    $("dBron").value = deal ? (deal.bron || "Outbound") : "Outbound";
+    $("dOwner").value = deal ? (deal.owner || "Lynn") : "Lynn";
+    $("dVolgende").value = deal ? (deal.volgende || "") : "";
+    $("dDue").value = deal ? (deal.due || "") : "";
+    $("dNotities").value = deal ? (deal.notities || "") : "";
+    $("btnDeleteDeal").style.display = deal ? "inline-block" : "none";
+    $("dealModal").classList.add("open");
+  }
+  function closeDealModal() { $("dealModal").classList.remove("open"); }
+
+  function loadArchiefToPipe() {
+    var items = (DATA.prospects_v1_deprecated && DATA.prospects_v1_deprecated.items) || [];
+    if (!items.length) { toast("Geen archief"); return; }
+    if (!confirm("Archief Top 10 v1 (deprecated) naar pipeline laden? Alleen bewust — dit is te klein/lokaal.")) return;
+    var existing = getPipeline();
+    var added = 0;
+    items.forEach(function (p, i) {
+      if (existing.some(function (d) { return d.bedrijf === p.bedrijf; })) return;
+      existing.push({
+        id: "arch-v1-" + (i + 1),
+        bedrijf: p.bedrijf,
+        contact: "zaakvoerder / te bevestigen",
+        pakket: "n.n.b.",
+        fase: "Lead",
+        bron: "Outbound",
+        owner: "Lynn",
+        volgende: "Archief v1 — herbekijk of nog relevant",
+        due: "",
+        notities: "ARCHIEF v1 deprecated · " + (p.notities || "")
+      });
+      added++;
+    });
+    setPipeline(existing);
+    toast(added ? ("Archief: +" + added) : "Alle archief-items stonden al in pipeline");
+  }
+
+  function pv2() { return (DATA && DATA.prospectsV2) || {}; }
+  function pv3() { return (DATA && DATA.prospectsV3) || {}; }
+  function activeProspects() {
+    var v3 = pv3();
+    if (v3 && (v3.top15 || v3.hot_ai_intent || v3.top3_hottest_calls)) return v3;
+    return pv2();
+  }
+
+
+  function callingStatus() {
+    var pv = pv3();
+    var st = (pv && pv.calling_status) || (DATA && DATA.meta && DATA.meta.calling_status) || "HOLD";
+    return String(st).toUpperCase();
+  }
+
+  function primaryDm(r) {
+    if (!r) return null;
+    var dms = r.decision_makers;
+    if (!Array.isArray(dms) || !dms.length) return null;
+    for (var i = 0; i < dms.length; i++) {
+      var d = dms[i];
+      if (d && d.name && (d.email || d.phone)) return d;
+    }
+    return dms[0] && dms[0].name ? dms[0] : null;
+  }
+
+  function locLabel(r) {
+    var parts = [];
+    if (r.city) parts.push(r.city);
+    if (r.province) parts.push(r.province);
+    return parts.join(" · ");
+  }
+
+  function renderHoldStatus() {
+    var st = callingStatus();
+    var isHold = st === "HOLD" || st.indexOf("HOLD") === 0;
+    var msg = isHold
+      ? "Bellen staat op HOLD tot Sander zegt «mag bellen». Je mag wel voorbereiden: lijst bekijken, belkaart openen, scripts lezen."
+      : ("Calling-status: " + st + " — volg de afspraak met Sander.");
+    var msgEl = $("holdBannerMsg");
+    if (msgEl) msgEl.textContent = msg;
+    ["holdStatusChip", "bellenHoldBadge", "navHoldBadge"].forEach(function (id) {
+      var el = $(id); if (!el) return;
+      el.textContent = isHold ? (id === "navHoldBadge" ? "HOLD · niet bellen" : "HOLD") : st;
+      el.className = "badge " + (isHold ? "hold" : "ok");
+    });
+  }
+
+  function renderCallingBoard() {
+    var board = $("callingBoard");
+    var meta = $("callingBoardMeta");
+    if (!board) return;
+    var rows = prospectRows(pv3());
+    var st = callingStatus();
+    if (meta) {
+      meta.textContent = rows.length
+        ? (rows.length + " prospects · volgorde WVL-first · status " + st + (pv3().calling_note ? (" · " + pv3().calling_note) : ""))
+        : "Geen calling_order_wvl_first in data.json";
+    }
+    if (!rows.length) {
+      board.innerHTML = "<p class=\"empty\">Geen bel-lijst geladen</p>";
+      return;
+    }
+    var h = "";
+    rows.forEach(function (r, idx) {
+      var rank = r.call_rank_wvl_first || r.rank || (idx + 1);
+      var tier = r.geo_tier || "";
+      var tierCls = tier === "WVL" ? "" : (String(tier).indexOf("regio") === 0 ? " tier-regio" : " tier-verder");
+      var dm = primaryDm(r);
+      var dmLabel = dm ? (dm.name + (dm.role ? (" · " + dm.role) : "")) : "DM nog niet bekend";
+      var phone = r.phone
+        ? ("<a href=\"tel:" + esc(String(r.phone).replace(/\s+/g, "")) + "\" data-stop=\"1\">" + esc(r.phone) + "</a>")
+        : "<span class=\"muted\">geen tel</span>";
+      var hook = r.call_hook || r.outreach || "";
+      var ready = !!r.dm_call_ready;
+      var readyBadge = ready
+        ? '<span class="badge ready">dm_call_ready</span>'
+        : '<span class="badge gap">DM gap</span>';
+      var geoBadge = tier ? ('<span class="badge info">' + esc(tier) + "</span>") : "";
+      h += '<article class="call-card" tabindex="0" role="button" data-pidx="' + idx + '" aria-label="Belkaart ' + esc(r.name) + '">';
+      h += '<div class="rank' + tierCls + '">#' + esc(rank) + "</div>";
+      h += '<div class="body">';
+      h += '<div class="co-name">' + esc(r.name) + "</div>";
+      h += '<div class="loc">📍 <strong>' + esc(locLabel(r) || "locatie onbekend") + "</strong></div>";
+      h += '<div class="meta-row"><span>📞 ' + phone + "</span><span>👤 " + esc(dmLabel) + "</span>" + readyBadge + geoBadge + "</div>";
+      if (hook) h += '<div class="hook"><strong>Call-hook:</strong> ' + esc(hook) + "</div>";
+      h += "</div>";
+      h += '<div class="side"><button type="button" class="btn primary sm" data-open-detail="1">Belkaart</button></div>';
+      h += "</article>";
+    });
+    board.innerHTML = h;
+    board.querySelectorAll(".call-card").forEach(function (card) {
+      function open() {
+        var i = parseInt(card.getAttribute("data-pidx"), 10);
+        openProspectDetail(rows[i]);
+      }
+      card.addEventListener("click", function (ev) {
+        if (ev.target && ev.target.closest && ev.target.closest("[data-stop]")) return;
+        open();
+      });
+      card.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); open(); }
+      });
+    });
+  }
+
+  function renderBellenMiniGloss() {
+    var el = $("bellenMiniGloss");
+    if (!el) return;
+    var keys = ["WVL-first", "HOLD", "dm_call_ready", "Keten", "dual-entity"];
+    var map = {};
+    (DATA.glossary || []).forEach(function (g) { map[g.term] = g.uitleg; });
+    var fallback = {
+      "WVL-first": "Eerst prospects in West-Vlaanderen bellen, daarna regio/Oost-Vlaanderen, dan verder weg.",
+      "HOLD": "Nog niet bellen. Wacht tot Sander expliciet «mag bellen» zegt. Voorbereiden mag wel.",
+      "dm_call_ready": "Er is minstens één decision maker met naam én (e-mail of direct telefoonnummer).",
+      "Keten": "De administratieve flow van een klant (offerte → opvolging → factuur), niet een winkelketen.",
+      "dual-entity": "upgrAIde en Homework Admin/Toto zijn gescheiden bedrijven. Dit dashboard is alleen upgrAIde."
+    };
+    var h = "";
+    keys.forEach(function (k) {
+      h += '<div class="gloss-item"><dt>' + esc(k) + "</dt><dd>" + esc(map[k] || fallback[k] || "") + "</dd></div>";
+    });
+    el.innerHTML = h;
+  }
+
+
+  function renderTop3Hottest() {
+    var el = $("top3Hottest");
+    if (!el) return;
+    var rows = activeProspects().top3_hottest_calls || [];
+    if (!rows.length) { el.innerHTML = ""; return; }
+    var h = "";
+    rows.forEach(function (r) {
+      var tel = r.phone ? ('<a class="tel" href="tel:' + esc(String(r.phone).replace(/\s+/g, "")) + '">' + esc(r.phone) + "</a>") : "<span class=\"muted\">geen tel</span>";
+      h += '<div class="hot-chip"><div class="hot-rank">Hottest #' + esc(r.rank) + '</div><strong>' + esc(r.name) + "</strong>";
+      h += '<div class="hot-why">' + esc(r.why || "") + "</div><div style=\"margin-top:.35rem;\">" + tel + "</div></div>";
+    });
+    el.innerHTML = h;
+  }
+
+  function renderHotAiIntent() {
+    var box = $("hotAiIntentBox");
+    if (!box) return;
+    var rows = activeProspects().hot_ai_intent || [];
+    if (!rows.length) {
+      box.innerHTML = "<p class=\"muted\">Geen Hot AI-intent in data.json</p>";
+      return;
+    }
+    var h = "<ul class=\"hot-intent-list\">";
+    rows.forEach(function (r, i) {
+      var tel = r.phone
+        ? ('<a href="tel:' + esc(String(r.phone).replace(/\s+/g, "")) + '">' + esc(r.phone) + "</a>")
+        : "<span class=\"muted\">onbekend</span>";
+      h += "<li><div><strong>" + esc(r.name) + "</strong>";
+      h += '<div class="hi-meta">' + esc(r.city || "") + (r.why_now_date ? (" · " + esc(r.why_now_date)) : "") + "</div>";
+      h += '<div style="margin-top:.25rem;">' + esc(r.why_now || "") + "</div></div>";
+      h += "<div style=\"text-align:right;\">" + tel + "</div></li>";
+    });
+    h += "</ul>";
+    box.innerHTML = h;
+  }
+
+  function openProspectDetail(r) {
+    if (!r) return;
+    var modal = $("prospectDetailModal");
+    $("prospectDetailTitle").textContent = r.name || "Prospect";
+    $("prospectDetailSub").textContent = [r.sector, locLabel(r)].filter(Boolean).join(" · ");
+    var li = r.linkedin || r.linkedin_url || "";
+    var why = r.why || r.progressive_fit || "";
+    var hook = r.call_hook || r.outreach || "";
+    var omzet = r.revenue_range || "onbekend";
+    var omzetSrc = r.revenue_source
+      ? (' <a href="' + esc(r.revenue_source) + '" target="_blank" rel="noopener">bron ↗</a>')
+      : "";
+    var phone = r.phone || "onbekend";
+    var phoneHtml = r.phone
+      ? ('<a href="tel:' + esc(String(r.phone).replace(/\s+/g, "")) + '">' + esc(r.phone) + "</a>")
+      : esc(phone);
+    var web = r.website
+      ? ('<a href="' + esc(r.website) + '" target="_blank" rel="noopener">' + esc(r.website) + "</a>")
+      : "onbekend";
+    var liHtml = li
+      ? ('<a href="' + esc(li) + '" target="_blank" rel="noopener">LinkedIn ↗</a>')
+      : "gap";
+    var gaps = Array.isArray(r.gaps) ? r.gaps : [];
+    var gapsHtml = gaps.length
+      ? ("<ul class=\"gaps-list\">" + gaps.map(function (g) { return "<li>" + esc(g) + "</li>"; }).join("") + "</ul>")
+      : "<span class=\"muted\">geen</span>";
+    var fte = (r.fte != null && r.fte !== "") ? esc(r.fte) : "onbekend";
+    if (r.fte_source) fte += ' <a href="' + esc(r.fte_source) + '" target="_blank" rel="noopener">bron ↗</a>';
+    var body = '<div class="detail-grid">';
+    body += '<div class="lbl">Omzet</div><div class="val">' + esc(omzet) + omzetSrc + "</div>";
+    body += '<div class="lbl">Stack</div><div class="val">' + esc(r.stack_running || "onbekend") + "</div>";
+    body += '<div class="lbl">FTE</div><div class="val">' + fte + "</div>";
+    body += '<div class="lbl">Sector</div><div class="val">' + esc(r.sector || "onbekend") + "</div>";
+    body += '<div class="lbl">Tel</div><div class="val">' + phoneHtml + "</div>";
+    body += '<div class="lbl">Website</div><div class="val">' + web + "</div>";
+    body += '<div class="lbl">LinkedIn</div><div class="val">' + liHtml + "</div>";
+    body += '<div class="lbl">Provincie</div><div class="val">' + esc(r.province || "onbekend") + "</div>";
+    body += '<div class="lbl">Fit</div><div class="val">' + esc(why || "onbekend") + "</div>";
+    body += '<div class="lbl">Gaps</div><div class="val">' + gapsHtml + "</div>";
+    body += '<div class="lbl">dm_call_ready</div><div class="val">' + (r.dm_call_ready ? '<span class="badge ready">ja</span>' : '<span class="badge gap">nee / gap</span>') + "</div>";
+    body += "</div>";
+    var dm = primaryDm(r);
+    if (dm) {
+      var dmBits = [];
+      if (dm.email) dmBits.push('<a href="mailto:' + esc(dm.email) + '">' + esc(dm.email) + "</a>");
+      if (dm.phone) dmBits.push('<a href="tel:' + esc(String(dm.phone).replace(/\s+/g, "")) + '">' + esc(dm.phone) + "</a>");
+      body += '<div class="belkaart-dm"><div class="dm-name">👤 ' + esc(dm.name) + "</div>";
+      if (dm.role) body += '<div>' + esc(dm.role) + "</div>";
+      if (dmBits.length) body += '<div style="margin-top:.35rem;">' + dmBits.join(" · ") + "</div>";
+      body += "</div>";
+    } else {
+      body += '<div class="belkaart-dm" style="background:var(--orange-soft);border-color:var(--orange);"><strong>Geen DM-naam klaar</strong> — bel central of zoek via LinkedIn (scripts). Niet verzinnen.</div>';
+    }
+    if (hook) body += '<div class="detail-hook"><strong>Call-hook / belkaart</strong><br>' + esc(hook) + "</div>";
+    body += '<div class="belkaart-steps"><strong>Wat doe jij nu?</strong><ol>';
+    body += "<li>Check HOLD-status bovenaan — bij HOLD: niet bellen, wel voorbereiden.</li>";
+    body += "<li>Lees call-hook hardop · check DM-naam en nummer.</li>";
+    body += "<li>Scripts: Desktop <code>upgraide-sales-scripts</code>.</li>";
+    body += "<li>Na het gesprek (of poging): log resultaat in Call-log.</li>";
+    body += "</ol></div>";
+    $("prospectDetailBody").innerHTML = body;
+    modal.classList.add("open");
+  }
+
+  function prospectRows(pv) {
+    if (!pv) return [];
+    return (Array.isArray(pv.calling_order_wvl_first) && pv.calling_order_wvl_first.length)
+      ? pv.calling_order_wvl_first
+      : (pv.top15 || []);
+  }
+
+  function renderProspectTable(boxId, getRowsFn, badgeCls) {
+    var box = $(boxId);
+    if (!box) return;
+    var pv = getRowsFn();
+    var rows = prospectRows(pv);
+    if (!rows.length) {
+      box.innerHTML = "<p class=\"muted\">Nog geen Top 15 in data.json</p>";
+      return;
+    }
+    var h = "";
+    if (pv.icp) h += "<p class=\"muted\">ICP: " + esc(pv.icp) + (pv.enriched_at ? (" · enriched " + esc(pv.enriched_at)) : "") + "</p>";
+    if (pv.status) h += '<span class="badge ' + (badgeCls || "ok") + '">' + esc(pv.status) + "</span> ";
+    if (pv.geo_mix) h += '<p class="muted">' + esc(pv.geo_mix) + "</p>";
+    if (pv.calling_order_wvl_first && pv.calling_order_wvl_first.length) h += '<p class="muted"><strong>Calling order:</strong> WVL-first · daarna regio/OV en verder</p>';
+    h += '<p class="click-hint">Klik een rij voor omzet, stack, tel, call-hook en gaps.</p>';
+    h += "<div class=\"table-wrap\"><table class=\"table\"><thead><tr><th>#</th><th>Bedrijf</th><th>Locatie</th><th>DM</th><th>Tel</th><th>Call-hook</th><th>Ready</th></tr></thead><tbody>";
+    rows.forEach(function (r, idx) {
+      var liUrl = r.linkedin || r.linkedin_url || "";
+      var li = liUrl ? ("<a href=\"" + esc(liUrl) + "\" target=\"_blank\" rel=\"noopener\" data-stop=\"1\">LI</a>") : "gap";
+      var tel = r.phone
+        ? ("<a href=\"tel:" + esc(String(r.phone).replace(/\s+/g, "")) + "\" data-stop=\"1\">" + esc(r.phone) + "</a>")
+        : "<span class=\"muted\">onbekend</span>";
+      var why = r.why || r.progressive_fit || "";
+      var hook = r.outreach || r.call_hook || "";
+      var dmR = primaryDm(r);
+      var dmName = dmR ? dmR.name : "—";
+      var ready = r.dm_call_ready ? "✓" : "gap";
+      h += "<tr class=\"prospect-row\" data-pidx=\"" + idx + "\"><td>" + esc(r.call_rank_wvl_first || r.rank || (idx + 1)) + "</td><td><strong>" + esc(r.name) + "</strong></td><td>" + esc(locLabel(r)) + "</td><td>" + esc(dmName) + "</td><td>" + tel + "</td><td>" + esc(hook) + "</td><td>" + ready + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+    box.innerHTML = h;
+    box.querySelectorAll("tr.prospect-row").forEach(function (tr) {
+      tr.addEventListener("click", function (ev) {
+        if (ev.target && ev.target.closest && ev.target.closest("[data-stop]")) return;
+        var i = parseInt(tr.getAttribute("data-pidx"), 10);
+        openProspectDetail(prospectRows(getRowsFn())[i]);
+      });
+    });
+  }
+
+  function renderProspectsV3() {
+    renderTop3Hottest();
+    renderHotAiIntent();
+    renderProspectTable("prospectsV3Box", pv3, "ok");
+  }
+
+  function renderProspectsV2() {
+    renderProspectsV3();
+    renderProspectTable("prospectsV2Box", pv2, "warn");
+  }
+
+  function leadFromProspect(r, idPrefix, rankOrIdx) {
+    var hook = r.outreach || r.call_hook || "";
+    var why = r.why || r.progressive_fit || r.why_now || "";
+    var li = r.linkedin || r.linkedin_url || "";
+    var notes = (idPrefix === "v3" ? "v3 call-ready · " : (idPrefix === "hot" ? "hot AI · " : "v2 archief · ")) + why;
+    if (r.phone) notes += " · tel " + r.phone;
+    notes += li ? (" · " + li) : " · LI gap";
+    return {
+      id: idPrefix + "-" + rankOrIdx,
+      bedrijf: r.name,
+      contact: "zaakvoerder / te bevestigen",
+      pakket: "n.n.b.",
+      fase: "Lead",
+      bron: "Outbound",
+      owner: "Lynn",
+      volgende: hook,
+      due: "",
+      notities: notes
+    };
+  }
+
+  function loadV3IntoPipeline() {
+    var rows = prospectRows(pv3());
+    if (!rows.length) { toast("Geen v3 calling-lijst"); return; }
+    if (!confirm("Research v3 WVL-first calling-lijst als Lead in pipeline laden?")) return;
+    var existing = getPipeline();
+    var added = 0;
+    rows.forEach(function (r) {
+      if (existing.some(function (d) { return d.bedrijf === r.name; })) return;
+      existing.push(leadFromProspect(r, "v3", r.call_rank_wvl_first || r.rank || (added + 1)));
+      added++;
+    });
+    setPipeline(existing);
+    toast(added ? ("v3 WVL-first: +" + added + " leads") : "Alle v3 WVL-first leads stonden al in pipeline");
+  }
+
+  function loadV2IntoPipeline() {
+    var rows = pv2().top15 || [];
+    if (!rows.length) { toast("Geen Top 15"); return; }
+    if (!confirm("FRONNT Top 15 (archief) als Lead in pipeline laden?")) return;
+    var existing = getPipeline();
+    var added = 0;
+    rows.forEach(function (r) {
+      if (existing.some(function (d) { return d.bedrijf === r.name; })) return;
+      existing.push(leadFromProspect(r, "v2", r.rank));
+      added++;
+    });
+    setPipeline(existing);
+    toast(added ? ("archief v2: +" + added + " leads") : "Alle archief Top 15 stonden al in pipeline");
+  }
+
+  function loadHotAiIntoPipeline() {
+    var rows = activeProspects().hot_ai_intent || [];
+    if (!rows.length) { toast("Geen Hot AI-intent"); return; }
+    if (!confirm("Hot AI-intent (" + rows.length + ") als Lead in pipeline laden?")) return;
+    var existing = getPipeline();
+    var added = 0;
+    rows.forEach(function (r, i) {
+      if (existing.some(function (d) { return d.bedrijf === r.name; })) return;
+      existing.push(leadFromProspect(r, "hot", i + 1));
+      added++;
+    });
+    setPipeline(existing);
+    toast(added ? ("Hotlist: +" + added + " leads") : "Alle hotlist-items stonden al in pipeline");
+  }
+
+  function renderScoreBars(weekId) {
+    var act = getWeekActuals(weekId);
+    var t = DATA.targets_x3_week;
+    var html = "";
+    METRICS.forEach(function (m) {
+      var target = t[m];
+      var val = act[m];
+      var pct = (val == null || target === 0) ? 0 : Math.min(100, (val / target) * 100);
+      html += '<div class="bar-row"><div>' + METRIC_LABELS[m] + '</div>';
+      html += '<div class="bar-track"><div class="bar-fill' + (val != null && val >= target ? " over" : "") + '" style="width:' + pct + '%"></div></div>';
+      html += '<div class="mono">' + (val == null ? "—" : val) + " / " + target + '</div></div>';
+    });
+    $("scoreBars").innerHTML = html;
+  }
+
+  function renderSlots() {
+    var slots = getSlots();
+    var busy = slots.filter(function (s) { return s.status !== "Vrij"; }).length;
+    $("slotCapacity").textContent = busy + " / 3 bezet";
+    var statuses = DATA.delivery_statuses;
+    var html = "";
+    slots.forEach(function (s, i) {
+      var cls = "slot-card";
+      if (s.status === "Build achter" || s.status === "Blocked") cls += " danger";
+      else if (s.status !== "Vrij") cls += " busy";
+      html += '<div class="' + cls + '"><strong>Slot ' + (i + 1) + '</strong>';
+      html += '<div class="field" style="margin-top:.5rem;"><label>Klant</label><input data-slot="' + i + '" data-f="klant" value="' + esc(s.klant) + '" /></div>';
+      html += '<div class="field"><label>Pakket</label><input data-slot="' + i + '" data-f="pakket" value="' + esc(s.pakket) + '" /></div>';
+      html += '<div class="field"><label>Status</label><select data-slot="' + i + '" data-f="status">';
+      statuses.forEach(function (st) { html += '<option' + (s.status === st ? " selected" : "") + '>' + st + '</option>'; });
+      html += '</select></div>';
+      html += '<div class="field"><label>Start</label><input type="date" data-slot="' + i + '" data-f="start" value="' + esc(s.start) + '" /></div>';
+      html += '<div class="field"><label>Notities</label><input data-slot="' + i + '" data-f="notities" value="' + esc(s.notities) + '" /></div>';
+      html += '</div>';
+    });
+    $("deliverySlots").innerHTML = html;
+  }
+  function renderDocs() {
+    var html = "";
+    DATA.delivery_docs.forEach(function (d) {
+      html += '<button type="button" class="doc-card" data-file="' + esc(d.file) + '"><div class="lb">' + esc(d.label) + '</div><div class="fn">' + esc(d.file) + '</div></button>';
+    });
+    $("deliveryDocs").innerHTML = html;
+    $("deliveryDocs").querySelectorAll(".doc-card").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var doc = DATA.delivery_docs.find(function (x) { return x.file === btn.getAttribute("data-file"); });
+        $("docModalTitle").textContent = doc.label;
+        $("docModalPath").textContent = doc.path;
+        $("docModalPreview").textContent = doc.preview + "\n\n(Volledige tekst: open het .md-bestand op de box.)";
+        $("docModal").classList.add("open");
+      });
+    });
+  }
+
+  function renderLinkedIn() {
+    var html = "";
+    DATA.linkedin_4_weken.forEach(function (w) {
+      html += '<div class="li-week">';
+      html += '<div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.4rem;">';
+      html += '<strong style="font-size:1.05rem;">Week ' + w.week + '</strong> <span class="mono">' + esc(w.data) + '</span>';
+      html += '<span class="badge off">Publicatie ' + esc(w.publicatie) + '</span></div>';
+      html += '<div style="font-size:.95rem;margin-bottom:.3rem;"><em>' + esc(w.thema) + '</em></div>';
+      html += '<div class="mono" style="margin-bottom:.35rem;">' + esc(w.focus) + '</div>';
+      html += '<div style="font-size:.84rem;margin-bottom:.4rem;"><strong>CTA</strong>' + tip("CTA") + ': ' + esc(w.cta || "—") + '</div>';
+      html += '<div class="li-status">';
+      html += statusBadge("Copy", w.copy);
+      html += statusBadge("Visuals", w.visuals);
+      html += statusBadge("Review", w.review);
+      html += '</div>';
+      html += '<div style="margin-top:.55rem;">';
+      if (w.weekpakket) html += '<span class="path-chip">pakket: ' + esc(w.weekpakket) + '</span>';
+      if (w.visuals_pad) html += '<span class="path-chip">visuals: ' + esc(w.visuals_pad) + '</span>';
+      if (w.plaats) html += '<span class="path-chip">plaats: ' + esc(w.plaats) + '</span>';
+      html += '</div></div>';
+    });
+    $("liWeeks").innerHTML = html;
+  }
+  function statusBadge(label, val) {
+    var v = (val || "").toLowerCase();
+    var cls = "badge";
+    if (v.indexOf("go") !== -1 && v.indexOf("edits") === -1) cls += " ok";
+    else if (v.indexOf("go-met-edits") !== -1 || v.indexOf("edits") !== -1) cls += " warn";
+    else if (v.indexOf("pending") !== -1 || v.indexOf("ready") !== -1 || v.indexOf("open") !== -1 || v.indexOf("brief") !== -1) cls += " warn";
+    return '<span class="' + cls + '">' + label + ": " + esc(val) + '</span>';
+  }
+
+  function renderGlossary() {
+    var html = "";
+    (DATA.glossary || []).forEach(function (g) {
+      html += '<div class="gloss-item"><dt>' + esc(g.term) + '</dt><dd>' + esc(g.uitleg) + '</dd></div>';
+    });
+    $("glossGrid").innerHTML = html;
+  }
+
+  function renderBronnen() {
+    var L = DATA.links;
+    var html = "";
+    [
+      ["Command Center", L.notion_command_center],
+      ["Pipeline DB", L.notion_pipeline],
+      ["Week scoreboard", L.notion_week_scoreboard],
+      ["Delivery kickoffs", L.notion_delivery_kickoffs],
+      ["Weekpakket 1", L.weekpakket_1]
+    ].forEach(function (x) {
+      html += '<a class="btn sm" href="' + x[1] + '" target="_blank" rel="noopener" style="text-decoration:none;">' + x[0] + ' ↗</a>';
+    });
+    $("notionLinks").innerHTML = html;
+    var b = DATA.bronnen;
+    $("fileLinks").innerHTML =
+      "<div>Dashboard: " + esc(b.dashboard) + "</div>" +
+      "<div>Prospects-archief: " + esc(b.prospects_archief) + "</div>" +
+      "<div>Regie: " + esc(b.regie) + "</div>" +
+      "<div>Delivery: " + esc(b.delivery_dir) + "</div>" +
+      "<div>Review audit W3/W4: " + esc(b.review_audit_w3w4 || "") + "</div>" +
+      "<div style='margin-top:.5rem;'>Delivery files:<br/>" +
+      DATA.delivery_docs.map(function (d) { return "· " + d.file; }).join("<br/>") + "</div>";
+  }
+
+  function buildExportPayload() {
+    return {
+      meta: Object.assign({}, DATA.meta, { exported_at: new Date().toISOString(), source: "command-center-hub-v3.6-simple" }),
+      kpis: Object.assign({}, DATA.kpis, { deals_per_maand: Object.assign({}, DATA.kpis.deals_per_maand, { current: getCurrentDeals() }) }),
+      targets_x3_week: DATA.targets_x3_week,
+      week_actuals: getWeeksStore(),
+      flags: getFlags(),
+      checklist: getChecklist(),
+      pipeline: getPipeline(),
+      delivery_slots: getSlots(),
+      linkedin_4_weken: DATA.linkedin_4_weken,
+      bots: DATA.bots,
+      glossary: DATA.glossary,
+      prospects_v1_deprecated: DATA.prospects_v1_deprecated,
+      prospects_v2: DATA.prospects_v2,
+      prospectsV2: DATA.prospectsV2,
+      prospectsV3: DATA.prospectsV3,
+      links: DATA.links,
+      bronnen: DATA.bronnen,
+      delivery_docs: DATA.delivery_docs,
+      pakketten: DATA.pakketten,
+      pipeline_fases: FASES,
+      weeks: DATA.weeks,
+      onboarding_stappen: DATA.onboarding_stappen
+    };
+  }
+  function downloadJSON(obj, filename) {
+    var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  /* Events */
+  $("currentDeals").addEventListener("change", function () {
+    localStorage.setItem(LS.dealsCurrent, $("currentDeals").value);
+    renderProgress();
+    updateHomeKpis();
+  });
+  $("homeWeekSelect").addEventListener("change", function () {
+    activeWeekId = $("homeWeekSelect").value;
+    $("scoreWeekSelect").value = activeWeekId;
+    renderWeekFields("homeWeekFields", activeWeekId);
+    renderWeekFields("scoreFields", activeWeekId);
+    renderScoreBars(activeWeekId);
+  });
+  $("scoreWeekSelect").addEventListener("change", function () {
+    activeWeekId = $("scoreWeekSelect").value;
+    $("homeWeekSelect").value = activeWeekId;
+    renderWeekFields("homeWeekFields", activeWeekId);
+    renderWeekFields("scoreFields", activeWeekId);
+    renderScoreBars(activeWeekId);
+  });
+  $("btnSaveWeek").addEventListener("click", function () {
+    setWeekActuals(activeWeekId, readWeekFields("homeWeekFields"));
+    renderWeekFields("scoreFields", activeWeekId);
+    renderScoreBars(activeWeekId);
+    toast("Week actuals opgeslagen");
+  });
+  $("btnSaveScore").addEventListener("click", function () {
+    setWeekActuals(activeWeekId, readWeekFields("scoreFields"));
+    renderWeekFields("homeWeekFields", activeWeekId);
+    renderScoreBars(activeWeekId);
+    toast("Scoreboard opgeslagen");
+  });
+  $("btnSaveFlags").addEventListener("click", function () {
+    var lynnVal = $("flagLynnHours").value.trim();
+    saveJSON(LS.flags, {
+      parallel_setups: parseInt($("flagParallel").value, 10) || 0,
+      lynn_sales_uren: lynnVal === "" ? null : parseFloat(lynnVal),
+      build_achterstand: $("flagBuild").value === "true",
+      note: "handmatig"
+    });
+    renderRedFlags();
+    renderCeoStrip();
+    toast("Vlaggen opgeslagen");
+  });
+  $("btnResetChecklist").addEventListener("click", function () {
+    saveJSON(LS.checklist, DATA.vandaag_checklist_default.map(function (c) { return Object.assign({}, c); }));
+    renderChecklist();
+    toast("Checklist gereset");
+  });
+  $("btnExportData").addEventListener("click", function () {
+    downloadJSON(buildExportPayload(), "upgraide-command-center-export.json");
+    toast("Export gedownload");
+  });
+  $("btnSyncExport").addEventListener("click", function () {
+    downloadJSON(buildExportPayload(), "data.json");
+    toast("Sync-export als data.json");
+  });
+  $("btnImportData").addEventListener("click", function () { $("importFile").click(); });
+  $("importFile").addEventListener("change", function () {
+    var f = $("importFile").files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var obj = JSON.parse(reader.result);
+        if (obj.pipeline) saveJSON(LS.pipeline, obj.pipeline);
+        if (obj.week_actuals) saveJSON(LS.weeks, obj.week_actuals);
+        if (obj.flags) saveJSON(LS.flags, obj.flags);
+        if (obj.checklist) saveJSON(LS.checklist, obj.checklist);
+        if (obj.delivery_slots) saveJSON(LS.slots, obj.delivery_slots);
+        if (obj.kpis && obj.kpis.deals_per_maand && obj.kpis.deals_per_maand.current != null) {
+          localStorage.setItem(LS.dealsCurrent, String(obj.kpis.deals_per_maand.current));
+        }
+        bootUI();
+        toast("Import gelukt");
+      } catch (e) { toast("Import mislukt: " + e.message); }
+    };
+    reader.readAsText(f);
+    $("importFile").value = "";
+  });
+
+  document.querySelectorAll("[data-view]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      pipeView = btn.getAttribute("data-view");
+      document.querySelectorAll("[data-view]").forEach(function (b) { b.classList.toggle("active", b === btn); });
+      $("pipeKanban").style.display = pipeView === "kanban" ? "grid" : "none";
+      $("pipeTable").style.display = pipeView === "table" ? "block" : "none";
+    });
+  });
+  $("btnAddDeal").addEventListener("click", function () { openDealModal(null); });
+  $("btnCancelDeal").addEventListener("click", closeDealModal);
+  $("btnCloseDoc").addEventListener("click", function () { $("docModal").classList.remove("open"); });
+  $("btnCloseBot").addEventListener("click", function () { $("botModal").classList.remove("open"); });
+  $("dealModal").addEventListener("click", function (e) { if (e.target === $("dealModal")) closeDealModal(); });
+  $("docModal").addEventListener("click", function (e) { if (e.target === $("docModal")) $("docModal").classList.remove("open"); });
+  $("botModal").addEventListener("click", function (e) { if (e.target === $("botModal")) $("botModal").classList.remove("open"); });
+  $("btnSaveDeal").addEventListener("click", function () {
+    var bedrijf = $("dBedrijf").value.trim();
+    if (!bedrijf) { toast("Bedrijf verplicht"); return; }
+    var pipe = getPipeline();
+    var id = $("dId").value;
+    var row = {
+      id: id || uid(),
+      bedrijf: bedrijf,
+      contact: $("dContact").value.trim(),
+      pakket: $("dPakket").value,
+      fase: $("dFase").value,
+      bron: $("dBron").value,
+      owner: $("dOwner").value,
+      volgende: $("dVolgende").value.trim(),
+      due: $("dDue").value,
+      notities: $("dNotities").value.trim()
+    };
+    if (id) {
+      var ix = pipe.findIndex(function (d) { return d.id === id; });
+      if (ix >= 0) pipe[ix] = row; else pipe.push(row);
+    } else pipe.push(row);
+    setPipeline(pipe);
+    closeDealModal();
+    toast("Deal opgeslagen");
+  });
+  $("btnDeleteDeal").addEventListener("click", function () {
+    var id = $("dId").value;
+    if (!id || !confirm("Deal verwijderen?")) return;
+    setPipeline(getPipeline().filter(function (d) { return d.id !== id; }));
+    closeDealModal();
+    toast("Deal verwijderd");
+  });
+  $("btnClearPipe").addEventListener("click", function () {
+    if (!confirm("Hele pipeline wissen?")) return;
+    setPipeline([]);
+    toast("Pipeline leeg");
+  });
+  $("btnExportPipe").addEventListener("click", function () {
+    downloadJSON(getPipeline(), "pipeline-export.json");
+    toast("Pipeline geëxporteerd");
+  });
+  $("btnImportPipe").addEventListener("click", function () { $("importPipeFile").click(); });
+  $("importPipeFile").addEventListener("change", function () {
+    var f = $("importPipeFile").files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var arr = JSON.parse(reader.result);
+        if (!Array.isArray(arr)) throw new Error("Verwacht een array");
+        setPipeline(arr);
+        toast("Pipeline geïmporteerd (" + arr.length + ")");
+      } catch (e) { toast("Import mislukt: " + e.message); }
+    };
+    reader.readAsText(f);
+    $("importPipeFile").value = "";
+  });
+
+  /* v3.2 zelf-inladen events */
+  $("btnDownloadCsvTpl").addEventListener("click", function () {
+    fetch("voorbeeld-leads.csv").then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.text();
+    }).then(function (t) {
+      downloadText("voorbeeld-leads.csv", t, "text/csv;charset=utf-8");
+      toast("CSV-voorbeeld gedownload");
+    }).catch(function () {
+      downloadText("voorbeeld-leads.csv", CSV_TPL_INLINE, "text/csv;charset=utf-8");
+      toast("CSV-voorbeeld gedownload (inline)");
+    });
+  });
+  $("btnImportCsv").addEventListener("click", function () { $("importCsvFile").click(); });
+  $("importCsvFile").addEventListener("change", function () {
+    var f = $("importCsvFile").files[0];
+    if (!f) return;
+    readFileAsText(f, function (err, text) {
+      if (err) { toast(err.message); return; }
+      try {
+        var replace = $("importReplace").checked;
+        applyParsedImport({ kind: "csv", rows: parseCSV(text) }, replace);
+      } catch (e) { toast("CSV-import mislukt: " + e.message); }
+    });
+    $("importCsvFile").value = "";
+  });
+  $("btnImportProspectsJson").addEventListener("click", function () { $("importProspectsFile").click(); });
+  $("importProspectsFile").addEventListener("change", function () {
+    var f = $("importProspectsFile").files[0];
+    if (!f) return;
+    readFileAsText(f, function (err, text) {
+      if (err) { toast(err.message); return; }
+      try {
+        var obj = JSON.parse(text);
+        var rows = extractProspectRows(obj);
+        if (!rows) throw new Error("Verwacht array of {top15} / {prospectsV2.top15}");
+        applyCustomTop15(rows);
+      } catch (e) { toast("Top-lijst import mislukt: " + e.message); }
+    });
+    $("importProspectsFile").value = "";
+  });
+  $("btnMergePipe").addEventListener("click", function () { $("importPipeMergeFile").click(); });
+  $("importPipeMergeFile").addEventListener("change", function () {
+    var f = $("importPipeMergeFile").files[0];
+    if (!f) return;
+    readFileAsText(f, function (err, text) {
+      if (err) { toast(err.message); return; }
+      try {
+        var obj = JSON.parse(text);
+        var arr = Array.isArray(obj) ? obj : (obj.pipeline || obj.deals);
+        if (!Array.isArray(arr)) throw new Error("Verwacht deal-array of {pipeline}");
+        mergeDeals(rowsToDeals(arr), false);
+      } catch (e) { toast("Merge-import mislukt: " + e.message); }
+    });
+    $("importPipeMergeFile").value = "";
+  });
+  $("btnPasteImport").addEventListener("click", function () {
+    var raw = ($("pasteImport").value || "").trim();
+    if (!raw) { toast("Plak eerst CSV of JSON"); return; }
+    try {
+      var ch = raw.charAt(0);
+      if (ch === "{" || ch === "[") {
+        var obj2 = JSON.parse(raw);
+        var pr = extractProspectRows(obj2);
+        var isTopWrap = pr && (
+          (obj2 && obj2.top15) ||
+          (obj2 && obj2.prospectsV2 && obj2.prospectsV2.top15) ||
+          (obj2 && obj2.prospects_v2 && obj2.prospects_v2.top15) ||
+          (Array.isArray(obj2) && obj2[0] && (obj2[0].rank != null || (obj2[0].name != null && obj2[0].why != null)))
+        );
+        if (isTopWrap) {
+          applyCustomTop15(pr);
+          return;
+        }
+      }
+      var parsed = parseMaybeJsonOrCsv(raw);
+      applyParsedImport(parsed, $("importReplace").checked);
+    } catch (e) { toast("Plak-import mislukt: " + e.message); }
+  });
+
+  $("btnLoadArchief").addEventListener("click", loadArchiefToPipe);
+  if ($("btnLoadV3")) $("btnLoadV3").addEventListener("click", loadV3IntoPipeline);
+  if ($("btnLoadV2")) $("btnLoadV2").addEventListener("click", loadV2IntoPipeline);
+  if ($("btnLoadHotAi")) $("btnLoadHotAi").addEventListener("click", loadHotAiIntoPipeline);
+  if ($("btnCloseProspectDetail")) $("btnCloseProspectDetail").addEventListener("click", function () {
+    $("prospectDetailModal").classList.remove("open");
+  });
+  if ($("prospectDetailModal")) $("prospectDetailModal").addEventListener("click", function (e) {
+    if (e.target === $("prospectDetailModal")) $("prospectDetailModal").classList.remove("open");
+  });
+
+  $("btnSaveSlots").addEventListener("click", function () {
+    var slots = getSlots();
+    $("deliverySlots").querySelectorAll("[data-slot]").forEach(function (el) {
+      var i = parseInt(el.getAttribute("data-slot"), 10);
+      var f = el.getAttribute("data-f");
+      slots[i][f] = el.value;
+    });
+    saveJSON(LS.slots, slots);
+    renderSlots();
+    renderRedFlags();
+    updateHomeKpis();
+    toast("Slots opgeslagen");
+  });
+
+
+  $("btnSaveTeam").addEventListener("click", function () {
+    var rows = collectTeamFromDom();
+    setTeamRows(rows);
+    touchTeamUpdated();
+    renderCeoStrip();
+    toast("Team-status opgeslagen");
+  });
+  $("btnResetTeam").addEventListener("click", function () {
+    if (!confirm("Team-paneel terugzetten naar presets? Lokale edits gaan verloren.")) return;
+    localStorage.removeItem(LS.teamStatus);
+    localStorage.removeItem(LS.teamUpdated);
+    renderTeamPanel();
+    renderTeamUpdated();
+    toast("Presets herladen");
+  });
+  if ($("btnMarkResearchHalf")) $("btnMarkResearchHalf").addEventListener("click", markResearchHalfCheck);
+  if ($("btnLoadV3FromBellen")) $("btnLoadV3FromBellen").addEventListener("click", loadV3IntoPipeline);
+  if ($("btnAddCallLog")) $("btnAddCallLog").addEventListener("click", addCallLogRow);
+  if ($("btnExportCallLog")) $("btnExportCallLog").addEventListener("click", exportCallLogCsv);
+  if ($("btnClearCallLog")) $("btnClearCallLog").addEventListener("click", function () {
+    if (!confirm("Call-log wissen? Dit wist alle lokale bel-notities (upg-cc-call-log).")) return;
+    setCallLog([]);
+    toast("Call-log gewist");
+  });
+  function wireExportWeek(id) {
+    var el = $(id);
+    if (el) el.addEventListener("click", exportWeekJson);
+  }
+  wireExportWeek("btnExportWeekJson");
+  wireExportWeek("btnExportWeekJson2");
+  ["callLogBedrijf", "callLogNotitie"].forEach(function (id) {
+    var el = $(id);
+    if (el) el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); addCallLogRow(); }
+    });
+  });
+
+  function bootUI() {
+    fillWeekSelects();
+    updateHomeKpis();
+    renderWeekFields("homeWeekFields", activeWeekId);
+    renderWeekFields("scoreFields", activeWeekId);
+    renderScoreBars(activeWeekId);
+    renderRedFlags();
+    renderChecklist();
+    renderOnboarding();
+    renderBots();
+    renderPakketten();
+    renderProspectsMeta();
+    renderProspectsV2();
+    renderCallingBoard();
+    renderHoldStatus();
+    renderBellenMiniGloss();
+    renderPipeline();
+    renderSlots();
+    renderDocs();
+    renderLinkedIn();
+    renderGlossary();
+    renderBronnen();
+    renderCallLog();
+    renderTeamPanel();
+    renderTeamUpdated();
+    renderCeoStrip();
+    renderCeoPrompts();
+    // v3: do NOT auto-preload top10; clear old boot flag meaning
+    // If user had v2 auto-loaded pipeline and wants empty start, they can clear — we don't wipe silently
+  }
+
+  function init() {
+    fetch("data.json")
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (json) {
+        DATA = json;
+        FASES = DATA.pipeline_fases || FASES;
+        (DATA.glossary || []).forEach(function (g) {
+          GLOSS[g.term] = g.uitleg;
+          GLOSS[g.term.toLowerCase()] = g.uitleg;
+        });
+        var customTop = loadJSON(LS.customTop15, null);
+        if (customTop && Array.isArray(customTop) && customTop.length) {
+          if (!DATA.prospectsV2) DATA.prospectsV2 = {};
+          DATA.prospectsV2.top15 = customTop;
+        }
+        bootUI();
+        if (!localStorage.getItem(LS.versionSeen)) {
+          localStorage.setItem(LS.versionSeen, "3.6");
+          showPanel("start");
+        } else {
+          showPanel("bellen");
+        }
+      })
+      .catch(function (err) {
+        console.error(err);
+        $("onboardSteps").innerHTML = "<li><div class='step-num'>!</div><div><strong>data.json niet geladen</strong><p>Start een lokale server: <code>python3 -m http.server 8765 --directory /workspace/upgraide/dashboard</code> en open http://localhost:8765 — niet via file://</p></div></li>";
+        toast("data.json ontbreekt — gebruik http.server");
+      });
+  }
+  init();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,3195 @@
+{
+  "meta": {
+    "title": "upgrAIde Command Center",
+    "locale": "nl-BE",
+    "updated": "2026-10-02",
+    "version": "3.6-simple",
+    "notion_page": "https://app.notion.com/p/3ed63d88b36f81178e55c431bea1ed7d?pvs=204",
+    "publicatie": "UIT",
+    "prijzen": "flexibel — scoped per deal",
+    "guardrails": [
+      "Dual-entity: upgrAIde ≠ Homework Admin / Toto",
+      "Publicatie LinkedIn UIT tot Sander plakt of Primary publicatie aan",
+      "Prijzen = richtlijn, niet vaste lijst",
+      "Geen fake live metrics — alles handmatig / localStorage",
+      "Geen SendToAgent vanuit browser — actiekaarten copy-paste naar Grok Bot"
+    ],
+    "dm_gaps_check": "2026-10-02T17:19+02:00",
+    "calling_status": "HOLD"
+  },
+  "kpis": {
+    "deals_per_maand": {
+      "start": 2,
+      "current": 2,
+      "x3": 6,
+      "x4": 8
+    },
+    "jaar_omzet_eur": {
+      "start": 211000,
+      "x3": 634000,
+      "x4": 845000
+    },
+    "ending_arr_eur": {
+      "start": 176000,
+      "x3": 527000,
+      "x4": 703000
+    },
+    "blended_setup_eur": 5150,
+    "blended_mrr_eur": 610,
+    "parallel_setups_hard_limit": 3
+  },
+  "targets_x3_week": {
+    "leads": 40,
+    "ql": 6,
+    "calls": 8,
+    "discovery": 4,
+    "offertes": 3,
+    "deals": 1.5
+  },
+  "week_actuals_default": {
+    "week_id": "2026-W40",
+    "label": "29 sep – 5 okt 2026",
+    "leads": null,
+    "ql": null,
+    "calls": null,
+    "discovery": null,
+    "offertes": null,
+    "deals": null,
+    "note": "handmatig / nog leeg"
+  },
+  "weeks": [
+    {
+      "id": "2026-W40",
+      "label": "29 sep – 5 okt"
+    },
+    {
+      "id": "2026-W41",
+      "label": "6 – 12 okt (LI W1)"
+    },
+    {
+      "id": "2026-W42",
+      "label": "13 – 19 okt (LI W2)"
+    },
+    {
+      "id": "2026-W43",
+      "label": "20 – 26 okt (LI W3)"
+    },
+    {
+      "id": "2026-W44",
+      "label": "27 okt – 2 nov (LI W4)"
+    }
+  ],
+  "pakketten": [
+    {
+      "id": "keten-start",
+      "naam": "Keten Start",
+      "setup_eur": 3500,
+      "mrr_eur": 400,
+      "uitleg": "Eén primaire keten (bv. mail→offerte→CRM) opzetten + stabiliseren."
+    },
+    {
+      "id": "bot-team-grow",
+      "naam": "Bot-team Grow",
+      "setup_eur": 9000,
+      "mrr_eur": 1100,
+      "defaults": [
+        "Core",
+        "Mail",
+        "Planning"
+      ],
+      "uitleg": "Meerdere bots/ketens: Core + Mail + Planning als standaard."
+    },
+    {
+      "id": "nnb",
+      "naam": "n.n.b.",
+      "setup_eur": null,
+      "mrr_eur": null,
+      "uitleg": "Nog niet bepaald — scoped na discovery."
+    }
+  ],
+  "pipeline_fases": [
+    "Lead",
+    "QL",
+    "Call",
+    "Discovery",
+    "Offerte",
+    "Won",
+    "Lost"
+  ],
+  "motoren": [
+    {
+      "id": "li-inbound",
+      "naam": "LinkedIn inbound",
+      "uitleg": "Content + CTA’s → mensen die zelf contact opnemen."
+    },
+    {
+      "id": "research-out",
+      "naam": "Research outbound",
+      "uitleg": "Gerichte prospectlijsten → Lynn/Sales belt of DMt."
+    },
+    {
+      "id": "warm-lynn",
+      "naam": "Warm Lynn",
+      "uitleg": "Warm netwerk / bekende contacten via Lynn."
+    },
+    {
+      "id": "cs-ref",
+      "naam": "CS referrals",
+      "uitleg": "Tevreden klanten die iemand doorverwijzen."
+    }
+  ],
+  "red_flags_rules": {
+    "parallel_setups_max": 3,
+    "lynn_sales_uren_warn_below": 8,
+    "build_achterstand_statuses": [
+      "Build achter",
+      "Blocked",
+      "Wachtlijst"
+    ]
+  },
+  "vandaag_checklist_default": [
+    {
+      "id": "onboard-10min",
+      "owner": "Sander",
+      "tekst": "Onboarding: eerste 10 minuten in dit dashboard (tab Start)",
+      "done": false
+    },
+    {
+      "id": "sander-slots",
+      "owner": "Sander",
+      "tekst": "Setup-slots checken (max 3 parallel)",
+      "done": false
+    },
+    {
+      "id": "content-go",
+      "owner": "Sander",
+      "tekst": "Content W1–W4 status bekijken (publicatie blijft UIT)",
+      "done": false
+    },
+    {
+      "id": "lynn-pipeline",
+      "owner": "Lynn",
+      "tekst": "Pipeline: v3 Top15 / Hot AI laden of zelf import — FRONNT v2 = archief",
+      "done": false
+    },
+    {
+      "id": "crm-open",
+      "owner": "Lynn",
+      "tekst": "CRM openen en warmte/notes bijwerken",
+      "done": false
+    },
+    {
+      "id": "bot-ask",
+      "owner": "Sander",
+      "tekst": "Optioneel: één bot-actiekaart copy-pasten naar Grok Bot (tab Bots)",
+      "done": false
+    }
+  ],
+  "prospects_v1_deprecated": {
+    "status": "deprecated",
+    "label": "Top 10 v1 — te klein / te lokaal",
+    "note": "Oude research-set (corridor Oostkamp–Waregem). Niet meer als actieve Top 10 gebruiken. Pipeline start leeg; Research laadt Prospects v2.",
+    "archive_file": "/workspace/upgraide-icp-prospects-week1-2026-10.md",
+    "archive_exists": true,
+    "items": [
+      {
+        "bedrijf": "CT-O NV",
+        "notities": "set3 · 35,4 FTE HVAC Oostkamp · warm"
+      },
+      {
+        "bedrijf": "Garage De Groote",
+        "notities": "set3 · 25 FTE Peugeot Oostkamp · warm"
+      },
+      {
+        "bedrijf": "Van Vooren BV",
+        "notities": "set3 · elektro Brugge · warm"
+      },
+      {
+        "bedrijf": "Bouttens NV",
+        "notities": "set3 · 23,1 FTE groothandel plaat · warm"
+      },
+      {
+        "bedrijf": "Malfait Verzekeringen NV",
+        "notities": "set3 · Kortrijk · ~23–33 FTE · warm"
+      },
+      {
+        "bedrijf": "Techbox Heating BV",
+        "notities": "27,9 FTE HVAC Kuurne · koud"
+      },
+      {
+        "bedrijf": "Develtere NV",
+        "notities": "32 FTE HVAC Roeselare · koud"
+      },
+      {
+        "bedrijf": "Elektro Andre Gevaert NV",
+        "notities": "30,3 FTE Roeselare · koud"
+      },
+      {
+        "bedrijf": "Garage Scheerens BV",
+        "notities": "30,4 FTE Brugge · koud"
+      },
+      {
+        "bedrijf": "Autohandel Didier NV",
+        "notities": "36,8 FTE Waregem · warm (groei)"
+      }
+    ]
+  },
+  "prospects_v2": {
+    "status": "archief",
+    "label": "Prospects v2 FRONNT (archief)",
+    "note": "Archief. Actieve default = prospectsV3 (Research v3 · broad sector mix).",
+    "file": "/workspace/upgraide-icp-prospects-v2-callready-2026-10.md",
+    "enriched_at": "2026-10-02"
+  },
+  "delivery_slots_default": [
+    {
+      "id": "slot-1",
+      "klant": "",
+      "pakket": "",
+      "status": "Vrij",
+      "start": "",
+      "notities": "Slot 1 — handmatig"
+    },
+    {
+      "id": "slot-2",
+      "klant": "",
+      "pakket": "",
+      "status": "Vrij",
+      "start": "",
+      "notities": "Slot 2 — handmatig"
+    },
+    {
+      "id": "slot-3",
+      "klant": "",
+      "pakket": "",
+      "status": "Vrij",
+      "start": "",
+      "notities": "Slot 3 — handmatig"
+    }
+  ],
+  "delivery_statuses": [
+    "Vrij",
+    "Kickoff",
+    "Discovery",
+    "Build",
+    "Build achter",
+    "UAT",
+    "Go-live",
+    "Stabilisatie",
+    "Blocked",
+    "Wachtlijst"
+  ],
+  "delivery_docs": [
+    {
+      "file": "orderform-scope-sheet.md",
+      "label": "Orderform + scope",
+      "path": "/workspace/upgraide/delivery/orderform-scope-sheet.md",
+      "preview": "Intern orderform per deal. Pakket A Keten Start (vanaf €3.5k/€400) of B Bot-team Grow (vanaf €9k/€1.1k). Dual-entity guard. Cursor/tooling apart."
+    },
+    {
+      "file": "keten-start-playbook.md",
+      "label": "Keten Start playbook",
+      "path": "/workspace/upgraide/delivery/keten-start-playbook.md",
+      "preview": "End-to-end playbook discovery→map→build→UAT→go-live→30d stabilisatie voor primaire keten."
+    },
+    {
+      "file": "change-order-one-pager.md",
+      "label": "Change-order",
+      "path": "/workspace/upgraide/delivery/change-order-one-pager.md",
+      "preview": "Eén pagina voor scopewijziging / extra keten buiten originel orderform."
+    },
+    {
+      "file": "onboarding-keten-start.md",
+      "label": "Onboarding Keten Start",
+      "path": "/workspace/upgraide/delivery/onboarding-keten-start.md",
+      "preview": "CS onboarding-checklist na kickoff voor Keten Start."
+    },
+    {
+      "file": "onboarding-bot-team-grow.md",
+      "label": "Onboarding Bot-team Grow",
+      "path": "/workspace/upgraide/delivery/onboarding-bot-team-grow.md",
+      "preview": "CS onboarding voor Grow (Core+Mail+Planning defaults)."
+    },
+    {
+      "file": "referral-script-lynn.md",
+      "label": "Referral-script Lynn",
+      "path": "/workspace/upgraide/delivery/referral-script-lynn.md",
+      "preview": "Warm script na D90-win. Subject + DM/mail + doorstuur-intro. Geen druk."
+    },
+    {
+      "file": "bot-scaffold-skill-body.md",
+      "label": "Bot scaffold skill",
+      "path": "/workspace/upgraide/delivery/bot-scaffold-skill-body.md",
+      "preview": "Botmaker scaffold / skill body voor herbruikbare templates."
+    },
+    {
+      "file": "eerste-win-scripts.md",
+      "label": "Eerste-win scripts",
+      "path": "/workspace/upgraide/delivery/eerste-win-scripts.md",
+      "preview": "Scripts om snelle first-win te forceren in de eerste weken."
+    },
+    {
+      "file": "health-30-60-90.md",
+      "label": "Health 30/60/90",
+      "path": "/workspace/upgraide/delivery/health-30-60-90.md",
+      "preview": "CS health-check cadans op D30/D60/D90."
+    },
+    {
+      "file": "productisatie-outline-2026-10.md",
+      "label": "Productisatie outline",
+      "path": "/workspace/upgraide/delivery/productisatie-outline-2026-10.md",
+      "preview": "Outline productisatie okt 2026 — templates & herhaalbaarheid."
+    }
+  ],
+  "linkedin_4_weken": [
+    {
+      "week": 1,
+      "data": "6–9 okt",
+      "thema": "Dezelfde stap, in drie schermen",
+      "focus": "Herkenning overtypen · soft audit/CTA",
+      "cta": "Elk slot: DM / Call / Soft-audit / Audit-light",
+      "copy": "GO",
+      "visuals": "GO (v8)",
+      "review": "GO (P1+S1)",
+      "publicatie": "UIT",
+      "weekpakket": "/workspace/upgraide/weekpakket-1-6-10-okt-2026.md",
+      "visuals_pad": "/workspace/upgraide/visuals-v8/",
+      "plaats": "/workspace/upgraide/plaats-checklist-week-1-6-10-okt-2026.md"
+    },
+    {
+      "week": 2,
+      "data": "13–16 okt",
+      "thema": "Één keten benoemen. Jij houdt de sleutel.",
+      "focus": "Keten mail→offerte→CRM + menselijke sleutel",
+      "cta": "Elk slot: DM / Call / Soft-audit / Audit-light",
+      "copy": "READY_FOR_PUBLICATIE",
+      "visuals": "GO (week2 mocks)",
+      "review": "GO",
+      "publicatie": "UIT",
+      "weekpakket": "/workspace/upgraide/weekpakket-2-14-17-okt-2026.md",
+      "visuals_pad": "/workspace/upgraide/visuals-week2/",
+      "plaats": "/workspace/upgraide/plaats-checklist-week-2-14-17-okt-2026.md"
+    },
+    {
+      "week": 3,
+      "data": "20–23 okt",
+      "thema": "Wat kost de chaos",
+      "focus": "Tijd/fouten/dubbel werk · Week-van-de-KMO · CTA audit/call",
+      "cta": "Audit-light / DM / Call (boost Lynn op P’s)",
+      "copy": "GO (audit)",
+      "visuals": "GO (week3)",
+      "review": "GO",
+      "publicatie": "UIT",
+      "weekpakket": "/workspace/upgraide/weekpakket-3-20-23-okt-2026.md",
+      "visuals_pad": "/workspace/upgraide/visuals-week3/",
+      "plaats": "/workspace/upgraide/plaats-checklist-week-3-20-23-okt-2026.md"
+    },
+    {
+      "week": 4,
+      "data": "27–30 okt",
+      "thema": "Before/after + hoe wij werken",
+      "focus": "Anonieme KMO before/after · mens+keten · audit-CTA",
+      "cta": "Audit-light / DM / Call · L2 = CTA-post",
+      "copy": "GO-met-edits (P3 níét-woord)",
+      "visuals": "GO-met-edits (P1 footer)",
+      "review": "GO-met-edits",
+      "publicatie": "UIT",
+      "weekpakket": "/workspace/upgraide/weekpakket-4-27-30-okt-2026.md",
+      "visuals_pad": "/workspace/upgraide/visuals-week4/",
+      "plaats": "/workspace/upgraide/plaats-checklist-week-4-27-30-okt-2026.md"
+    }
+  ],
+  "bots": [
+    {
+      "id": "primary",
+      "naam": "Primary / CEO",
+      "rol": "Stuurt het geheel, keurt goed, beslist over publicatie en prioriteit.",
+      "nu": "Command Center v3.5 · Research v3 default · dual-entity guard",
+      "status": "actief",
+      "templates": [
+        "Primary: geef CEO-stand van zaken (pipeline, LinkedIn UIT, delivery slots, rode vlaggen) — geen fake metrics.",
+        "Primary: publicatie blijft UIT; samenvat wat klaar is om te plakken als ik ‘publicatie aan’ zeg.",
+        "Primary: prioriteer vandaag voor Sander + Lynn in max 5 bullets (nl-BE)."
+      ]
+    },
+    {
+      "id": "sales",
+      "naam": "Sales",
+      "rol": "Helpt Lynn de funnel: outreach, calls, CRM-notes, volgende stappen.",
+      "nu": "Research v3 Top15 = DEFAULT · Hot AI prominent · FRONNT v2 archief",
+      "status": "actief",
+      "templates": [
+        "Sales: brief Di–Do call-lijst uit Research v3 Top15 + Hot AI (Lima→Wim→Neopack).",
+        "Sales: geef Lynn een call-script discovery 15 min (vragen, geen pitch-deck).",
+        "Sales: stel volgende-actie voor per open deal in de hub (als ik de JSON plak)."
+      ]
+    },
+    {
+      "id": "regie",
+      "naam": "Regie",
+      "rol": "Plant de LinkedIn-kalender: thema’s, ritme, CTA’s, handoffs naar Copy.",
+      "nu": "4-wekenkalender okt GO · W1–W4 briefs/pakketten aanwezig",
+      "status": "actief",
+      "templates": [
+        "Regie: check of W1–W4 CTA’s en datums nog kloppen met echte Di–Vr okt 2026.",
+        "Regie: stel thema’s voor week 5 voor (zelfde merkregels, geen Homework).",
+        "Regie: korte handoff-brief voor Copy over één week naar keuze."
+      ]
+    },
+    {
+      "id": "copy",
+      "naam": "Copy",
+      "rol": "Schrijft posts (P/S/L) in de juiste stem, met CTA, zonder verboden claims.",
+      "nu": "W1–W4 copy klaar; W4 P3 nog edit (níét-woord)",
+      "status": "actief",
+      "templates": [
+        "Copy: herschrijf W4 P3 zonder níét-woord ‘digitale medewerkers’ — behoud ‘ons bot-team’ max 1×.",
+        "Copy: lever 2 Lynn-reactiescripts (≤2u) voor W1 P1, soft CTA.",
+        "Copy: check één weekpakket op ICP wél-frases en 0 Homework-vermelding."
+      ]
+    },
+    {
+      "id": "visuals",
+      "naam": "Visuals",
+      "rol": "Maakt stil LinkedIn-beeld 1200×627 (mocks, geen stock/neon-AI).",
+      "nu": "v8 + week2/3/4 PNG’s klaar; W4 P1 footer-edit gelogd",
+      "status": "actief",
+      "templates": [
+        "Visuals: bevestig dat alle P1–P4 van week X 1200×627 zijn en overlays matchen.",
+        "Visuals: regenereer W4 P1 footer zonder W2-echo ‘jij houdt de sleutel’.",
+        "Visuals: lever bestandspaden voor plaats-checklist week X."
+      ]
+    },
+    {
+      "id": "review",
+      "naam": "Review",
+      "rol": "Audit copy+visuals tegen merkregels; stelt GO / GO-met-edits voor.",
+      "nu": "W3 GO · W4 GO-met-edits · niets gepost",
+      "status": "actief",
+      "templates": [
+        "Review: her-audit W4 na P3-copy-edit en P1-footer — verdict + checklist.",
+        "Review: leg in gewone taal uit wat ‘Review-GO / publicatie UIT’ betekent voor Sander.",
+        "Review: spot-check W2 overlays op anti-herhaling vs W1."
+      ]
+    },
+    {
+      "id": "publicatie",
+      "naam": "Publicatie",
+      "rol": "Helpt met plaats-checklists; post nooit zelf zolang publicatie UIT is.",
+      "nu": "UIT — Sander/Lynn plakken handmatig",
+      "status": "geblokkeerd",
+      "templates": [
+        "Publicatie: geef plaatsvolgorde W1 Di–Vr (waar/wie/visual) — post NIETS.",
+        "Publicatie: checklist ‘klaar om te plakken’ voor één dag, publicatie blijft UIT.",
+        "Publicatie: wat moet Primary exact zeggen om publicatie AAN te zetten?"
+      ]
+    },
+    {
+      "id": "research",
+      "naam": "Research",
+      "rol": "Bouwt ICP-prospectlijsten met echte bronnen; geen verzonnen feiten.",
+      "nu": "Prospects v3 = DONE / default calling · FRONNT Top15 = archief",
+      "status": "actief",
+      "templates": [
+        "Research v3 is DONE — Top15 broad sector mix is default calling. Bevestig gaps alleen op feiten.",
+        "Research: optioneel verifieer LinkedIn-URL gaps alleen op feiten (geen gok).",
+        "Research: houd broader_reserve beschikbaar als Sales extra volume wil."
+      ]
+    },
+    {
+      "id": "planning",
+      "naam": "Planning",
+      "rol": "Bewaakt capaciteit: max 3 parallelle setups, wachtlijst bij overflow.",
+      "nu": "Hard limit 3 · slots leeg",
+      "status": "stand-by",
+      "templates": [
+        "Planning: als we 4 won deals hebben, hoe wachtlijst + kickoff-volgorde?",
+        "Planning: check rode vlag parallel setups vs delivery slots.",
+        "Planning: stel kickoff-kalender voor bij 2 parallelle Keten Start."
+      ]
+    },
+    {
+      "id": "finance",
+      "naam": "Finance",
+      "rol": "Helpt met richtlijnen setup/MRR, orderform-scope, geen vaste prijslijst.",
+      "nu": "Richtlijnen Keten Start / Grow · Billit-context apart",
+      "status": "stand-by",
+      "templates": [
+        "Finance: vat blended setup €5150 / MRR €610 uit in gewone taal voor offerte-gesprek.",
+        "Finance: checklist orderform-velden vóór kickoff (dual-entity).",
+        "Finance: wat hoort níét in setup-fee (Cursor/tooling apart)?"
+      ]
+    },
+    {
+      "id": "cockpit",
+      "naam": "Cockpit",
+      "rol": "Onderhoudt dit dashboard (data.json, UI, sync-export).",
+      "nu": "Command Center v3.5-callready-v3 · CEO-strip · v3 Top15 default",
+      "status": "actief",
+      "templates": [
+        "Cockpit: update LinkedIn-status in data.json na Review-verdict.",
+        "Cockpit: leg uit hoe localStorage vs data.json werkt (geen live Notion-sync).",
+        "Cockpit: voeg een checklist-item toe voor Lynn deze week."
+      ]
+    },
+    {
+      "id": "cs",
+      "naam": "CS",
+      "rol": "Onboarding, health 30/60/90, referrals na wins.",
+      "nu": "Docs paraat · geen actieve setup",
+      "status": "stand-by",
+      "templates": [
+        "CS: doorloop onboarding-keten-start checklist alsof kickoff morgen is.",
+        "CS: D30 health-vragen in nl-BE (kort).",
+        "CS: referral-script Lynn na D90 — geen druk."
+      ]
+    },
+    {
+      "id": "mailbox",
+      "naam": "Mailbox",
+      "rol": "Helpt mail-triage patronen en inbox→keten mapping (geen auto-send).",
+      "nu": "Patroonwerk voor delivery · geen live klantmailbox",
+      "status": "stand-by",
+      "templates": [
+        "Mailbox: schets triage-regels mail→concept (mens keurt goed, niets auto-versturen).",
+        "Mailbox: welke labels/mappen voor offerte-chaos bij HVAC mid-KMO?",
+        "Mailbox: anti-regels: wat mag een bot nooit zelf mailen?"
+      ]
+    },
+    {
+      "id": "botmaker",
+      "naam": "Botmaker",
+      "rol": "Templates/scaffold voor herbruikbare bots en skills.",
+      "nu": "Scaffold + playbook klaar voor eerste kickoff",
+      "status": "stand-by",
+      "templates": [
+        "Botmaker: vat bot-scaffold-skill-body samen in 8 bullets voor Sander.",
+        "Botmaker: checklist ‘nieuwe bot’ vóór klant-kickoff.",
+        "Botmaker: welke defaults bij Bot-team Grow (Core/Mail/Planning)?"
+      ]
+    },
+    {
+      "id": "insights",
+      "naam": "Insights",
+      "rol": "Maakt patronen zichtbaar uit scoreboard/pipeline — alleen echte cijfers.",
+      "nu": "Wacht op handmatige week-actuals (nu leeg)",
+      "status": "stand-by",
+      "templates": [
+        "Insights: als ik week-actuals plak, geef gap vs ×3 in gewone taal.",
+        "Insights: welke metric eerst vullen als alles nog leeg is?",
+        "Insights: geen fake charts — zeg wat ontbreekt."
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "QL",
+      "uitleg": "Qualified Lead — iemand die past bij ons ICP én serieus genoeg is voor een gesprek (niet zomaar een like)."
+    },
+    {
+      "term": "MRR",
+      "uitleg": "Monthly Recurring Revenue — vaste maandelijkse omzet van abonnementen/retainer."
+    },
+    {
+      "term": "ARR",
+      "uitleg": "Annual Recurring Revenue — MRR × 12 (jaarbasis van terugkerende omzet)."
+    },
+    {
+      "term": "CTA",
+      "uitleg": "Call To Action — de concrete vraag in een post: DM, bel, soft-audit, audit-light."
+    },
+    {
+      "term": "ICP",
+      "uitleg": "Ideal Customer Profile — het type klant dat we wél willen (sector, grootte, pijn)."
+    },
+    {
+      "term": "Keten Start",
+      "uitleg": "Instappakket: één primaire administratieve keten opzetten (richtlijn setup + MRR)."
+    },
+    {
+      "term": "Bot-team Grow",
+      "uitleg": "Groter pakket: meerdere bots/ketens (defaults Core + Mail + Planning)."
+    },
+    {
+      "term": "dual-entity",
+      "uitleg": "upgrAIde en Homework Admin/Toto zijn gescheiden bedrijven. Dit dashboard is alleen upgrAIde — meng geen Homework-pipeline of -facturen."
+    },
+    {
+      "term": "change-order",
+      "uitleg": "Kort document als de scope na signing wijzigt (extra keten/werk buiten het orderform)."
+    },
+    {
+      "term": "parallel setups",
+      "uitleg": "Hoeveel klant-implementaties tegelijk lopen. Hard limiet: 3. Meer = wachtlijst."
+    },
+    {
+      "term": "close rate",
+      "uitleg": "Welk % van de offertes/won-kansen effectief een deal wordt."
+    },
+    {
+      "term": "outbound",
+      "uitleg": "Wij nemen het initiatief (lijst → DM/bel), i.p.v. wachten tot iemand binnenkomt."
+    },
+    {
+      "term": "Warm",
+      "uitleg": "Prospect met een warm signaal (netwerk, groei, eerdere interactie) — makkelijker gesprek."
+    },
+    {
+      "term": "scoreboard",
+      "uitleg": "Weekcijfers vs ×3-targets (leads, QL, calls, …). Hier handmatig — geen fake live sync."
+    },
+    {
+      "term": "kickoff",
+      "uitleg": "Startdag van een delivery: scope bevestigen, toegang, eerste keten kiezen."
+    },
+    {
+      "term": "×3 / ×4",
+      "uitleg": "Groeipad: van ~2 naar 6 (×3) of 8 (×4) deals per maand."
+    },
+    {
+      "term": "Review-GO",
+      "uitleg": "Copy+visuals goedgekeurd om te mogen plaatsen — betekent níét dat er al gepost is."
+    },
+    {
+      "term": "publicatie UIT",
+      "uitleg": "Niemand (ook geen bot) post op LinkedIn tot Sander plakt of Primary ‘publicatie aan’ zegt."
+    },
+    {
+      "term": "soft-audit",
+      "uitleg": "Lichte CTA: vragen / site / korte schets — geen zware sales-pitch."
+    },
+    {
+      "term": "audit-light",
+      "uitleg": "Gratis één stroom schetsen (bv. mailbox→offerte) — concrete next step."
+    },
+    {
+      "term": "blended",
+      "uitleg": "Gemiddelde richtlijn over deals heen (setup/MRR) — niet de vaste prijs van elke deal."
+    },
+    {
+      "term": "UAT",
+      "uitleg": "User Acceptance Test — klant test of de keten doet wat afgesproken is vóór go-live."
+    },
+    {
+      "term": "Hot AI-intent",
+      "uitleg": "Default call-lijst: prospects met recent (≤90d) AI/ERP/digitaliseringsbewijs. Sales belt dit tot Research v3 — geen fake data."
+    },
+    {
+      "term": "FRONNT Top15",
+      "uitleg": "Archief / niet default. Call-ready Top 15 (FRONNT-cluster). Alleen laden als je bewust wilt; Hot AI-intent is de default."
+    },
+    {
+      "term": "call-log",
+      "uitleg": "Lokale bel-notities in de cockpit (bedrijf, resultaat bereikt/VM/next, notitie, timestamp) in localStorage upg-cc-call-log. Geen CRM-sync."
+    },
+    {
+      "term": "WVL-first",
+      "uitleg": "Belvolgorde: eerst West-Vlaanderen (WVL), daarna regio/Oost-Vlaanderen, dan verder weg. Sector-mix blijft; alleen de volgorde is herschikt."
+    },
+    {
+      "term": "dm_call_ready",
+      "uitleg": "Decision maker is call-ready: er is minstens één contactpersoon met naam én (e-mail of direct telefoonnummer). Geen verzonnen namen."
+    },
+    {
+      "term": "HOLD",
+      "uitleg": "Calling staat stil. Niet bellen tot Sander expliciet «mag bellen» zegt. Wel toegestaan: lijst bekijken, belkaart lezen, scripts voorbereiden, call-log oefenen."
+    },
+    {
+      "term": "Keten",
+      "uitleg": "De administratieve keten van een klant: offerte → opvolging → factuur/administratie. «Keten Start» is het instappakket dat die flow opzet — geen winkelketen."
+    },
+    {
+      "term": "belkaart",
+      "uitleg": "Detailkaart van één prospect: telefoon, call-hook, DM-naam, locatie en gaps. Open via klik op een calling-kaart."
+    },
+    {
+      "term": "call-hook",
+      "uitleg": "De openingszin of haak voor het gesprek — waarom jij belt, in één zin, gebaseerd op een echt signaal (niet generiek)."
+    }
+  ],
+  "onboarding_stappen": [
+    {
+      "n": 1,
+      "titel": "Open via lokale server",
+      "tekst": "Niet dubbelklikken op het bestand. Start: python3 -m http.server 8765 --directory /workspace/upgraide/dashboard → http://localhost:8765"
+    },
+    {
+      "n": 2,
+      "titel": "Lees de rode badges",
+      "tekst": "Publicatie UIT · dual-entity · prijzen flexibel. Dat zijn harde regels, geen decoratie."
+    },
+    {
+      "n": 3,
+      "titel": "Home: deals/maand + vandaag",
+      "tekst": "Zet huidige deals/maand (handmatig). Vink ‘Vandaag doen’ af. Geen cijfers verzinnen."
+    },
+    {
+      "n": 4,
+      "titel": "Systeem: hoe het werkt",
+      "tekst": "Bekijk de diagrammen lead→sales→delivery→CS en de marketingketen Regie→…→Publicatie."
+    },
+    {
+      "n": 5,
+      "titel": "Bots: één actiekaart",
+      "tekst": "Kies een bot, kopieer een prompt, plak die in je chat met Grok Bot (Primary). Geen Send-knop hier."
+    },
+    {
+      "n": 6,
+      "titel": "LinkedIn W1–W4",
+      "tekst": "Status bekijken. Review-GO ≠ offline gepost. Publicatie blijft UIT."
+    },
+    {
+      "n": 7,
+      "titel": "Pipeline leeg = ok",
+      "tekst": "Prospects v1 is archief. Wacht op Research v2 of importeer JSON / voeg deal toe."
+    },
+    {
+      "n": 8,
+      "titel": "Delivery slots",
+      "tekst": "Max 3 parallel. Kit-docs openen via preview. Notion kickoffs-link gebruiken."
+    },
+    {
+      "n": 9,
+      "titel": "Glossary ⓘ",
+      "tekst": "Overal ⓘ = uitleg. Of open tab Woordenlijst. Geen schaamte — terms zijn intern jargon."
+    },
+    {
+      "n": 10,
+      "titel": "Export indien nodig",
+      "tekst": "Home → Export data.json bewaart localStorage-stand. Primary kan later naar Desktop kopiëren."
+    }
+  ],
+  "links": {
+    "crm": "https://crm.upgraide.be",
+    "site": "https://upgraide.be",
+    "notion_command_center": "https://app.notion.com/p/3ed63d88b36f81178e55c431bea1ed7d?pvs=204",
+    "notion_pipeline": "https://app.notion.com/p/0f602eb5528a4aa2868264a6e5b07ef7",
+    "notion_week_scoreboard": "https://app.notion.com/p/e4079ada22b24704b64fc8ff82dc4f05",
+    "notion_delivery_kickoffs": "https://app.notion.com/p/39639080d3604a979148418248f1ac8c",
+    "weekpakket_1": "https://app.notion.com/p/6ddfda0339574deeb99ed8af62213a24?pvs=204"
+  },
+  "bronnen": {
+    "prospects_archief": "/workspace/upgraide-icp-prospects-week1-2026-10.md",
+    "regie": "/workspace/upgraide/regie-4-wekenkalender-okt-2026.md",
+    "delivery_dir": "/workspace/upgraide/delivery/",
+    "dashboard": "/workspace/upgraide/dashboard/",
+    "review_audit_w3w4": "/workspace/upgraide/review-audit-week3-week4-2026-10-02.md",
+    "prospects_v3": "/workspace/upgraide-icp-prospects-v3-2026-10.md",
+    "prospects_v3_json": "/workspace/upgraide-prospects-dashboard-v3-2026-10.json"
+  },
+  "flags_manual_default": {
+    "parallel_setups": 0,
+    "lynn_sales_uren": null,
+    "build_achterstand": false,
+    "note": "handmatig / nog leeg"
+  },
+  "prospectsV2": {
+    "status": "archief-fronnt · niet default",
+    "file": "/workspace/upgraide-icp-prospects-v2-callready-2026-10.md",
+    "icp": "~20–60 FTE, WVL+VL-corridor, ≥1 digitaal/groei-signaal · call-ready enrichment okt 2026",
+    "note": "FRONNT Top15 = archief / niet default. Call-ready bewaard (tel, call_hook, omzet/stack). Default calling = Research v3 Top15 + Hot AI-intent. Alleen laden als je bewust wilt.",
+    "top15": [
+      {
+        "rank": 1,
+        "name": "Frigro NV",
+        "sector": "Groothandel HVAC / koeltechnisch materiaal",
+        "city": "Wevelgem",
+        "fte": 43.7,
+        "fte_source": "https://www.companyweb.be/nl/0420379687/frigro",
+        "revenue_range": "€39.1M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0420379687/frigro",
+        "linkedin_url": "https://www.linkedin.com/company/frigro-nv",
+        "website": "https://www.frigro.be/",
+        "stack_running": "myFrigro portal/webshop; ERP upgrade 28 Nov 2025; Visma Bouwsoft / Cafca / Plenion integrations",
+        "phone": "+32 56 41 95 93",
+        "phone_source": "https://www.frigro.be/nl/contact/",
+        "call_hook": "Frigro: jullie draaien al portal én ERP — waar botst vandaag nog de keten van aanvraag/offerte naar opvolging zonder extra admin?",
+        "progressive_fit": "Publiek digitaal bewijs (portal + ERP-upgrade + softwarekoppelingen) + mid-WVL HVAC-groothandel.",
+        "gaps": [
+          "exact ERP vendor name unknown",
+          "no ≤90d AI job found"
+        ],
+        "linkedin": "https://www.linkedin.com/company/frigro-nv",
+        "why": "Publiek digitaal bewijs (portal + ERP-upgrade + softwarekoppelingen) + mid-WVL HVAC-groothandel.",
+        "outreach": "Frigro: jullie draaien al portal én ERP — waar botst vandaag nog de keten van aanvraag/offerte naar opvolging zonder extra admin?"
+      },
+      {
+        "rank": 2,
+        "name": "Van Vooren BV",
+        "sector": "Elektro / industriële installatie / bordenbouw",
+        "city": "Brugge",
+        "fte": 42.1,
+        "fte_source": "https://www.companyweb.be/nl/0429491155/van-vooren",
+        "revenue_range": "€18.9M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0429491155/van-vooren",
+        "linkedin_url": "https://www.linkedin.com/company/vanvoorenbv",
+        "website": "https://www.van-vooren.be/",
+        "stack_running": "onzeker",
+        "phone": "+32 50 45 84 00",
+        "phone_source": "https://www.van-vooren.be/contact",
+        "call_hook": "Van Vooren: na FRONNT-groei rond de 42 FTE — hoe houden jullie projectaanvragen en offertes vandaag bij zonder mailbox-chaos?",
+        "progressive_fit": "FRONNT + sterke omzet/FTE-groei + ISO/VCA; set3-keep.",
+        "gaps": [
+          "stack_running ERP/CRM unknown"
+        ],
+        "linkedin": "https://www.linkedin.com/company/vanvoorenbv",
+        "why": "FRONNT + sterke omzet/FTE-groei + ISO/VCA; set3-keep.",
+        "outreach": "Van Vooren: na FRONNT-groei rond de 42 FTE — hoe houden jullie projectaanvragen en offertes vandaag bij zonder mailbox-chaos?"
+      },
+      {
+        "rank": 3,
+        "name": "BO-Solutions NV",
+        "sector": "CNC-verspaning / precisieproductie",
+        "city": "Roeselare",
+        "fte": 22.9,
+        "fte_source": "https://www.companyweb.be/en/0436244830/bo-solutions",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/bo-solutions",
+        "website": "https://bo-solutions.be/",
+        "stack_running": "MES + ERP upgrade (Make The Future / Sirris 24 Jun 2026); ISO 9001; CAD/CAM",
+        "phone": "+32 51 24 89 32",
+        "phone_source": "https://bo-solutions.be/contact-bo/",
+        "call_hook": "BO-Solutions: jullie digitaliseren productie met MES — mogen we kort horen waar kantoor/offerte-opvolging nog manueel blijft hangen?",
+        "progressive_fit": "Agoria/Sirris Make The Future; ambitie →40 FTE; LI admin vacature 29 Aug 2026.",
+        "gaps": [
+          "exact MES/ERP product name unknown",
+          "revenue not published"
+        ],
+        "linkedin": "https://www.linkedin.com/company/bo-solutions",
+        "why": "Agoria/Sirris Make The Future; ambitie →40 FTE; LI admin vacature 29 Aug 2026.",
+        "outreach": "BO-Solutions: jullie digitaliseren productie met MES — mogen we kort horen waar kantoor/offerte-opvolging nog manueel blijft hangen?"
+      },
+      {
+        "rank": 4,
+        "name": "Intec Group (In-Tec BV)",
+        "sector": "HVAC / multi-techniek",
+        "city": "Roeselare",
+        "fte": 34.7,
+        "fte_source": "https://www.companyweb.be/nl/0895219433/in-tec",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/in-tec-2",
+        "website": "https://www.intecgroup.be/",
+        "stack_running": "onzeker",
+        "phone": "+32 51 22 20 35",
+        "phone_source": "https://www.intecgroup.be/contact",
+        "call_hook": "Intec: jullie groeien hard binnen FRONNT — waar loopt de stap van mailaanvraag naar goedgekeurde offerte vandaag het stroefst?",
+        "progressive_fit": "FRONNT + snelle FTE-groei + moderne group-site.",
+        "gaps": [
+          "stack_running",
+          "revenue not published",
+          "loss 2025 qualify pain"
+        ],
+        "linkedin": "https://www.linkedin.com/company/in-tec-2",
+        "why": "FRONNT + snelle FTE-groei + moderne group-site.",
+        "outreach": "Intec: jullie groeien hard binnen FRONNT — waar loopt de stap van mailaanvraag naar goedgekeurde offerte vandaag het stroefst?"
+      },
+      {
+        "rank": 5,
+        "name": "Climawest NV",
+        "sector": "HVAC / sanitair / GBS",
+        "city": "Zwevegem",
+        "fte": 40.5,
+        "fte_source": "https://www.companyweb.be/nl/0471481564/climawest",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/climawest",
+        "website": "https://www.climawest.be/",
+        "stack_running": "onzeker",
+        "phone": "+32 56 22 12 28",
+        "phone_source": "https://www.climawest.be/contact",
+        "call_hook": "Climawest: als FRONNT-HVAC rond de 40 FTE — hoe brengen jullie utiliteitsaanvragen vandaag van mailbox naar offerte/planning?",
+        "progressive_fit": "FRONNT-member + GBS/gebouwtechnieken + mid-size WVL.",
+        "gaps": [
+          "stack_running",
+          "revenue not published"
+        ],
+        "linkedin": "https://www.linkedin.com/company/climawest",
+        "why": "FRONNT-member + GBS/gebouwtechnieken + mid-size WVL.",
+        "outreach": "Climawest: als FRONNT-HVAC rond de 40 FTE — hoe brengen jullie utiliteitsaanvragen vandaag van mailbox naar offerte/planning?"
+      },
+      {
+        "rank": 6,
+        "name": "Bouttens NV",
+        "sector": "Groothandel plaatmateriaal / hout",
+        "city": "Kuurne",
+        "fte": 23.1,
+        "fte_source": "https://www.companyweb.be/nl/0405317765/bouttens",
+        "revenue_range": "€75.6M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0405317765/bouttens",
+        "linkedin_url": "https://www.linkedin.com/company/bouttens",
+        "website": "https://www.bouttens.be/",
+        "stack_running": "B2B e-commerce / productportaal",
+        "phone": "+32 56 35 01 44",
+        "phone_source": "https://www.bouttens.be/nl/contact",
+        "call_hook": "Bouttens: multi-site met digitaal productportaal — waar botst offerte-opvolging vandaag tussen vestigingen en de mailbox?",
+        "progressive_fit": "Multi-site + e-com + hoge omzet bij lean FTE; set3-keep.",
+        "gaps": [
+          "ERP/CRM behind portal unknown"
+        ],
+        "linkedin": "https://www.linkedin.com/company/bouttens",
+        "why": "Multi-site + e-com + hoge omzet bij lean FTE; set3-keep.",
+        "outreach": "Bouttens: multi-site met digitaal productportaal — waar botst offerte-opvolging vandaag tussen vestigingen en de mailbox?"
+      },
+      {
+        "rank": 7,
+        "name": "HEYTEC NV",
+        "sector": "Groothandel HVAC & cooling",
+        "city": "Lier (vest. Kuurne)",
+        "fte": 64.4,
+        "fte_note": "stretch above 60",
+        "fte_source": "https://www.companyweb.be/en/0446089637/heytec",
+        "revenue_range": "€45.7M (2025)",
+        "revenue_source": "https://www.companyweb.be/en/0446089637/heytec",
+        "linkedin_url": "https://www.linkedin.com/company/heytec",
+        "website": "https://heytec.be/",
+        "stack_running": "B2B webshop + mijnHEYTEC; multi-site",
+        "phone": "+32 3 440 19 00",
+        "phone_kuurne": "+32 56 361 361",
+        "phone_source": "https://heytec.be/contact/",
+        "call_hook": "HEYTEC: met webshop en Kuurne-vestiging — waar blijft B2B-opvolging vandaag nog steken naast de shop-orders?",
+        "progressive_fit": "Duidelijk digitaal (webshop/portaal) + multi-site WVL-touch.",
+        "gaps": [
+          "ERP behind webshop unknown",
+          "FTE stretch"
+        ],
+        "linkedin": "https://www.linkedin.com/company/heytec",
+        "why": "Duidelijk digitaal (webshop/portaal) + multi-site WVL-touch.",
+        "outreach": "HEYTEC: met webshop en Kuurne-vestiging — waar blijft B2B-opvolging vandaag nog steken naast de shop-orders?"
+      },
+      {
+        "rank": 8,
+        "name": "Van Severen NV",
+        "sector": "HVAC / sanitair / dak",
+        "city": "Aalter",
+        "fte": 52.9,
+        "fte_source": "https://www.companyweb.be/nl/0442446989/van-severen",
+        "revenue_range": "€27.8M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0442446989/van-severen",
+        "linkedin_url": "https://www.linkedin.com/company/van-severen-nv",
+        "website": "https://www.vanseveren.be/",
+        "stack_running": "onzeker",
+        "phone": "+32 9 325 98 98",
+        "phone_source": "https://www.vanseveren.be/contact",
+        "call_hook": "Van Severen: na de FRONNT-stap en sterke omzetgroei — hoe schalen jullie offerte- en werfopvolging mee zonder extra admin?",
+        "progressive_fit": "FRONNT + omzet +71% + mid-groot HVAC OVL-corridor.",
+        "gaps": [
+          "stack_running ERP/CRM"
+        ],
+        "linkedin": "https://www.linkedin.com/company/van-severen-nv",
+        "why": "FRONNT + omzet +71% + mid-groot HVAC OVL-corridor.",
+        "outreach": "Van Severen: na de FRONNT-stap en sterke omzetgroei — hoe schalen jullie offerte- en werfopvolging mee zonder extra admin?"
+      },
+      {
+        "rank": 9,
+        "name": "Malfait Verzekeringen NV",
+        "sector": "Verzekeringsmakelaar",
+        "city": "Kortrijk",
+        "fte": 24,
+        "fte_source": "https://www.companyweb.be/nl/0476982850/malfait-verzekeringskantoor",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/nv-malfait-verzekeringskantoor",
+        "website": "https://malfait.be/",
+        "stack_running": "Digitaal klantenportaal (Itsme/e-mail)",
+        "phone": "+32 56 200 800",
+        "phone_source": "https://malfait.be/contact/",
+        "call_hook": "Malfait: met klantenportaal én team rond de 30 — waar loopt de opvolging van nieuwe aanvragen via mail vandaag nog vast?",
+        "progressive_fit": "Digitaal portaal + mid-makelaar WVL; set3-keep.",
+        "gaps": [
+          "broker platform/CRM name unknown",
+          "revenue not published"
+        ],
+        "linkedin": "https://www.linkedin.com/company/nv-malfait-verzekeringskantoor",
+        "why": "Digitaal portaal + mid-makelaar WVL; set3-keep.",
+        "outreach": "Malfait: met klantenportaal én team rond de 30 — waar loopt de opvolging van nieuwe aanvragen via mail vandaag nog vast?"
+      },
+      {
+        "rank": 10,
+        "name": "Autohandel Didier NV",
+        "sector": "Auto-onderdelen / demontage / e-commerce",
+        "city": "Waregem",
+        "fte": 36.8,
+        "fte_source": "https://www.companyweb.be/nl/0452332873/autohandel-didier",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/autohandel-didier",
+        "website": "https://www.didier.be/nl",
+        "stack_running": "Full e-commerce (+200k SKU); online-only orderflow",
+        "phone": "+32 56 60 46 79",
+        "phone_source": "https://www.didier.be/nl/contacteer-ons",
+        "call_hook": "Didier: jullie schaalden digitaal én in FTE — waar kost opvolging van B2B-aanvragen buiten de webshop vandaag het meest tijd?",
+        "progressive_fit": "Harde e-com + FTE-groei; digitaal orderflow.",
+        "gaps": [
+          "ERP/CRM behind shop unknown",
+          "revenue not published"
+        ],
+        "linkedin": "https://www.linkedin.com/company/autohandel-didier",
+        "why": "Harde e-com + FTE-groei; digitaal orderflow.",
+        "outreach": "Didier: jullie schaalden digitaal én in FTE — waar kost opvolging van B2B-aanvragen buiten de webshop vandaag het meest tijd?"
+      },
+      {
+        "rank": 11,
+        "name": "Develtere NV",
+        "sector": "HVAC / sanitair",
+        "city": "Roeselare",
+        "fte": 32,
+        "fte_source": "https://www.companyweb.be/en/0412862781/chauffage-develtere",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/develtere-nv",
+        "website": "https://develtere.be/",
+        "stack_running": "onzeker",
+        "phone": "+32 51 24 24 25",
+        "phone_source": "https://develtere.be/contact/",
+        "call_hook": "Develtere: sinds de overname in 2020 groeit het team — hoe houden jullie HVAC-offertes en planning vandaag licht?",
+        "progressive_fit": "Ownership 2020 + FTE-groei + moderne positionering.",
+        "gaps": [
+          "stack_running",
+          "revenue",
+          "no hard tool signal"
+        ],
+        "linkedin": "https://www.linkedin.com/company/develtere-nv",
+        "why": "Ownership 2020 + FTE-groei + moderne positionering.",
+        "outreach": "Develtere: sinds de overname in 2020 groeit het team — hoe houden jullie HVAC-offertes en planning vandaag licht?"
+      },
+      {
+        "rank": 12,
+        "name": "Isoproc BV",
+        "sector": "Groothandel isolatie / bouwtechniek",
+        "city": "Mechelen (Hombeek)",
+        "fte": 20,
+        "fte_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "revenue_range": "€13.5M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "linkedin_url": "https://www.linkedin.com/company/isoproc",
+        "website": "https://www.isoproc.be/",
+        "stack_running": "Odoo (stock/purchase/production/accounting — jobs + Odoo customer page)",
+        "phone": "+32 15 62 39 35",
+        "phone_source": "https://www.isoproc.be/nl/contact",
+        "call_hook": "Isoproc: jullie noemen Odoo in jobs — waar botst de keten van professionele offerte-aanvraag naar opvolging vandaag?",
+        "progressive_fit": "Expliciet Odoo-signaal + moderne UX + omzetgroei.",
+        "gaps": [
+          "which Odoo sales/CRM modules active"
+        ],
+        "linkedin": "https://www.linkedin.com/company/isoproc",
+        "why": "Expliciet Odoo-signaal + moderne UX + omzetgroei.",
+        "outreach": "Isoproc: jullie noemen Odoo in jobs — waar botst de keten van professionele offerte-aanvraag naar opvolging vandaag?"
+      },
+      {
+        "rank": 13,
+        "name": "Bondec BV",
+        "sector": "HVAC-installatie",
+        "city": "Wommelgem",
+        "fte": 43.3,
+        "fte_source": "https://www.companyweb.be/nl/0406074167/bondec",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/bondec-bvba",
+        "website": "https://bondec.be/",
+        "stack_running": "onzeker",
+        "phone": "+32 3 239 31 47",
+        "phone_source": "https://bondec.be/contact/",
+        "call_hook": "Bondec: met ~43 FTE in de Antwerpse corridor — waar blijft tijd steken tussen klantmail en goedgekeurde HVAC-offerte?",
+        "progressive_fit": "Size + Peppol + ownership 2020; progressive matiger.",
+        "gaps": [
+          "stack_running",
+          "revenue not published",
+          "loss 2025 qualify"
+        ],
+        "linkedin": "https://www.linkedin.com/company/bondec-bvba",
+        "why": "Size + Peppol + ownership 2020; progressive matiger.",
+        "outreach": "Bondec: met ~43 FTE in de Antwerpse corridor — waar blijft tijd steken tussen klantmail en goedgekeurde HVAC-offerte?"
+      },
+      {
+        "rank": 14,
+        "name": "Pumptech / Flow Group",
+        "sector": "Groothandel pompen / flow",
+        "city": "Aarschot",
+        "fte": 25.1,
+        "fte_note": "entity ~25.1 cw; AFAS case ~30 Flow Group",
+        "fte_source": "v2 companyweb + https://www.afas.be/klantverhaal/pumptech",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/pumptech-bv",
+        "website": "https://theflowgroup.eu/",
+        "stack_running": "AFAS ERP (CRM, order/stock, projects, subscriptions, InSite, finance)",
+        "phone": "+32 16 47 44 41",
+        "phone_source": "https://theflowgroup.eu/contact/",
+        "call_hook": "Pumptech: na AFAS — waar blijft sales/offerte-opvolging vandaag nog manueel naast het ERP?",
+        "progressive_fit": "Publieke AFAS-case + FTE-groei + Flow Group-schaal.",
+        "gaps": [
+          "exact Flow Group vs entity FTE",
+          "revenue",
+          "AFAS go-live 2021 — intent is further optimisation"
+        ],
+        "linkedin": "https://www.linkedin.com/company/pumptech-bv",
+        "why": "Publieke AFAS-case + FTE-groei + Flow Group-schaal.",
+        "outreach": "Pumptech: na AFAS — waar blijft sales/offerte-opvolging vandaag nog manueel naast het ERP?"
+      },
+      {
+        "rank": 15,
+        "name": "Lenaerts NV",
+        "sector": "Multi-techniek (elektro / HVAC / sanitair)",
+        "city": "Houthalen-Helchteren",
+        "fte": 47.7,
+        "fte_source": "https://www.companyweb.be/nl/0450996946/lenaerts",
+        "revenue_range": "€20.7M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0450996946/lenaerts",
+        "linkedin_url": "https://www.linkedin.com/company/lenaerts-nv",
+        "website": "https://www.lenaertsnv.be/",
+        "stack_running": "onzeker",
+        "phone": "+32 11 60 92 10",
+        "phone_source": "https://www.lenaertsnv.be/contact",
+        "call_hook": "Lenaerts: als FRONNT-anker rond de 48 FTE — hoe lopen projectaanvragen vandaag van mail naar offerte zonder dubbel werk?",
+        "progressive_fit": "Kern-FRONNT + multi-techniek + mid-groot Limburg-volume.",
+        "gaps": [
+          "stack_running",
+          "geo Limburg"
+        ],
+        "linkedin": "https://www.linkedin.com/company/lenaerts-nv",
+        "why": "Kern-FRONNT + multi-techniek + mid-groot Limburg-volume.",
+        "outreach": "Lenaerts: als FRONNT-anker rond de 48 FTE — hoe lopen projectaanvragen vandaag van mail naar offerte zonder dubbel werk?"
+      }
+    ],
+    "hot_ai_intent": [
+      {
+        "name": "Lima Europe NV (GroGreen)",
+        "city": "Rumst",
+        "why_now": "OBS Odoo 18 case last updated 28 Jul 2026 — Exact/4Plan/Sheets/Asana → Odoo multi-company",
+        "why_now_source": "https://obs-belgie.be/klantcases/grogreen-lima-europe",
+        "why_now_date": "2026-07-28",
+        "phone": "+32 3 844 73 70",
+        "phone_source": "essenscia / Fruit Logistica listings",
+        "linkedin_url": null,
+        "website": "https://grogreen.pro/",
+        "fte": 29.1,
+        "fte_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "call_hook": "GroGreen: na de Odoo-go-live — waar blijft offerte- en klantopvolging vandaag nog steken buiten productie/ERP?"
+      },
+      {
+        "name": "Wim Verhuur BV",
+        "city": "Sint-Katelijne-Waver",
+        "why_now": "Active job ICT Applicatie & Automatisatie Specialist — Power Platform + Dynamics NAV; explicit digital transformation",
+        "why_now_source": "https://www.wimverhuur.be/fr/offres-d-emploi/ict-applicatie-automatisatie-specialist",
+        "why_now_date": "active_as_of_2026-10",
+        "phone": "+32 15 63 63 63",
+        "phone_source": "https://www.wimverhuur.be/nl",
+        "linkedin_url": "https://www.linkedin.com/company/wimverhuur",
+        "website": "https://www.wimverhuur.be/",
+        "fte": 74.3,
+        "fte_note": "stretch above 60",
+        "call_hook": "Wim Verhuur: jullie zoeken automation op Power Platform — waar botst vandaag nog de keten van aanvraag/offerte naast Dynamics?"
+      },
+      {
+        "name": "BO-Solutions NV",
+        "city": "Roeselare",
+        "why_now": "Make The Future MES/ERP (Sirris 24 Jun 2026) + LinkedIn tech-admin vacancy 29 Aug 2026",
+        "why_now_source": "https://www.sirris.be/nl/inspiratie/van-metaalstuk-tot-eco-factory-hoe-bo-solutions-versnelt-richting-factory-future",
+        "why_now_date": "2026-08-29",
+        "phone": "+32 51 24 89 32",
+        "phone_source": "https://bo-solutions.be/contact-bo/",
+        "linkedin_url": "https://www.linkedin.com/company/bo-solutions",
+        "website": "https://bo-solutions.be/",
+        "fte": 22.9,
+        "call_hook": "BO-Solutions: productie digitaliseert — waar blijft kantoor/offerte manueel?"
+      },
+      {
+        "name": "Euroquip",
+        "city": "Pelt",
+        "why_now": "Odoo case replacing Dynamics 365/Navision/Excel + Kardex; technical service/installations",
+        "why_now_source": "https://www.odoo.com/customers/euroquip-21510292",
+        "why_now_date": "2026-09",
+        "phone": "+32 11 80 75 30",
+        "phone_source": "https://www.euroquip.be/en/contact-euroquip/",
+        "linkedin_url": "https://www.linkedin.com/company/euroquip-group",
+        "website": "https://www.euroquip.be/",
+        "fte": 22.8,
+        "call_hook": "Euroquip: na de Odoo-overstap — waar blijft sales/offerte-opvolging vandaag nog manueel naast serviceorders?"
+      },
+      {
+        "name": "Aannemingen M. & J. Braet NV",
+        "city": "Nieuwpoort",
+        "why_now": "VLAIO cybersecurity verbetertraject via ConXioN — digitale weerbaarheid (>200 improvement points)",
+        "why_now_source": "https://www.conxion.be/referenties/braet-versterkt-cyberveiligheid-met-vlaio-traject-via-conxion/",
+        "why_now_date": "2025-2026",
+        "phone": "+32 58 23 31 13",
+        "phone_source": "https://www.braet.be/contact",
+        "linkedin_url": null,
+        "website": "https://www.braet.be/",
+        "fte": 53.4,
+        "call_hook": "Braet: na het VLAIO-digitaliseringstraject — waar kost admin tussen offerte en werfplanning vandaag nog het meest?"
+      },
+      {
+        "name": "Isoproc BV",
+        "city": "Mechelen",
+        "why_now": "Odoo in jobs + Odoo customer page (stock/purchase/production/accounting)",
+        "why_now_source": "https://www.odoo.com/nl_NL/customers/isoproc-11222532",
+        "why_now_date": "ongoing_jobs_2026",
+        "phone": "+32 15 62 39 35",
+        "phone_source": "https://www.isoproc.be/nl/contact",
+        "linkedin_url": "https://www.linkedin.com/company/isoproc",
+        "website": "https://www.isoproc.be/",
+        "fte": 20,
+        "call_hook": "Isoproc: Odoo draait al — waar botst professionele offerte-opvolging nog?"
+      },
+      {
+        "name": "Pumptech / Flow Group",
+        "city": "Aarschot",
+        "why_now": "AFAS case (Flow Group branding): further warehouse digitalisation, technician planning, AFAS rollout to sister entities",
+        "why_now_source": "https://www.afas.be/klantverhaal/pumptech",
+        "why_now_date": "Flow Group 2025+",
+        "phone": "+32 16 47 44 41",
+        "phone_source": "https://theflowgroup.eu/contact/",
+        "linkedin_url": "https://www.linkedin.com/company/pumptech-bv",
+        "website": "https://theflowgroup.eu/",
+        "fte": 25.1,
+        "call_hook": "Flow Group: AFAS staat — waar blijft offerte/sales-opvolging manueel bij de groepsuitrol?"
+      },
+      {
+        "name": "Huysman Verzekeringen",
+        "city": "Eeklo / Brugge",
+        "why_now": "myBroker digital client portal + multi-site incl. Sint-Kruis Brugge; progressive digitaal spoor",
+        "why_now_source": "https://www.huysman.be/klantenzone/",
+        "why_now_date": "portal_live",
+        "phone": "+32 9 376 14 11",
+        "phone_brugge": "+32 50 35 49 32",
+        "phone_source": "https://www.huysman.be/onze-kantoren/eeklo/",
+        "linkedin_url": "https://www.linkedin.com/company/huysman-verzekeringen",
+        "website": "https://www.huysman.be/",
+        "fte": 28.6,
+        "fte_source": "https://www.companyweb.be/nl/0406813545/zakenkantoor-huysman",
+        "call_hook": "Huysman: digitaal portaal + Brugge-kantoor — waar botst opvolging van nieuwe aanvragen tussen vestigingen?"
+      },
+      {
+        "name": "Induzz3 NV",
+        "city": "Bilzen-Hoeselt",
+        "why_now": "FRONNT member; industrial automation / panel building — progressive corridor prospect",
+        "why_now_source": "https://www.induzz.be/",
+        "why_now_date": "FRONNT_ongoing",
+        "phone": "+32 11 524 085",
+        "phone_source": "https://www.induzz.be/",
+        "linkedin_url": "https://www.linkedin.com/company/induzz3",
+        "website": "https://www.induzz.be/",
+        "fte": 24.1,
+        "call_hook": "Induzz3: FRONNT + automatisatie — hoe lopen projectoffertes vandaag uit de mailbox?"
+      },
+      {
+        "name": "Kasteel Brouwerij Vanhonsebrouck",
+        "city": "Izegem",
+        "why_now": "VLAIO + ConXioN cybersecurity / digitale weerbaarheid case (WVL)",
+        "why_now_source": "https://www.vlaio.be/nl/ondernemersverhalen/brouwerij-vanhonsebrouck-versterkt-digitale-weerbaarheid-met-vlaio-en-conxion",
+        "why_now_date": "2025-2026",
+        "phone": "+32 51 33 51 60",
+        "phone_source": "https://www.vanhonsebrouck.be/contact/",
+        "linkedin_url": "https://www.linkedin.com/company/kasteel-brouwerij-vanhonsebrouck",
+        "website": "https://www.vanhonsebrouck.be/",
+        "fte": 97.7,
+        "fte_note": "stretch above 60",
+        "call_hook": "Vanhonsebrouck: na het VLAIO-digitaliseringstraject — waar blijft order/offerte-admin vandaag nog steken?"
+      }
+    ],
+    "top3_hottest_calls": [
+      {
+        "rank": 1,
+        "name": "Lima Europe NV (GroGreen)",
+        "why": "OBS Odoo 18 case updated 28 Jul 2026 — Exact→Odoo; 29.1 FTE; offerte-keten naast ERP open",
+        "phone": "+32 3 844 73 70"
+      },
+      {
+        "rank": 2,
+        "name": "Wim Verhuur BV",
+        "why": "Active ICT automation job (Power Platform + Dynamics); explicit digital transformation; stretch ~74 FTE",
+        "phone": "+32 15 63 63 63"
+      },
+      {
+        "rank": 3,
+        "name": "BO-Solutions NV",
+        "why": "Make The Future MES/ERP + LI tech-admin vacancy 29 Aug 2026; 22.9 FTE → growth to 40",
+        "phone": "+32 51 24 89 32"
+      }
+    ],
+    "gaps_summary": [
+      "stack_running unknown: Van Vooren, Intec, Climawest, Van Severen, Develtere, Bondec, Lenaerts",
+      "revenue onbekend (not published): BO-Solutions, Intec, Climawest, Malfait, Didier, Develtere, Bondec, Pumptech",
+      "LI gaps resolved: Van Severen → linkedin.com/company/van-severen-nv; Lenaerts → linkedin.com/company/lenaerts-nv",
+      "FTE stretch: HEYTEC 64.4, Wim Verhuur ~74, Vanhonsebrouck ~98",
+      "Financial qualify: Intec loss 2025, Bondec loss 2025",
+      "≤90d hard AI-jobs scarce in mid-KMO ICP — strongest: Lima Europe (28 Jul), Wim Verhuur (active job), BO-Solutions (29 Aug LI)",
+      "Dropped from hot_intent: Sobinco (~297 FTE), Dicar (~148 FTE), AI vendors (DX-Solutions/Nordant/etc.), accountants, anonymous Tielt plastics"
+    ],
+    "enriched_at": "2026-10-02",
+    "icp_version": "v2",
+    "label": "FRONNT Top15 (archief)"
+  },
+  "ceo_prompts": [
+    {
+      "id": "dm-gaps-1711",
+      "label": "🟡 DM-gaps open (Braet/Certis/Neopack)",
+      "text": "DM-gaps 17:11 check: Didier (julie@) + Huysman (sabine@/+32 9 376 15 13) klaar. Nog open (geen geverifieerd direct mail/GSM): Braet (Pierre-Henri → bel +32 58 23 31 13 of LI DM), Certis (Tom → bel +32 9 355 02 42 of LI DM), Neopack (Werner → bel switchboard/GSM of LI DM). li_dm_ready=true voor die drie. Bron: /workspace/upgraide-v3-dm-contacts-2026-10.md"
+    },
+    {
+      "id": "research-v3",
+      "label": "Research v3 = DONE",
+      "text": "Research v3 is DONE en WVL-first calling is actief. Eerst BO-Solutions, Didier, Malfait, Braet, Huysman; Lima/Wim later. FRONNT v2 = archief. Geen fake metrics."
+    },
+    {
+      "id": "sales-di-do",
+      "label": "Brief Sales Di–Do lijst",
+      "text": "Sales: WVL-first calling uit Research v3 — eerst BO-Solutions, Didier, Malfait, Braet, Huysman; Lima/Wim later. Per lead: tel, hook, doel van de call. FRONNT Top15 = archief / niet default."
+    },
+    {
+      "id": "escalatie-deadline",
+      "label": "Escalatie: deadline mist",
+      "text": "Escalatie Primary: een deadline mist. Zeg welke (Sales Di–Do / delivery / andere — Research v3 is DONE), impact, en 3 concrete herstelstappen vandaag — zonder fake cijfers."
+    }
+  ],
+  "team_presets": [
+    {
+      "id": "research",
+      "owner": "Research",
+      "focus": "🟡 DM-gaps 17:11 — Didier/Huysman klaar; Braet/Certis/Neopack nog zonder direct mail/GSM (LI DM + switchboard wel)",
+      "deadline": "17:11 check done",
+      "status": "risico"
+    },
+    {
+      "id": "sales",
+      "owner": "Sales",
+      "focus": "WVL-first calling · BO-Solutions → Didier → Malfait → Braet → Huysman; Lima/Wim later",
+      "deadline": "Di–Do",
+      "status": "actief"
+    },
+    {
+      "id": "regie-copy",
+      "owner": "Regie/Copy",
+      "focus": "LinkedIn week (publicatie UIT)",
+      "deadline": "week",
+      "status": "actief"
+    },
+    {
+      "id": "planning",
+      "owner": "Planning",
+      "focus": "weekboard · DM-gaps 🟡 gemeld aan Primary",
+      "deadline": "vandaag",
+      "status": "actief"
+    },
+    {
+      "id": "finance",
+      "owner": "Finance",
+      "focus": "dual-entity Billit",
+      "deadline": "doorlopend",
+      "status": "stand-by"
+    },
+    {
+      "id": "cs",
+      "owner": "CS",
+      "focus": "onboarding idle tot deal",
+      "deadline": "—",
+      "status": "idle"
+    },
+    {
+      "id": "botmaker",
+      "owner": "Botmaker",
+      "focus": "delivery templates ready",
+      "deadline": "klaar",
+      "status": "klaar"
+    },
+    {
+      "id": "cockpit",
+      "owner": "Cockpit",
+      "focus": "dashboard hub",
+      "deadline": "v3.5-callready-v3",
+      "status": "actief"
+    }
+  ],
+  "prospects_v2_archive": {
+    "status": "archief",
+    "label": "FRONNT / Prospects v2 (archief)",
+    "note": "Spiegel van prospectsV2 archief — default is prospectsV3.",
+    "file": "/workspace/upgraide-icp-prospects-v2-callready-2026-10.md",
+    "enriched_at": "2026-10-02",
+    "icp_version": "v2",
+    "top15_count": 15
+  },
+  "prospectsV3": {
+    "status": "v3-default · broad sector mix",
+    "file": "/workspace/upgraide-icp-prospects-v3-2026-10.md",
+    "dashboard_json": "/workspace/upgraide-prospects-dashboard-v3-2026-10.json",
+    "icp": "Top15: productie3 · groothandel3 · verhuur1 · tech-light2 · verzekeringen2 · facility1 · bouw1 · retail1 · MSP1 — 0 FRONNT/installatie in Top15",
+    "geo_mix": "ANT, OVL, VLB, LIM, WVL — geen WVL-corridor-bulk",
+    "note": "WVL-first calling order is active; original Research v3 Top15 ranking remains preserved. DEFAULT calling priority — supersedes v2 FRONNT-heavy Top15. Top15 broad sector mix + Hot AI-intent + Top 3 hottest. Geen fake data — gaps = onbekend. FRONNT v2 blijft archief onder prospectsV2.",
+    "top15": [
+      {
+        "rank": 1,
+        "name": "Lima Europe NV (GroGreen)",
+        "sector": "Productie — plantvoeding / agro",
+        "cluster": "productie",
+        "city": "Rumst",
+        "province": "Antwerpen",
+        "fte": 29.1,
+        "fte_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "revenue_range": "€23.3M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "linkedin_url": null,
+        "website": "https://grogreen.pro/",
+        "stack_running": "Odoo 18 Enterprise (Exact/4Plan/Sheets/Asana → Odoo; OBS case 28 Jul 2026)",
+        "phone": "+32 3 844 73 70",
+        "phone_source": "essenscia / Fruit Logistica listings (v2 dashboard)",
+        "call_hook": "GroGreen: na de Odoo-go-live — waar blijft offerte- en klantopvolging vandaag nog steken buiten productie/ERP?",
+        "progressive_fit": "Publieke OBS Odoo 18-case (28 Jul 2026) + multi-company productie + 29.1 FTE Rumst.",
+        "gaps": [
+          "linkedin_url company page te bevestigen"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Wim Verhuur BV",
+        "sector": "Machineverhuur / diensten",
+        "cluster": "verhuur_diensten",
+        "city": "Sint-Katelijne-Waver",
+        "province": "Antwerpen",
+        "fte": 74.3,
+        "fte_note": "stretch above 60 — sterke AI/automation intent",
+        "fte_source": "https://belscope.be/company/0476867242",
+        "revenue_range": "€53.7M (2025)",
+        "revenue_source": "https://belscope.be/company/0476867242",
+        "linkedin_url": "https://www.linkedin.com/company/wimverhuur",
+        "website": "https://www.wimverhuur.be/",
+        "stack_running": "Dynamics NAV + actieve vacature Power Platform / ICT Automatisatie",
+        "phone": "+32 15 63 63 63",
+        "phone_source": "https://www.wimverhuur.be/nl",
+        "call_hook": "Wim Verhuur: jullie zoeken automation op Power Platform — waar botst vandaag nog de keten van aanvraag/offerte naast Dynamics?",
+        "progressive_fit": "Actieve ICT-automatisatievacature + omzetgroei + stretch ~74 FTE progressive.",
+        "gaps": [
+          "FTE stretch >60"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Neopack NV",
+        "sector": "Productie — kunststofverpakkingen (food/pharma)",
+        "cluster": "productie",
+        "city": "Aalst",
+        "province": "Oost-Vlaanderen",
+        "fte": 23.2,
+        "fte_source": "https://www.companyweb.be/en/0446032625/neopack",
+        "revenue_range": "onbekend (2025); €7.2M omzet in 2024-filing",
+        "revenue_source": "https://www.companyweb.be/nl/0446032625/neopack",
+        "linkedin_url": "https://www.linkedin.com/company/neopack",
+        "website": "https://www.neopack.be/nl/",
+        "stack_running": "Odoo (OBS) — Excel → centraal ERP productie/planning/voorraad",
+        "phone": "+32 53 78 54 71",
+        "phone_source": "https://www.neopack.be/nl/contact/",
+        "call_hook": "Neopack: na de Odoo-stap — waar blijft sales/offerte-opvolging vandaag nog manueel naast productieplanning?",
+        "progressive_fit": "Publieke Odoo-case + mid-productie OVL Aalst + 23.2 FTE.",
+        "gaps": [
+          "LI slug best-effort bevestigen",
+          "2025 omzet niet gepubliceerd"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Eurabo BV",
+        "sector": "Groothandel — eco bouw-/hout-/isolatiematerialen",
+        "cluster": "groothandel",
+        "city": "Ronse (+ vest. Gent)",
+        "province": "Oost-Vlaanderen",
+        "fte": 34.7,
+        "fte_source": "https://www.companyweb.be/nl/0461610429/eurabo",
+        "revenue_range": "€20.6M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0461610429/eurabo",
+        "linkedin_url": "https://www.linkedin.com/company/eurabo-bv",
+        "website": "https://www.eurabo.be/nl",
+        "stack_running": "B2B/B2C webshop + stock per vestiging online; ERP achter shop onzeker",
+        "phone": "+32 55 23 51 40",
+        "phone_source": "https://www.eurabo.be/nl/contact",
+        "call_hook": "Eurabo: multi-site met webshop — waar botst offerte-opvolging vandaag tussen Ronse/Gent en de mailbox?",
+        "progressive_fit": "Webshop + multi-site + FTE-groei 28→34.7 + €20.6M omzet.",
+        "gaps": [
+          "ERP/CRM achter webshop unknown"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "BO-Solutions NV",
+        "sector": "Productie — CNC-verspaning / precisie",
+        "cluster": "productie",
+        "city": "Roeselare",
+        "province": "West-Vlaanderen",
+        "fte": 22.9,
+        "fte_source": "https://www.companyweb.be/en/0436244830/bo-solutions",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/bo-solutions",
+        "website": "https://bo-solutions.be/",
+        "stack_running": "MES + ERP upgrade (Make The Future / Sirris 24 Jun 2026); ISO 9001; CAD/CAM",
+        "phone": "+32 51 24 89 32",
+        "phone_source": "https://bo-solutions.be/contact-bo/",
+        "call_hook": "BO-Solutions: jullie digitaliseren productie met MES — waar blijft kantoor/offerte-opvolging nog manueel?",
+        "progressive_fit": "Agoria/Sirris Make The Future + LI tech-admin vacature Aug 2026 + ambitie →40 FTE.",
+        "gaps": [
+          "exact MES/ERP product name",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Certis Benelux NV",
+        "sector": "Groothandel — verpakkingsmachines / equipment",
+        "cluster": "groothandel",
+        "city": "Gent",
+        "province": "Oost-Vlaanderen",
+        "fte": 33.5,
+        "fte_source": "https://www.companyweb.be/en/0418841545/certis-benelux",
+        "revenue_range": "€17.4M (2025)",
+        "revenue_source": "https://www.companyweb.be/en/0418841545/certis-benelux",
+        "linkedin_url": "https://www.linkedin.com/company/certis-benelux-nv",
+        "website": "https://certis.be/",
+        "stack_running": "onzeker (Peppol-ID; B2B offertevolume)",
+        "phone": "+32 9 355 02 42",
+        "phone_source": "https://certis.be/contacteer-ons/",
+        "call_hook": "Certis: ~34 FTE Gent — waar botst aanvraag→offerte/order vandaag nog naast de machinelevering?",
+        "progressive_fit": "Mid-tech groothandel OVL + stabiel FTE + Peppol + moderne B2B-site.",
+        "gaps": [
+          "stack_running ERP/CRM unknown"
+        ]
+      },
+      {
+        "rank": 7,
+        "name": "Isoproc BV",
+        "sector": "Groothandel — isolatie / bouwtechniek",
+        "cluster": "groothandel",
+        "city": "Mechelen (Hombeek)",
+        "province": "Antwerpen",
+        "fte": 20,
+        "fte_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "revenue_range": "€13.5M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "linkedin_url": "https://www.linkedin.com/company/isoproc",
+        "website": "https://www.isoproc.be/",
+        "stack_running": "Odoo (stock/purchase/production/accounting — jobs + Odoo customer page)",
+        "phone": "+32 15 62 39 35",
+        "phone_source": "https://www.isoproc.be/nl/contact",
+        "call_hook": "Isoproc: jullie noemen Odoo in jobs — waar botst de keten van professionele offerte-aanvraag naar opvolging vandaag?",
+        "progressive_fit": "Expliciet Odoo-signaal + moderne UX + omzetgroei + Antwerp-corridor.",
+        "gaps": [
+          "which Odoo sales/CRM modules active"
+        ]
+      },
+      {
+        "rank": 8,
+        "name": "Pumptech / Flow Group",
+        "sector": "Tech-light groothandel — pompen / flow",
+        "cluster": "tech_light",
+        "city": "Aarschot",
+        "province": "Vlaams-Brabant",
+        "fte": 25.1,
+        "fte_note": "entity ~25.1 cw; AFAS case ~30 Flow Group",
+        "fte_source": "https://www.afas.be/klantverhaal/pumptech",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/pumptech-bv",
+        "website": "https://theflowgroup.eu/",
+        "stack_running": "AFAS ERP (CRM, order/stock, projects, subscriptions, InSite, finance)",
+        "phone": "+32 16 47 44 41",
+        "phone_source": "https://theflowgroup.eu/contact/",
+        "call_hook": "Pumptech: na AFAS — waar blijft sales/offerte-opvolging vandaag nog manueel naast het ERP?",
+        "progressive_fit": "Publieke AFAS-case + FTE-groei + Flow Group-schaal + Vlaams-Brabant.",
+        "gaps": [
+          "exact Flow Group vs entity FTE",
+          "revenue"
+        ]
+      },
+      {
+        "rank": 9,
+        "name": "Huysman Verzekeringen",
+        "sector": "Verzekeringsmakelaar multi-site",
+        "cluster": "verzekeringen",
+        "city": "Eeklo / Brugge (Sint-Kruis)",
+        "province": "Oost-Vlaanderen / West-Vlaanderen",
+        "fte": 28.6,
+        "fte_source": "https://www.companyweb.be/nl/0406813545/zakenkantoor-huysman",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/huysman-verzekeringen",
+        "website": "https://www.huysman.be/",
+        "stack_running": "myBroker digitaal klantenportaal",
+        "phone": "+32 9 376 14 11",
+        "phone_brugge": "+32 50 35 49 32",
+        "phone_source": "https://www.huysman.be/onze-kantoren/eeklo/",
+        "call_hook": "Huysman: digitaal portaal + Brugge-kantoor — waar botst opvolging van nieuwe aanvragen tussen vestigingen?",
+        "progressive_fit": "myBroker-portaal + multi-site incl. Brugge + mid-makelaar.",
+        "gaps": [
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 10,
+        "name": "Cleanit BV",
+        "sector": "Facility / kantoorschoonmaak",
+        "cluster": "facility",
+        "city": "Wommelgem (+ Aartselaar)",
+        "province": "Antwerpen",
+        "fte": 25.4,
+        "fte_source": "https://belscope.be/company/0472162445",
+        "revenue_range": "onbekend (brutomarge ~€1.35M 2024)",
+        "revenue_source": "https://belscope.be/company/0472162445",
+        "linkedin_url": "https://www.linkedin.com/company/cleanpointbv",
+        "website": "https://clean-it.be/",
+        "stack_running": "onzeker (moderne site; focus kantoren/VME; planning-ops)",
+        "phone": "+32 3 887 54 60",
+        "phone_source": "https://clean-it.be/contact/",
+        "call_hook": "Cleanit: met ~25 FTE en focus kantoren/VME — waar kost offertes en contractopvolging vandaag het meest admin?",
+        "progressive_fit": "Mid-facility Antwerp + niche-focus + site claimt +35 professionals; FTE 25.4 cw.",
+        "gaps": [
+          "LI slug Cleanit vs Cleanpoint bevestigen",
+          "stack_running",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 11,
+        "name": "Aannemingen M. & J. Braet NV",
+        "sector": "Bouw / algemene aanneming (non-HVAC)",
+        "cluster": "bouw",
+        "city": "Nieuwpoort",
+        "province": "West-Vlaanderen",
+        "fte": 50.7,
+        "fte_note": "cw latest FAQ 50.7; table row also shows 53.4 in prior read — use 50.7 latest FAQ",
+        "fte_source": "https://www.companyweb.be/nl/0440757607/aannemingen-m-en-j-braet",
+        "revenue_range": "€21.5M (recent filing)",
+        "revenue_source": "https://www.companyweb.be/nl/0440757607/aannemingen-m-en-j-braet",
+        "linkedin_url": null,
+        "website": "https://www.braet.be/",
+        "stack_running": "VLAIO cybersecurity / digitale weerbaarheid via ConXioN",
+        "phone": "+32 58 23 31 13",
+        "phone_source": "https://www.braet.be/contact",
+        "call_hook": "Braet: na het VLAIO-digitaliseringstraject — waar kost admin tussen offerte en werfplanning vandaag nog het meest?",
+        "progressive_fit": "VLAIO+ConXioN digitaal traject + mid-bouw ~51 FTE + €21.5M.",
+        "gaps": [
+          "linkedin_url",
+          "exact stack beyond cyber"
+        ]
+      },
+      {
+        "rank": 12,
+        "name": "Autohandel Didier NV",
+        "sector": "Retail B2B / specialist e-commerce auto-onderdelen",
+        "cluster": "retail_b2b",
+        "city": "Waregem",
+        "province": "West-Vlaanderen",
+        "fte": 36.8,
+        "fte_source": "https://www.companyweb.be/nl/0452332873/autohandel-didier",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/autohandel-didier",
+        "website": "https://www.didier.be/nl",
+        "stack_running": "Full e-commerce (+200k SKU); online-only orderflow",
+        "phone": "+32 56 60 46 79",
+        "phone_source": "https://www.didier.be/nl/contacteer-ons",
+        "call_hook": "Didier: jullie schaalden digitaal én in FTE — waar kost opvolging van B2B-aanvragen buiten de webshop vandaag het meest tijd?",
+        "progressive_fit": "Harde e-com + FTE-groei; digitaal orderflow.",
+        "gaps": [
+          "ERP/CRM behind shop unknown",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 13,
+        "name": "Euroquip",
+        "sector": "Tech-light — equipment / technical service",
+        "cluster": "tech_light",
+        "city": "Pelt",
+        "province": "Limburg",
+        "fte": 22.8,
+        "fte_source": "v2 dashboard / Odoo customer case",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/euroquip-group",
+        "website": "https://www.euroquip.be/",
+        "stack_running": "Odoo (vervangt Dynamics 365/Navision/Excel + Kardex)",
+        "phone": "+32 11 80 75 30",
+        "phone_source": "https://www.euroquip.be/en/contact-euroquip/",
+        "call_hook": "Euroquip: na de Odoo-overstap — waar blijft sales/offerte-opvolging vandaag nog manueel naast serviceorders?",
+        "progressive_fit": "Publieke Odoo-case + Limburg geo + technical service/installations.",
+        "gaps": [
+          "fte_source companyweb URL bevestigen",
+          "revenue"
+        ]
+      },
+      {
+        "rank": 14,
+        "name": "Malfait Verzekeringen NV",
+        "sector": "Verzekeringsmakelaar",
+        "cluster": "verzekeringen",
+        "city": "Kortrijk",
+        "province": "West-Vlaanderen",
+        "fte": 24,
+        "fte_source": "https://www.companyweb.be/nl/0476982850/malfait-verzekeringskantoor",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/nv-malfait-verzekeringskantoor",
+        "website": "https://malfait.be/",
+        "stack_running": "Digitaal klantenportaal (Itsme/e-mail)",
+        "phone": "+32 56 200 800",
+        "phone_source": "https://malfait.be/contact/",
+        "call_hook": "Malfait: met klantenportaal én team rond de 30 — waar loopt de opvolging van nieuwe aanvragen via mail vandaag nog vast?",
+        "progressive_fit": "Digitaal portaal + mid-makelaar WVL; set3-keep.",
+        "gaps": [
+          "broker platform/CRM name unknown",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 15,
+        "name": "Willux.be NV",
+        "sector": "MSP / IT-partner (als klant, geen concurrent)",
+        "cluster": "msp_as_customer",
+        "city": "Haaltert",
+        "province": "Oost-Vlaanderen",
+        "fte": 15.6,
+        "fte_note": "onderkant ICP; AXI-overname 2026 — kwalificeer groep vs entiteit",
+        "fte_source": "https://www.companyweb.be/en/0867410127/willux-be",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/willux.be-nv",
+        "website": "https://willux.be/",
+        "stack_running": "MSP-ops (tickets/offertes/managed services); AXI-groep sinds 2026",
+        "phone": "+32 53 78 25 75",
+        "phone_source": "https://willux.be/",
+        "call_hook": "Willux: hoe houden jullie offertes bij naast tickets — ook na de AXI-stap?",
+        "progressive_fit": "MSP-as-customer (niet AI-software) + digitale ops; size onderkant / groep note.",
+        "gaps": [
+          "FTE onderkant 20",
+          "AXI-groepsgrootte qualify first"
+        ]
+      }
+    ],
+    "top20": [
+      {
+        "rank": 1,
+        "name": "Lima Europe NV (GroGreen)",
+        "sector": "Productie — plantvoeding / agro",
+        "cluster": "productie",
+        "city": "Rumst",
+        "province": "Antwerpen",
+        "fte": 29.1,
+        "fte_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "revenue_range": "€23.3M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "linkedin_url": null,
+        "website": "https://grogreen.pro/",
+        "stack_running": "Odoo 18 Enterprise (Exact/4Plan/Sheets/Asana → Odoo; OBS case 28 Jul 2026)",
+        "phone": "+32 3 844 73 70",
+        "phone_source": "essenscia / Fruit Logistica listings (v2 dashboard)",
+        "call_hook": "GroGreen: na de Odoo-go-live — waar blijft offerte- en klantopvolging vandaag nog steken buiten productie/ERP?",
+        "progressive_fit": "Publieke OBS Odoo 18-case (28 Jul 2026) + multi-company productie + 29.1 FTE Rumst.",
+        "gaps": [
+          "linkedin_url company page te bevestigen"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Wim Verhuur BV",
+        "sector": "Machineverhuur / diensten",
+        "cluster": "verhuur_diensten",
+        "city": "Sint-Katelijne-Waver",
+        "province": "Antwerpen",
+        "fte": 74.3,
+        "fte_note": "stretch above 60 — sterke AI/automation intent",
+        "fte_source": "https://belscope.be/company/0476867242",
+        "revenue_range": "€53.7M (2025)",
+        "revenue_source": "https://belscope.be/company/0476867242",
+        "linkedin_url": "https://www.linkedin.com/company/wimverhuur",
+        "website": "https://www.wimverhuur.be/",
+        "stack_running": "Dynamics NAV + actieve vacature Power Platform / ICT Automatisatie",
+        "phone": "+32 15 63 63 63",
+        "phone_source": "https://www.wimverhuur.be/nl",
+        "call_hook": "Wim Verhuur: jullie zoeken automation op Power Platform — waar botst vandaag nog de keten van aanvraag/offerte naast Dynamics?",
+        "progressive_fit": "Actieve ICT-automatisatievacature + omzetgroei + stretch ~74 FTE progressive.",
+        "gaps": [
+          "FTE stretch >60"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Neopack NV",
+        "sector": "Productie — kunststofverpakkingen (food/pharma)",
+        "cluster": "productie",
+        "city": "Aalst",
+        "province": "Oost-Vlaanderen",
+        "fte": 23.2,
+        "fte_source": "https://www.companyweb.be/en/0446032625/neopack",
+        "revenue_range": "onbekend (2025); €7.2M omzet in 2024-filing",
+        "revenue_source": "https://www.companyweb.be/nl/0446032625/neopack",
+        "linkedin_url": "https://www.linkedin.com/company/neopack",
+        "website": "https://www.neopack.be/nl/",
+        "stack_running": "Odoo (OBS) — Excel → centraal ERP productie/planning/voorraad",
+        "phone": "+32 53 78 54 71",
+        "phone_source": "https://www.neopack.be/nl/contact/",
+        "call_hook": "Neopack: na de Odoo-stap — waar blijft sales/offerte-opvolging vandaag nog manueel naast productieplanning?",
+        "progressive_fit": "Publieke Odoo-case + mid-productie OVL Aalst + 23.2 FTE.",
+        "gaps": [
+          "LI slug best-effort bevestigen",
+          "2025 omzet niet gepubliceerd"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Eurabo BV",
+        "sector": "Groothandel — eco bouw-/hout-/isolatiematerialen",
+        "cluster": "groothandel",
+        "city": "Ronse (+ vest. Gent)",
+        "province": "Oost-Vlaanderen",
+        "fte": 34.7,
+        "fte_source": "https://www.companyweb.be/nl/0461610429/eurabo",
+        "revenue_range": "€20.6M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0461610429/eurabo",
+        "linkedin_url": "https://www.linkedin.com/company/eurabo-bv",
+        "website": "https://www.eurabo.be/nl",
+        "stack_running": "B2B/B2C webshop + stock per vestiging online; ERP achter shop onzeker",
+        "phone": "+32 55 23 51 40",
+        "phone_source": "https://www.eurabo.be/nl/contact",
+        "call_hook": "Eurabo: multi-site met webshop — waar botst offerte-opvolging vandaag tussen Ronse/Gent en de mailbox?",
+        "progressive_fit": "Webshop + multi-site + FTE-groei 28→34.7 + €20.6M omzet.",
+        "gaps": [
+          "ERP/CRM achter webshop unknown"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "BO-Solutions NV",
+        "sector": "Productie — CNC-verspaning / precisie",
+        "cluster": "productie",
+        "city": "Roeselare",
+        "province": "West-Vlaanderen",
+        "fte": 22.9,
+        "fte_source": "https://www.companyweb.be/en/0436244830/bo-solutions",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/bo-solutions",
+        "website": "https://bo-solutions.be/",
+        "stack_running": "MES + ERP upgrade (Make The Future / Sirris 24 Jun 2026); ISO 9001; CAD/CAM",
+        "phone": "+32 51 24 89 32",
+        "phone_source": "https://bo-solutions.be/contact-bo/",
+        "call_hook": "BO-Solutions: jullie digitaliseren productie met MES — waar blijft kantoor/offerte-opvolging nog manueel?",
+        "progressive_fit": "Agoria/Sirris Make The Future + LI tech-admin vacature Aug 2026 + ambitie →40 FTE.",
+        "gaps": [
+          "exact MES/ERP product name",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Certis Benelux NV",
+        "sector": "Groothandel — verpakkingsmachines / equipment",
+        "cluster": "groothandel",
+        "city": "Gent",
+        "province": "Oost-Vlaanderen",
+        "fte": 33.5,
+        "fte_source": "https://www.companyweb.be/en/0418841545/certis-benelux",
+        "revenue_range": "€17.4M (2025)",
+        "revenue_source": "https://www.companyweb.be/en/0418841545/certis-benelux",
+        "linkedin_url": "https://www.linkedin.com/company/certis-benelux-nv",
+        "website": "https://certis.be/",
+        "stack_running": "onzeker (Peppol-ID; B2B offertevolume)",
+        "phone": "+32 9 355 02 42",
+        "phone_source": "https://certis.be/contacteer-ons/",
+        "call_hook": "Certis: ~34 FTE Gent — waar botst aanvraag→offerte/order vandaag nog naast de machinelevering?",
+        "progressive_fit": "Mid-tech groothandel OVL + stabiel FTE + Peppol + moderne B2B-site.",
+        "gaps": [
+          "stack_running ERP/CRM unknown"
+        ]
+      },
+      {
+        "rank": 7,
+        "name": "Isoproc BV",
+        "sector": "Groothandel — isolatie / bouwtechniek",
+        "cluster": "groothandel",
+        "city": "Mechelen (Hombeek)",
+        "province": "Antwerpen",
+        "fte": 20,
+        "fte_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "revenue_range": "€13.5M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "linkedin_url": "https://www.linkedin.com/company/isoproc",
+        "website": "https://www.isoproc.be/",
+        "stack_running": "Odoo (stock/purchase/production/accounting — jobs + Odoo customer page)",
+        "phone": "+32 15 62 39 35",
+        "phone_source": "https://www.isoproc.be/nl/contact",
+        "call_hook": "Isoproc: jullie noemen Odoo in jobs — waar botst de keten van professionele offerte-aanvraag naar opvolging vandaag?",
+        "progressive_fit": "Expliciet Odoo-signaal + moderne UX + omzetgroei + Antwerp-corridor.",
+        "gaps": [
+          "which Odoo sales/CRM modules active"
+        ]
+      },
+      {
+        "rank": 8,
+        "name": "Pumptech / Flow Group",
+        "sector": "Tech-light groothandel — pompen / flow",
+        "cluster": "tech_light",
+        "city": "Aarschot",
+        "province": "Vlaams-Brabant",
+        "fte": 25.1,
+        "fte_note": "entity ~25.1 cw; AFAS case ~30 Flow Group",
+        "fte_source": "https://www.afas.be/klantverhaal/pumptech",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/pumptech-bv",
+        "website": "https://theflowgroup.eu/",
+        "stack_running": "AFAS ERP (CRM, order/stock, projects, subscriptions, InSite, finance)",
+        "phone": "+32 16 47 44 41",
+        "phone_source": "https://theflowgroup.eu/contact/",
+        "call_hook": "Pumptech: na AFAS — waar blijft sales/offerte-opvolging vandaag nog manueel naast het ERP?",
+        "progressive_fit": "Publieke AFAS-case + FTE-groei + Flow Group-schaal + Vlaams-Brabant.",
+        "gaps": [
+          "exact Flow Group vs entity FTE",
+          "revenue"
+        ]
+      },
+      {
+        "rank": 9,
+        "name": "Huysman Verzekeringen",
+        "sector": "Verzekeringsmakelaar multi-site",
+        "cluster": "verzekeringen",
+        "city": "Eeklo / Brugge (Sint-Kruis)",
+        "province": "Oost-Vlaanderen / West-Vlaanderen",
+        "fte": 28.6,
+        "fte_source": "https://www.companyweb.be/nl/0406813545/zakenkantoor-huysman",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/huysman-verzekeringen",
+        "website": "https://www.huysman.be/",
+        "stack_running": "myBroker digitaal klantenportaal",
+        "phone": "+32 9 376 14 11",
+        "phone_brugge": "+32 50 35 49 32",
+        "phone_source": "https://www.huysman.be/onze-kantoren/eeklo/",
+        "call_hook": "Huysman: digitaal portaal + Brugge-kantoor — waar botst opvolging van nieuwe aanvragen tussen vestigingen?",
+        "progressive_fit": "myBroker-portaal + multi-site incl. Brugge + mid-makelaar.",
+        "gaps": [
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 10,
+        "name": "Cleanit BV",
+        "sector": "Facility / kantoorschoonmaak",
+        "cluster": "facility",
+        "city": "Wommelgem (+ Aartselaar)",
+        "province": "Antwerpen",
+        "fte": 25.4,
+        "fte_source": "https://belscope.be/company/0472162445",
+        "revenue_range": "onbekend (brutomarge ~€1.35M 2024)",
+        "revenue_source": "https://belscope.be/company/0472162445",
+        "linkedin_url": "https://www.linkedin.com/company/cleanpointbv",
+        "website": "https://clean-it.be/",
+        "stack_running": "onzeker (moderne site; focus kantoren/VME; planning-ops)",
+        "phone": "+32 3 887 54 60",
+        "phone_source": "https://clean-it.be/contact/",
+        "call_hook": "Cleanit: met ~25 FTE en focus kantoren/VME — waar kost offertes en contractopvolging vandaag het meest admin?",
+        "progressive_fit": "Mid-facility Antwerp + niche-focus + site claimt +35 professionals; FTE 25.4 cw.",
+        "gaps": [
+          "LI slug Cleanit vs Cleanpoint bevestigen",
+          "stack_running",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 11,
+        "name": "Aannemingen M. & J. Braet NV",
+        "sector": "Bouw / algemene aanneming (non-HVAC)",
+        "cluster": "bouw",
+        "city": "Nieuwpoort",
+        "province": "West-Vlaanderen",
+        "fte": 50.7,
+        "fte_note": "cw latest FAQ 50.7; table row also shows 53.4 in prior read — use 50.7 latest FAQ",
+        "fte_source": "https://www.companyweb.be/nl/0440757607/aannemingen-m-en-j-braet",
+        "revenue_range": "€21.5M (recent filing)",
+        "revenue_source": "https://www.companyweb.be/nl/0440757607/aannemingen-m-en-j-braet",
+        "linkedin_url": null,
+        "website": "https://www.braet.be/",
+        "stack_running": "VLAIO cybersecurity / digitale weerbaarheid via ConXioN",
+        "phone": "+32 58 23 31 13",
+        "phone_source": "https://www.braet.be/contact",
+        "call_hook": "Braet: na het VLAIO-digitaliseringstraject — waar kost admin tussen offerte en werfplanning vandaag nog het meest?",
+        "progressive_fit": "VLAIO+ConXioN digitaal traject + mid-bouw ~51 FTE + €21.5M.",
+        "gaps": [
+          "linkedin_url",
+          "exact stack beyond cyber"
+        ]
+      },
+      {
+        "rank": 12,
+        "name": "Autohandel Didier NV",
+        "sector": "Retail B2B / specialist e-commerce auto-onderdelen",
+        "cluster": "retail_b2b",
+        "city": "Waregem",
+        "province": "West-Vlaanderen",
+        "fte": 36.8,
+        "fte_source": "https://www.companyweb.be/nl/0452332873/autohandel-didier",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/autohandel-didier",
+        "website": "https://www.didier.be/nl",
+        "stack_running": "Full e-commerce (+200k SKU); online-only orderflow",
+        "phone": "+32 56 60 46 79",
+        "phone_source": "https://www.didier.be/nl/contacteer-ons",
+        "call_hook": "Didier: jullie schaalden digitaal én in FTE — waar kost opvolging van B2B-aanvragen buiten de webshop vandaag het meest tijd?",
+        "progressive_fit": "Harde e-com + FTE-groei; digitaal orderflow.",
+        "gaps": [
+          "ERP/CRM behind shop unknown",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 13,
+        "name": "Euroquip",
+        "sector": "Tech-light — equipment / technical service",
+        "cluster": "tech_light",
+        "city": "Pelt",
+        "province": "Limburg",
+        "fte": 22.8,
+        "fte_source": "v2 dashboard / Odoo customer case",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/euroquip-group",
+        "website": "https://www.euroquip.be/",
+        "stack_running": "Odoo (vervangt Dynamics 365/Navision/Excel + Kardex)",
+        "phone": "+32 11 80 75 30",
+        "phone_source": "https://www.euroquip.be/en/contact-euroquip/",
+        "call_hook": "Euroquip: na de Odoo-overstap — waar blijft sales/offerte-opvolging vandaag nog manueel naast serviceorders?",
+        "progressive_fit": "Publieke Odoo-case + Limburg geo + technical service/installations.",
+        "gaps": [
+          "fte_source companyweb URL bevestigen",
+          "revenue"
+        ]
+      },
+      {
+        "rank": 14,
+        "name": "Malfait Verzekeringen NV",
+        "sector": "Verzekeringsmakelaar",
+        "cluster": "verzekeringen",
+        "city": "Kortrijk",
+        "province": "West-Vlaanderen",
+        "fte": 24,
+        "fte_source": "https://www.companyweb.be/nl/0476982850/malfait-verzekeringskantoor",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/nv-malfait-verzekeringskantoor",
+        "website": "https://malfait.be/",
+        "stack_running": "Digitaal klantenportaal (Itsme/e-mail)",
+        "phone": "+32 56 200 800",
+        "phone_source": "https://malfait.be/contact/",
+        "call_hook": "Malfait: met klantenportaal én team rond de 30 — waar loopt de opvolging van nieuwe aanvragen via mail vandaag nog vast?",
+        "progressive_fit": "Digitaal portaal + mid-makelaar WVL; set3-keep.",
+        "gaps": [
+          "broker platform/CRM name unknown",
+          "revenue not published"
+        ]
+      },
+      {
+        "rank": 15,
+        "name": "Willux.be NV",
+        "sector": "MSP / IT-partner (als klant, geen concurrent)",
+        "cluster": "msp_as_customer",
+        "city": "Haaltert",
+        "province": "Oost-Vlaanderen",
+        "fte": 15.6,
+        "fte_note": "onderkant ICP; AXI-overname 2026 — kwalificeer groep vs entiteit",
+        "fte_source": "https://www.companyweb.be/en/0867410127/willux-be",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/willux.be-nv",
+        "website": "https://willux.be/",
+        "stack_running": "MSP-ops (tickets/offertes/managed services); AXI-groep sinds 2026",
+        "phone": "+32 53 78 25 75",
+        "phone_source": "https://willux.be/",
+        "call_hook": "Willux: hoe houden jullie offertes bij naast tickets — ook na de AXI-stap?",
+        "progressive_fit": "MSP-as-customer (niet AI-software) + digitale ops; size onderkant / groep note.",
+        "gaps": [
+          "FTE onderkant 20",
+          "AXI-groepsgrootte qualify first"
+        ]
+      },
+      {
+        "rank": 16,
+        "name": "Bouttens NV",
+        "sector": "Groothandel — plaatmateriaal / hout",
+        "cluster": "groothandel",
+        "city": "Kuurne (+ Hasselt/Gembloux)",
+        "province": "West-Vlaanderen",
+        "fte": 23.1,
+        "fte_source": "https://www.companyweb.be/nl/0405317765/bouttens",
+        "revenue_range": "€75.6M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0405317765/bouttens",
+        "linkedin_url": "https://www.linkedin.com/company/bouttens",
+        "website": "https://www.bouttens.be/",
+        "stack_running": "B2B e-commerce / productportaal",
+        "phone": "+32 56 35 01 44",
+        "phone_source": "https://www.bouttens.be/nl/contact",
+        "call_hook": "Bouttens: multi-site met digitaal productportaal — waar botst offerte-opvolging vandaag tussen vestigingen en de mailbox?",
+        "progressive_fit": "Multi-site + e-com + hoge omzet bij lean FTE; set3-keep.",
+        "gaps": [
+          "ERP/CRM behind portal unknown"
+        ]
+      },
+      {
+        "rank": 17,
+        "name": "Frigro NV",
+        "sector": "Groothandel HVAC / koeltechnisch (max 1 installatie-adjacent)",
+        "cluster": "hvac_wholesale_max1",
+        "city": "Wevelgem",
+        "province": "West-Vlaanderen",
+        "fte": 43.7,
+        "fte_source": "https://www.companyweb.be/nl/0420379687/frigro",
+        "revenue_range": "€39.1M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0420379687/frigro",
+        "linkedin_url": "https://www.linkedin.com/company/frigro-nv",
+        "website": "https://www.frigro.be/",
+        "stack_running": "myFrigro portal/webshop; ERP upgrade 28 Nov 2025; Visma/Cafca/Plenion",
+        "phone": "+32 56 41 95 93",
+        "phone_source": "https://www.frigro.be/nl/contact/",
+        "call_hook": "Frigro: jullie draaien al portal én ERP — waar botst vandaag nog de keten van aanvraag/offerte naar opvolging zonder extra admin?",
+        "progressive_fit": "Portal+ERP publiek — enige HVAC-wholesale in Top20 (geen FRONNT-pile).",
+        "gaps": [
+          "exact ERP vendor name"
+        ]
+      },
+      {
+        "rank": 18,
+        "name": "Imagopack Group",
+        "sector": "Food / groothandel specerijen & verpakking B2B",
+        "cluster": "food",
+        "city": "Deerlijk",
+        "province": "West-Vlaanderen",
+        "fte": 19.1,
+        "fte_note": "onderkant ICP (~20)",
+        "fte_source": "https://www.companyweb.be/en/0883177278/imagopackgroup",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": null,
+        "website": "https://www.imagopackgroup.be/",
+        "stack_running": "B2B webshop food professionals",
+        "phone": "+32 56 21 41 58",
+        "phone_source": "https://www.imagopackgroup.be/contact",
+        "call_hook": "Imagopack: met B2B-webshop — waar botst offerte/order-opvolging vandaag nog naast de shop?",
+        "progressive_fit": "Food B2B webshop + WVL; size onderkant 19.1 FTE.",
+        "gaps": [
+          "FTE onderkant",
+          "LI",
+          "revenue",
+          "ERP behind shop"
+        ]
+      },
+      {
+        "rank": 19,
+        "name": "FRS — Flanders Road Services NV",
+        "sector": "Logistiek / goederenvervoer",
+        "cluster": "logistiek",
+        "city": "Brugge (Zeebrugge)",
+        "province": "West-Vlaanderen",
+        "fte": 51.6,
+        "fte_source": "https://www.companyweb.be/nl/0407241236/flanders-road-services",
+        "revenue_range": "€35.2M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0407241236/flanders-road-services",
+        "linkedin_url": null,
+        "website": null,
+        "stack_running": "EDI + MS Dynamics Business Central; vendor portal (TLCC case)",
+        "phone": null,
+        "phone_source": null,
+        "call_hook": "FRS: met EDI/Business Central — waar blijft offerte- en orderopvolging vandaag nog manueel naast planning?",
+        "progressive_fit": "Publiek digitaal spoor + 51.6 FTE + €35M Zeebrugge — phone GAP vóór call.",
+        "gaps": [
+          "phone GAP",
+          "website/LI GAP",
+          "loss 2025 qualify"
+        ]
+      },
+      {
+        "rank": 20,
+        "name": "Network-IT BV",
+        "sector": "MSP / IT-partner (als klant)",
+        "cluster": "msp_as_customer",
+        "city": "Mechelen",
+        "province": "Antwerpen",
+        "fte": null,
+        "fte_note": "FTE companyweb niet in deze run — qualify; LI/site mid-MSP Vlaanderen",
+        "fte_source": null,
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": null,
+        "website": "https://www.network-it.be/",
+        "stack_running": "Managed IT / M365 / cybersecurity voor KMO’s",
+        "phone": "+32 15 63 90 32",
+        "phone_source": "https://www.network-it.be/",
+        "call_hook": "Network-IT: als MSP — waar botst offerte-opvolging vandaag naast tickets en projecten?",
+        "progressive_fit": "MSP-as-customer Mechelen; progressive digitaal ops — FTE gap qualify first.",
+        "gaps": [
+          "fte GAP",
+          "LI",
+          "revenue"
+        ]
+      }
+    ],
+    "hot_ai_intent": [
+      {
+        "name": "Lima Europe NV (GroGreen)",
+        "city": "Rumst",
+        "why_now": "OBS Odoo 18 case last updated 28 Jul 2026 — Exact/4Plan/Sheets/Asana → Odoo multi-company",
+        "why_now_source": "https://obs-belgie.be/klantcases/grogreen-lima-europe",
+        "why_now_date": "2026-07-28",
+        "phone": "+32 3 844 73 70",
+        "phone_source": "essenscia / Fruit Logistica listings",
+        "linkedin_url": null,
+        "website": "https://grogreen.pro/",
+        "fte": 29.1,
+        "fte_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "call_hook": "GroGreen: na de Odoo-go-live — waar blijft offerte- en klantopvolging vandaag nog steken buiten productie/ERP?"
+      },
+      {
+        "name": "Wim Verhuur BV",
+        "city": "Sint-Katelijne-Waver",
+        "why_now": "Active job ICT Applicatie & Automatisatie Specialist — Power Platform + Dynamics NAV; explicit digital transformation",
+        "why_now_source": "https://www.wimverhuur.be/fr/offres-d-emploi/ict-applicatie-automatisatie-specialist",
+        "why_now_date": "active_as_of_2026-10",
+        "phone": "+32 15 63 63 63",
+        "phone_source": "https://www.wimverhuur.be/nl",
+        "linkedin_url": "https://www.linkedin.com/company/wimverhuur",
+        "website": "https://www.wimverhuur.be/",
+        "fte": 74.3,
+        "fte_note": "stretch above 60",
+        "call_hook": "Wim Verhuur: jullie zoeken automation op Power Platform — waar botst vandaag nog de keten van aanvraag/offerte naast Dynamics?"
+      },
+      {
+        "name": "BO-Solutions NV",
+        "city": "Roeselare",
+        "why_now": "Make The Future MES/ERP (Sirris 24 Jun 2026) + LinkedIn tech-admin vacancy 29 Aug 2026",
+        "why_now_source": "https://www.sirris.be/nl/inspiratie/van-metaalstuk-tot-eco-factory-hoe-bo-solutions-versnelt-richting-factory-future",
+        "why_now_date": "2026-08-29",
+        "phone": "+32 51 24 89 32",
+        "phone_source": "https://bo-solutions.be/contact-bo/",
+        "linkedin_url": "https://www.linkedin.com/company/bo-solutions",
+        "website": "https://bo-solutions.be/",
+        "fte": 22.9,
+        "call_hook": "BO-Solutions: productie digitaliseert — waar blijft kantoor/offerte manueel?"
+      },
+      {
+        "name": "Euroquip",
+        "city": "Pelt",
+        "why_now": "Odoo case replacing Dynamics 365/Navision/Excel + Kardex; technical service/installations",
+        "why_now_source": "https://www.odoo.com/customers/euroquip-21510292",
+        "why_now_date": "2026-09",
+        "phone": "+32 11 80 75 30",
+        "phone_source": "https://www.euroquip.be/en/contact-euroquip/",
+        "linkedin_url": "https://www.linkedin.com/company/euroquip-group",
+        "website": "https://www.euroquip.be/",
+        "fte": 22.8,
+        "call_hook": "Euroquip: na de Odoo-overstap — waar blijft sales/offerte-opvolging vandaag nog manueel naast serviceorders?"
+      },
+      {
+        "name": "Aannemingen M. & J. Braet NV",
+        "city": "Nieuwpoort",
+        "why_now": "VLAIO cybersecurity verbetertraject via ConXioN — digitale weerbaarheid",
+        "why_now_source": "https://www.conxion.be/referenties/braet-versterkt-cyberveiligheid-met-vlaio-traject-via-conxion/",
+        "why_now_date": "2025-2026",
+        "phone": "+32 58 23 31 13",
+        "phone_source": "https://www.braet.be/contact",
+        "linkedin_url": null,
+        "website": "https://www.braet.be/",
+        "fte": 50.7,
+        "call_hook": "Braet: na het VLAIO-digitaliseringstraject — waar kost admin tussen offerte en werfplanning vandaag nog het meest?"
+      },
+      {
+        "name": "Isoproc BV",
+        "city": "Mechelen",
+        "why_now": "Odoo in jobs + Odoo customer page (stock/purchase/production/accounting)",
+        "why_now_source": "https://www.odoo.com/nl_NL/customers/isoproc-11222532",
+        "why_now_date": "ongoing_jobs_2026",
+        "phone": "+32 15 62 39 35",
+        "phone_source": "https://www.isoproc.be/nl/contact",
+        "linkedin_url": "https://www.linkedin.com/company/isoproc",
+        "website": "https://www.isoproc.be/",
+        "fte": 20,
+        "call_hook": "Isoproc: Odoo draait al — waar botst professionele offerte-opvolging nog?"
+      },
+      {
+        "name": "Pumptech / Flow Group",
+        "city": "Aarschot",
+        "why_now": "AFAS case (Flow Group): further warehouse digitalisation, technician planning, AFAS rollout to sister entities",
+        "why_now_source": "https://www.afas.be/klantverhaal/pumptech",
+        "why_now_date": "Flow Group 2025+",
+        "phone": "+32 16 47 44 41",
+        "phone_source": "https://theflowgroup.eu/contact/",
+        "linkedin_url": "https://www.linkedin.com/company/pumptech-bv",
+        "website": "https://theflowgroup.eu/",
+        "fte": 25.1,
+        "call_hook": "Flow Group: AFAS staat — waar blijft offerte/sales-opvolging manueel bij de groepsuitrol?"
+      },
+      {
+        "name": "Huysman Verzekeringen",
+        "city": "Eeklo / Brugge",
+        "why_now": "myBroker digital client portal + multi-site incl. Sint-Kruis Brugge",
+        "why_now_source": "https://www.huysman.be/klantenzone/",
+        "why_now_date": "portal_live",
+        "phone": "+32 9 376 14 11",
+        "phone_brugge": "+32 50 35 49 32",
+        "phone_source": "https://www.huysman.be/onze-kantoren/eeklo/",
+        "linkedin_url": "https://www.linkedin.com/company/huysman-verzekeringen",
+        "website": "https://www.huysman.be/",
+        "fte": 28.6,
+        "fte_source": "https://www.companyweb.be/nl/0406813545/zakenkantoor-huysman",
+        "call_hook": "Huysman: digitaal portaal + Brugge-kantoor — waar botst opvolging van nieuwe aanvragen tussen vestigingen?"
+      },
+      {
+        "name": "Neopack NV",
+        "city": "Aalst",
+        "why_now": "OBS Odoo case — Excel → geïntegreerd ERP productie/planning (NEW v3)",
+        "why_now_source": "https://www.odoo.com/customers/neopack-nv-7060637",
+        "why_now_date": "Odoo_case_live",
+        "phone": "+32 53 78 54 71",
+        "phone_source": "https://www.neopack.be/nl/contact/",
+        "linkedin_url": "https://www.linkedin.com/company/neopack",
+        "website": "https://www.neopack.be/nl/",
+        "fte": 23.2,
+        "call_hook": "Neopack: na Odoo — waar blijft sales/offerte manueel naast productieplanning?"
+      },
+      {
+        "name": "Induzz3 NV",
+        "city": "Bilzen-Hoeselt",
+        "why_now": "FRONNT member; industrial automation / panel building — carry-forward (niet Top15-dominant)",
+        "why_now_source": "https://www.induzz.be/",
+        "why_now_date": "FRONNT_ongoing",
+        "phone": "+32 11 524 085",
+        "phone_source": "https://www.induzz.be/",
+        "linkedin_url": "https://www.linkedin.com/company/induzz3",
+        "website": "https://www.induzz.be/",
+        "fte": 24.1,
+        "call_hook": "Induzz3: FRONNT + automatisatie — hoe lopen projectoffertes vandaag uit de mailbox?"
+      },
+      {
+        "name": "Kasteel Brouwerij Vanhonsebrouck",
+        "city": "Izegem",
+        "why_now": "VLAIO + ConXioN cybersecurity / digitale weerbaarheid case (WVL) — stretch FTE",
+        "why_now_source": "https://www.vlaio.be/nl/ondernemersverhalen/brouwerij-vanhonsebrouck-versterkt-digitale-weerbaarheid-met-vlaio-en-conxion",
+        "why_now_date": "2025-2026",
+        "phone": "+32 51 33 51 60",
+        "phone_source": "https://www.vanhonsebrouck.be/contact/",
+        "linkedin_url": "https://www.linkedin.com/company/kasteel-brouwerij-vanhonsebrouck",
+        "website": "https://www.vanhonsebrouck.be/",
+        "fte": 97.7,
+        "fte_note": "stretch above 60",
+        "call_hook": "Vanhonsebrouck: na het VLAIO-digitaliseringstraject — waar blijft order/offerte-admin vandaag nog steken?"
+      }
+    ],
+    "top3_hottest_calls": [
+      {
+        "rank": 1,
+        "name": "Lima Europe NV (GroGreen)",
+        "why": "OBS Odoo 18 case updated 28 Jul 2026 — Exact→Odoo; 29.1 FTE; offerte-keten naast ERP open",
+        "phone": "+32 3 844 73 70"
+      },
+      {
+        "rank": 2,
+        "name": "Wim Verhuur BV",
+        "why": "Active ICT automation job (Power Platform + Dynamics); explicit digital transformation; stretch ~74 FTE",
+        "phone": "+32 15 63 63 63"
+      },
+      {
+        "rank": 3,
+        "name": "Neopack NV",
+        "why": "Odoo case Aalst productie; 23.2 FTE; sales/offerte naast productieplanning open — NEW v3 diversiteit",
+        "phone": "+32 53 78 54 71"
+      }
+    ],
+    "gaps_summary": [
+      "v2 FRONNT-heavy Top15 SUPERSEDED for calling (Climawest/Intec/Van Severen/Lenaerts/Van Vooren → archive/broader only)",
+      "phone GAP: FRS Flanders Road Services (#19)",
+      "FTE GAP: Network-IT (#20), Omnito, Bricx, DSR Logistics",
+      "vastgoed multi: Bricx LI~21 maar entiteit-FTE te klein — expliciete gap",
+      "logistiek: FRS in Top20 zonder tel; Dematra te groot (~98+)",
+      "FTE stretch: Wim 74.3; Vanhonsebrouck ~98; Willux 15.6 onderkant; Imagopack 19.1 onderkant",
+      "revenue onbekend: BO-Solutions, Cleanit, Didier, Euroquip, Malfait, Huysman, Pumptech, Willux, Imagopack, Network-IT",
+      "LI gaps: Lima Europe, Braet, FRS, Imagopack, Network-IT, Cleanit slug",
+      "stack unknown: Certis, Cleanit, FRS modules"
+    ],
+    "broader_reserve_count": 22,
+    "enriched_at": "2026-10-02",
+    "icp_version": "v3",
+    "generated_at": "2026-10-02",
+    "supersedes_calling_priority": "v2 dashboard + v2 md remain archive only",
+    "calling_order_wvl_first": [
+      {
+        "rank": 5,
+        "name": "BO-Solutions NV",
+        "sector": "Productie — CNC-verspaning / precisie",
+        "cluster": "productie",
+        "city": "Roeselare",
+        "province": "West-Vlaanderen",
+        "fte": 22.9,
+        "fte_source": "https://www.companyweb.be/en/0436244830/bo-solutions",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/bo-solutions",
+        "website": "https://bo-solutions.be/",
+        "stack_running": "MES + ERP upgrade (Make The Future / Sirris 24 Jun 2026); ISO 9001; CAD/CAM",
+        "phone": "+32 51 24 89 32",
+        "phone_source": "https://bo-solutions.be/contact-bo/",
+        "call_hook": "BO-Solutions: jullie digitaliseren productie met MES — waar blijft kantoor/offerte-opvolging nog manueel?",
+        "progressive_fit": "Agoria/Sirris Make The Future + LI tech-admin vacature Aug 2026 + ambitie →40 FTE.",
+        "gaps": [
+          "exact MES/ERP product name",
+          "revenue not published"
+        ],
+        "call_rank_wvl_first": 1,
+        "geo_tier": "WVL",
+        "decision_makers": [
+          {
+            "name": "Bart Vandepitte",
+            "role": "CEO / zaakvoerder — New business",
+            "email": "bart.vandepitte@bo-solutions.be",
+            "phone": "+32 478 31 54 38",
+            "sources": [
+              "https://bo-solutions.be/contact-bo/",
+              "https://bo-solutions.be/over-ons/",
+              "https://www.sirris.be/nl/inspiratie/van-metaalstuk-tot-eco-factory-hoe-bo-solutions-versnelt-richting-factory-future",
+              "https://www.linkedin.com/in/bartvandepitte"
+            ],
+            "confidence": "verified"
+          },
+          {
+            "name": "Nancy Van Damme",
+            "role": "Managing Director / medezaakvoerder",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://bo-solutions.be/over-ons/",
+              "https://www.sirris.be/nl/inspiratie/van-metaalstuk-tot-eco-factory-hoe-bo-solutions-versnelt-richting-factory-future",
+              "https://www.linkedin.com/in/nancy-van-damme-879a1511"
+            ],
+            "confidence": "verified",
+            "gap": "geen publiek direct e-mail/GSM op site; alleen switchboard +32 51 24 89 32 / info@bo-solutions.be"
+          }
+        ],
+        "dm_call_ready": true
+      },
+      {
+        "rank": 12,
+        "name": "Autohandel Didier NV",
+        "sector": "Retail B2B / specialist e-commerce auto-onderdelen",
+        "cluster": "retail_b2b",
+        "city": "Waregem",
+        "province": "West-Vlaanderen",
+        "fte": 36.8,
+        "fte_source": "https://www.companyweb.be/nl/0452332873/autohandel-didier",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/autohandel-didier",
+        "website": "https://www.didier.be/nl",
+        "stack_running": "Full e-commerce (+200k SKU); online-only orderflow",
+        "phone": "+32 56 60 46 79",
+        "phone_source": "https://www.didier.be/nl/contacteer-ons",
+        "call_hook": "Didier: jullie schaalden digitaal én in FTE — waar kost opvolging van B2B-aanvragen buiten de webshop vandaag het meest tijd?",
+        "progressive_fit": "Harde e-com + FTE-groei; digitaal orderflow.",
+        "gaps": [
+          "ERP/CRM behind shop unknown",
+          "revenue not published",
+          "dm: naam bekend maar geen publiek direct e-mail/GSM"
+        ],
+        "call_rank_wvl_first": 2,
+        "geo_tier": "WVL",
+        "decision_makers": [
+          {
+            "name": "Mathieu Pannier",
+            "role": "Bestuurder / zaakvoerder (commercieel — e-commerce/uitbreiding)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://belscope.be/company/0452332873",
+              "https://www.made-in.be/west-vlaanderen/waregemse-autohandel-didier-denkt-en-handelt-groen/",
+              "https://www.voka.be/west-vlaanderen/nieuws/ondernemers-2026-14/autohandel-didier-investeert-verdere-groei",
+              "https://www.linkedin.com/in/mathieu-pannier-82521544"
+            ],
+            "confidence": "verified",
+            "gap": "geen publiek direct e-mail/GSM; bel switchboard +32 56 60 46 79 vraag naar Mathieu Pannier; of via Julie (julie@didier.be)",
+            "linkedin_url": "https://www.linkedin.com/in/mathieu-pannier-82521544"
+          },
+          {
+            "name": "Didier Vanwijnsberghe",
+            "role": "Gedelegeerd bestuurder / oprichter",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://belscope.be/company/0452332873",
+              "https://www.made-in.be/west-vlaanderen/waregemse-autohandel-didier-denkt-en-handelt-groen/",
+              "https://www.voka.be/west-vlaanderen/nieuws/ondernemers-2026-14/autohandel-didier-investeert-verdere-groei"
+            ],
+            "confidence": "verified",
+            "gap": "geen publiek direct e-mail/GSM"
+          },
+          {
+            "name": "Els Soenens",
+            "role": "Gedelegeerd bestuurder",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://belscope.be/company/0452332873",
+              "https://www.companyweb.be/company/0452332873/free-pub/23593410"
+            ],
+            "confidence": "verified",
+            "gap": "geen publiek direct e-mail/GSM"
+          },
+          {
+            "name": "Julie Vanwijnsberghe",
+            "role": "2e generatie / HR & recruitment (familie)",
+            "email": "julie@didier.be",
+            "phone": null,
+            "sources": [
+              "https://nl.linkedin.com/posts/autohandel-didier_vacature-commerci%C3%ABle-binnendienst-met-activity-7371925016629915648-XgmD",
+              "https://www.made-in.be/west-vlaanderen/waregemse-autohandel-didier-denkt-en-handelt-groen/",
+              "https://www.linkedin.com/in/julie-vanwijnsberghe-21760512b"
+            ],
+            "confidence": "verified",
+            "gap": null,
+            "note": "Vacature Didier Carparts LI: CV naar julie@didier.be; Made-in/Voka: dochters Julie & Delphine in 2e generatie sinds 2015"
+          },
+          {
+            "name": "Delphine Vanwijnsberghe",
+            "role": "Finance & Administration Manager (LI)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.linkedin.com/in/delphine-vanwijnsberghe-784667120",
+              "https://www.made-in.be/west-vlaanderen/waregemse-autohandel-didier-denkt-en-handelt-groen/"
+            ],
+            "confidence": "verified",
+            "gap": "sterke buyer-rol; geen publiek direct e-mail/GSM — bel switchboard vraag naar Delphine"
+          }
+        ],
+        "dm_call_ready": true,
+        "dm_call_ready_via": "Julie Vanwijnsberghe — julie@didier.be (company LI vacature)",
+        "dm_next_action": "Bel +32 56 60 46 79 vraag Mathieu Pannier; of mail julie@didier.be voor doorverbinding.",
+        "dm_research_note": "Exhaustive 2026-10-02: site contact (info@/parts@/cars@ + switchboards); Made-in/Voka/Nieuwsblad; export-cars.eu GSM +32 475 25 51 00 / +32 471 93 76 40 zonder naam-toewijzing — NIET toegekend; WHOIS/RDAP .be geen registrant e-mail; julie@didier.be geverifieerd via officiële company LI-vacature.",
+        "li_dm_ready": true
+      },
+      {
+        "rank": 14,
+        "name": "Malfait Verzekeringen NV",
+        "sector": "Verzekeringsmakelaar",
+        "cluster": "verzekeringen",
+        "city": "Kortrijk",
+        "province": "West-Vlaanderen",
+        "fte": 24,
+        "fte_source": "https://www.companyweb.be/nl/0476982850/malfait-verzekeringskantoor",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/nv-malfait-verzekeringskantoor",
+        "website": "https://malfait.be/",
+        "stack_running": "Digitaal klantenportaal (Itsme/e-mail)",
+        "phone": "+32 56 200 800",
+        "phone_source": "https://malfait.be/contact/",
+        "call_hook": "Malfait: met klantenportaal én team rond de 30 — waar loopt de opvolging van nieuwe aanvragen via mail vandaag nog vast?",
+        "progressive_fit": "Digitaal portaal + mid-makelaar WVL; set3-keep.",
+        "gaps": [
+          "broker platform/CRM name unknown",
+          "revenue not published"
+        ],
+        "call_rank_wvl_first": 3,
+        "geo_tier": "WVL",
+        "decision_makers": [
+          {
+            "name": "Helena Malfait",
+            "role": "CEO",
+            "email": "helena@malfait.be",
+            "phone": "+32 490 420 257",
+            "sources": [
+              "https://malfait.be/50-jaar-malfait/meet-the-team/"
+            ],
+            "confidence": "verified"
+          },
+          {
+            "name": "Francis Piette",
+            "role": "Commercieel",
+            "email": "francis@malfait.be",
+            "phone": "+32 475 270 696",
+            "sources": [
+              "https://malfait.be/50-jaar-malfait/meet-the-team/"
+            ],
+            "confidence": "verified"
+          },
+          {
+            "name": "Marc Bael",
+            "role": "Partner / vennoot",
+            "email": "marc@malfait.be",
+            "phone": "+32 499 700 699",
+            "sources": [
+              "https://malfait.be/50-jaar-malfait/meet-the-team/",
+              "https://malfait.be/50-jaar-malfait/"
+            ],
+            "confidence": "verified"
+          },
+          {
+            "name": "Erlend Malfait",
+            "role": "Oprichter / gedelegeerd bestuurder (LI)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://malfait.be/50-jaar-malfait/meet-the-team/",
+              "https://www.linkedin.com/in/erlend-malfait-a640128"
+            ],
+            "confidence": "verified",
+            "gap": "geen publiek direct e-mail/GSM op team-pagina"
+          }
+        ],
+        "dm_call_ready": true
+      },
+      {
+        "rank": 11,
+        "name": "Aannemingen M. & J. Braet NV",
+        "sector": "Bouw / algemene aanneming (non-HVAC)",
+        "cluster": "bouw",
+        "city": "Nieuwpoort",
+        "province": "West-Vlaanderen",
+        "fte": 50.7,
+        "fte_note": "cw latest FAQ 50.7; table row also shows 53.4 in prior read — use 50.7 latest FAQ",
+        "fte_source": "https://www.companyweb.be/nl/0440757607/aannemingen-m-en-j-braet",
+        "revenue_range": "€21.5M (recent filing)",
+        "revenue_source": "https://www.companyweb.be/nl/0440757607/aannemingen-m-en-j-braet",
+        "linkedin_url": null,
+        "website": "https://www.braet.be/",
+        "stack_running": "VLAIO cybersecurity / digitale weerbaarheid via ConXioN",
+        "phone": "+32 58 23 31 13",
+        "phone_source": "https://www.braet.be/contact",
+        "call_hook": "Braet: na het VLAIO-digitaliseringstraject — waar kost admin tussen offerte en werfplanning vandaag nog het meest?",
+        "progressive_fit": "VLAIO+ConXioN digitaal traject + mid-bouw ~51 FTE + €21.5M.",
+        "gaps": [
+          "linkedin_url",
+          "exact stack beyond cyber",
+          "dm: naam bekend maar geen publiek direct e-mail/GSM"
+        ],
+        "call_rank_wvl_first": 4,
+        "geo_tier": "WVL",
+        "decision_makers": [
+          {
+            "name": "Pierre-Henri Braet",
+            "role": "Managing Director / dagelijks bestuur (LI sinds aug 2024; Braphinvest → Braet MD/CEO filings 2025–2026)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.linkedin.com/in/pierre-henri-braet-07921aaa",
+              "https://www.northdata.com/Braphinvest%20B%C2%B7V%C2%B7,%20Nieuwpoort/KBO%200761.662.212",
+              "https://braet.be/contact",
+              "https://linkedin.com/company/aannemingenbraetnv",
+              "https://be.linkedin.com/in/pierre-henri-braet-07921aaa"
+            ],
+            "confidence": "verified",
+            "gap": null,
+            "linkedin_url": "https://be.linkedin.com/in/pierre-henri-braet-07921aaa"
+          },
+          {
+            "name": "Jean-Baptiste Braet",
+            "role": "Ex-CEO Braet (1991–2025); nog vaste vertegenwoordiger via JB Braet BV; voorzitter RvB Federale Verzekering (jun 2026)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.federale.be/nl/nieuws/nieuws-detail/2026/06/09/jean-baptiste-braet-nieuwe-voorzitter-raad-van-bestuur-federale-verzekering",
+              "https://www.federale.be/nl/overons/organisatie-van-de-groep",
+              "https://www.linkedin.com/in/jean-baptiste-braet-9a28296",
+              "https://noordvaart.be/_html/main.php?id=92&page=bedrijven&taal=nl",
+              "https://belscope.be/company/0442310694"
+            ],
+            "confidence": "verified",
+            "gap": null,
+            "linkedin_url": "https://www.linkedin.com/in/jean-baptiste-braet-9a28296"
+          },
+          {
+            "name": "Xavier Braet",
+            "role": "Gedelegeerd bestuurder (cumuleo / historisch; Noordvaart contactpersoon met JB)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.cumuleo.be/nl/mandataris/8469-xavier-braet.php",
+              "https://noordvaart.be/_html/main.php?id=92&page=bedrijven&taal=nl"
+            ],
+            "confidence": "onzeker",
+            "gap": "mandaat historisch; huidige dagelijkse rol t.o.v. Pierre-Henri onzeker; geen direct contact"
+          }
+        ],
+        "dm_call_ready": false,
+        "dm_next_action": "Bel +32 58 23 31 13 vraag naar Pierre-Henri Braet (MD/dagelijks bestuur).",
+        "dm_research_note": "Exhaustive 2026-10-02: braet.be/contact + sterkinbouw.be (info@ / sollicitaties@); Noordvaart (GSM leeg); Prospeo toont alleen @braet.be-patronen zonder geverifieerde adressen — NIET verzonnen; Federale org: JB nog VV via JB Braet BV, was CEO tot 2025; Northdata Braphinvest: Pierre-Henri MD/CEO Braet 2025–2026; WHOIS/RDAP/tenders/Architectura/Cylex: geen persoonlijk direct.",
+        "li_dm_ready": true
+      },
+      {
+        "rank": 9,
+        "name": "Huysman Verzekeringen",
+        "sector": "Verzekeringsmakelaar multi-site",
+        "cluster": "verzekeringen",
+        "city": "Eeklo / Brugge (Sint-Kruis)",
+        "province": "Oost-Vlaanderen / West-Vlaanderen",
+        "fte": 28.6,
+        "fte_source": "https://www.companyweb.be/nl/0406813545/zakenkantoor-huysman",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/huysman-verzekeringen",
+        "website": "https://www.huysman.be/",
+        "stack_running": "myBroker digitaal klantenportaal",
+        "phone": "+32 9 376 14 11",
+        "phone_brugge": "+32 50 35 49 32",
+        "phone_source": "https://www.huysman.be/onze-kantoren/eeklo/",
+        "call_hook": "Huysman: digitaal portaal + Brugge-kantoor — waar botst opvolging van nieuwe aanvragen tussen vestigingen?",
+        "progressive_fit": "myBroker-portaal + multi-site incl. Brugge + mid-makelaar.",
+        "gaps": [
+          "revenue not published",
+          "dm: naam bekend maar geen publiek direct e-mail/GSM"
+        ],
+        "call_rank_wvl_first": 5,
+        "geo_tier": "WVL",
+        "decision_makers": [
+          {
+            "name": "Pauline Huysman",
+            "role": "Zaakvoerder / CEO (sinds eind 2024 / BiE)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.huysman.be/over-ons/team/",
+              "https://www.huysman.be/nieuws/huysman-en-brokers-in-excellence-samen-sterker/",
+              "https://taptoe.be/huysman-verzekeringen-eeklostapt-in-groot-netwerk/",
+              "https://be.linkedin.com/in/pauline-huysman-aab786a8",
+              "https://www.linkedin.com/in/pauline-huysman-aab786a8"
+            ],
+            "confidence": "verified",
+            "gap": "team-pagina koppelt gedeelde mailbox huysman@huysman.be + switchboard +32 9 376 14 11 (geen persoonlijk direct)",
+            "linkedin_url": "https://www.linkedin.com/in/pauline-huysman-aab786a8"
+          },
+          {
+            "name": "Peter Huysman",
+            "role": "Bestuurder (ex-CEO; commercieel/Crelan)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.huysman.be/over-ons/team/",
+              "https://taptoe.be/huysman-verzekeringen-eeklostapt-in-groot-netwerk/",
+              "https://www.linkedin.com/in/peter-huysman-a9987068"
+            ],
+            "confidence": "verified",
+            "gap": "zelfde gedeelde mailbox/switchboard als Pauline",
+            "linkedin_url": "https://www.linkedin.com/in/peter-huysman-a9987068"
+          },
+          {
+            "name": "Sabine De Pauw",
+            "role": "Financieel Directeur",
+            "email": "sabine@huysman.be",
+            "phone": "+32 9 376 15 13",
+            "sources": [
+              "https://www.huysman.be/over-ons/team/"
+            ],
+            "confidence": "verified",
+            "gap": null,
+            "note": "Team-pagina Huysman Verzekeringen: sabine@huysman.be + desk +32 9 376 15 13. (Ook vermeld op huysmanbouw.be als sabine@huysmanbouw.be — zelfde desk; Groep Huysman.)"
+          }
+        ],
+        "dm_call_ready": true,
+        "dm_call_ready_via": "Sabine De Pauw — sabine@huysman.be / +32 9 376 15 13",
+        "dm_next_action": "Bel/mail Sabine (FD) of switchboard +32 9 376 14 11 vraag Pauline Huysman.",
+        "dm_research_note": "Exhaustive 2026-10-02: team-pagina toont Pauline/Peter enkel via gedeelde huysman@; andere staff firstname@ + desk/GSM; Sabine FD heeft persoonlijk mail+desk op verzekeringen-team; geen Pauline@/Peter@ gepubliceerd — niet verzonnen.",
+        "li_dm_ready": true
+      },
+      {
+        "rank": 4,
+        "name": "Eurabo BV",
+        "sector": "Groothandel — eco bouw-/hout-/isolatiematerialen",
+        "cluster": "groothandel",
+        "city": "Ronse (+ vest. Gent)",
+        "province": "Oost-Vlaanderen",
+        "fte": 34.7,
+        "fte_source": "https://www.companyweb.be/nl/0461610429/eurabo",
+        "revenue_range": "€20.6M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0461610429/eurabo",
+        "linkedin_url": "https://www.linkedin.com/company/eurabo-bv",
+        "website": "https://www.eurabo.be/nl",
+        "stack_running": "B2B/B2C webshop + stock per vestiging online; ERP achter shop onzeker",
+        "phone": "+32 55 23 51 40",
+        "phone_source": "https://www.eurabo.be/nl/contact",
+        "call_hook": "Eurabo: multi-site met webshop — waar botst offerte-opvolging vandaag tussen Ronse/Gent en de mailbox?",
+        "progressive_fit": "Webshop + multi-site + FTE-groei 28→34.7 + €20.6M omzet.",
+        "gaps": [
+          "ERP/CRM achter webshop unknown"
+        ],
+        "call_rank_wvl_first": 6,
+        "geo_tier": "regio_OV",
+        "decision_makers": [
+          {
+            "name": "Peter Suys",
+            "role": "Gedelegeerd bestuurder / Administrateur délégué",
+            "email": "peter.suys@eurabo.be",
+            "phone": "+32 55 235 148",
+            "sources": [
+              "https://www.eurabo.be/nl/team",
+              "https://www.eurabo.be/fr/equipe",
+              "https://www.linkedin.com/in/suys-peter"
+            ],
+            "confidence": "verified"
+          }
+        ],
+        "dm_call_ready": true
+      },
+      {
+        "rank": 6,
+        "name": "Certis Benelux NV",
+        "sector": "Groothandel — verpakkingsmachines / equipment",
+        "cluster": "groothandel",
+        "city": "Gent",
+        "province": "Oost-Vlaanderen",
+        "fte": 33.5,
+        "fte_source": "https://www.companyweb.be/en/0418841545/certis-benelux",
+        "revenue_range": "€17.4M (2025)",
+        "revenue_source": "https://www.companyweb.be/en/0418841545/certis-benelux",
+        "linkedin_url": "https://www.linkedin.com/company/certis-benelux-nv",
+        "website": "https://certis.be/",
+        "stack_running": "onzeker (Peppol-ID; B2B offertevolume)",
+        "phone": "+32 9 355 02 42",
+        "phone_source": "https://certis.be/contacteer-ons/",
+        "call_hook": "Certis: ~34 FTE Gent — waar botst aanvraag→offerte/order vandaag nog naast de machinelevering?",
+        "progressive_fit": "Mid-tech groothandel OVL + stabiel FTE + Peppol + moderne B2B-site.",
+        "gaps": [
+          "stack_running ERP/CRM unknown",
+          "dm: naam bekend maar geen publiek direct e-mail/GSM"
+        ],
+        "call_rank_wvl_first": 7,
+        "geo_tier": "regio_OV",
+        "decision_makers": [
+          {
+            "name": "Tom Dessomviele",
+            "role": "CEO; vaste vertegenwoordiger CERTIS MANAGEMENT (dagelijks bestuur)",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://certis.be/onze-missie/",
+              "https://www.pappers.be/nl/company/certis-benelux-0418.841.545",
+              "https://www.linkedin.com/in/tomdessomviele",
+              "https://www.companyweb.be/nl/0475786087/certis-management"
+            ],
+            "confidence": "verified",
+            "gap": null,
+            "linkedin_url": "https://www.linkedin.com/in/tomdessomviele"
+          }
+        ],
+        "dm_call_ready": false,
+        "dm_next_action": "Bel +32 9 355 02 42 vraag naar Tom Dessomviele (CEO).",
+        "dm_research_note": "Exhaustive 2026-10-02: certis.be/contact + NL; Valipac MyRecycledContent toont accountmanagers (christel@/patrickdc@/wouter@/koenvd@/jurgenp@/fabien@certis.be + GSM) — géén Tom; LocateFamily 09-2428020/25 (2014 Sint-Denijs-Westrem) te oud/onzeker — NIET als ready; RocketReach paywall; Bulteau parent geen Tom-direct; WHOIS leeg.",
+        "dm_account_managers_public": [
+          {
+            "name": "Christel Donné",
+            "email": "christel@certis.be",
+            "phone": "+32 492 28 93 17",
+            "role": "AM Antwerpen/Limburg",
+            "source": "https://www.myrecycledcontent.be/nl/companies/certis-benelux/"
+          },
+          {
+            "name": "Wouter Dehouck",
+            "email": "wouter@certis.be",
+            "phone": "+32 470 67 17 40",
+            "role": "AM West-Vlaanderen",
+            "source": "https://www.myrecycledcontent.be/nl/companies/certis-benelux/"
+          }
+        ],
+        "li_dm_ready": true
+      },
+      {
+        "rank": 3,
+        "name": "Neopack NV",
+        "sector": "Productie — kunststofverpakkingen (food/pharma)",
+        "cluster": "productie",
+        "city": "Aalst",
+        "province": "Oost-Vlaanderen",
+        "fte": 23.2,
+        "fte_source": "https://www.companyweb.be/en/0446032625/neopack",
+        "revenue_range": "onbekend (2025); €7.2M omzet in 2024-filing",
+        "revenue_source": "https://www.companyweb.be/nl/0446032625/neopack",
+        "linkedin_url": "https://www.linkedin.com/company/neopack",
+        "website": "https://www.neopack.be/nl/",
+        "stack_running": "Odoo (OBS) — Excel → centraal ERP productie/planning/voorraad",
+        "phone": "+32 53 78 54 71",
+        "phone_source": "https://www.neopack.be/nl/contact/",
+        "call_hook": "Neopack: na de Odoo-stap — waar blijft sales/offerte-opvolging vandaag nog manueel naast productieplanning?",
+        "progressive_fit": "Publieke Odoo-case + mid-productie OVL Aalst + 23.2 FTE.",
+        "gaps": [
+          "LI slug best-effort bevestigen",
+          "2025 omzet niet gepubliceerd",
+          "dm: naam bekend maar geen publiek direct e-mail/GSM"
+        ],
+        "call_rank_wvl_first": 8,
+        "geo_tier": "regio_OV",
+        "decision_makers": [
+          {
+            "name": "Werner De Neve",
+            "role": "Vaste vertegenwoordiger JURODE BV / uitvoerend bestuurder / voorzitter RvB",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.pappers.be/nl/company/neopack-0446.032.625",
+              "https://www.neopack.be/nl/over-ons/",
+              "https://busibee.be/fr/0446032625-neopack/publications/1cz8UyPGao1aRyM7sjkHLo/23370946.pdf",
+              "https://www.linkedin.com/in/werner-de-neve-b6a18917a"
+            ],
+            "confidence": "verified",
+            "gap": null,
+            "linkedin_url": "https://www.linkedin.com/in/werner-de-neve-b6a18917a"
+          },
+          {
+            "name": "Tina Van Styvendael",
+            "role": "Bestuurder",
+            "email": null,
+            "phone": null,
+            "sources": [
+              "https://www.pappers.be/nl/company/neopack-0446.032.625",
+              "https://www.neopack.be/nl/over-ons/",
+              "https://busibee.be/fr/0446032625-neopack/publications/1cz8UyPGao1aRyM7sjkHLo/23370946.pdf"
+            ],
+            "confidence": "verified",
+            "gap": "geen publiek direct e-mail/GSM"
+          }
+        ],
+        "dm_call_ready": false,
+        "dm_next_action": "Bel +32 477 96 91 62 of +32 492 89 86 21 (sales GSM's contactpagina) vraag naar Werner De Neve; of +32 53 78 54 71.",
+        "dm_research_note": "Exhaustive 2026-10-02: neopack.be/contact toont sales@ + twee GSM's ZONDER naam; Staatsblad PDF JURODE/Werner/Tina zonder telefoon; Belscope JURODE Hof Somergem 37 zonder tel; geen toewijzing GSM→persoon — NIET verzonnen.",
+        "dm_unassigned_phones": [
+          {
+            "phone": "+32 477 96 91 62",
+            "source": "https://www.neopack.be/nl/contact/",
+            "note": "sales GSM — niet naam-toegekend"
+          },
+          {
+            "phone": "+32 492 89 86 21",
+            "source": "https://www.neopack.be/nl/contact/",
+            "note": "sales GSM — niet naam-toegekend (sommige tel: hrefs foutief naar 477…)"
+          }
+        ],
+        "li_dm_ready": true
+      },
+      {
+        "rank": 15,
+        "name": "Willux.be NV",
+        "sector": "MSP / IT-partner (als klant, geen concurrent)",
+        "cluster": "msp_as_customer",
+        "city": "Haaltert",
+        "province": "Oost-Vlaanderen",
+        "fte": 15.6,
+        "fte_note": "onderkant ICP; AXI-overname 2026 — kwalificeer groep vs entiteit",
+        "fte_source": "https://www.companyweb.be/en/0867410127/willux-be",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/willux.be-nv",
+        "website": "https://willux.be/",
+        "stack_running": "MSP-ops (tickets/offertes/managed services); AXI-groep sinds 2026",
+        "phone": "+32 53 78 25 75",
+        "phone_source": "https://willux.be/",
+        "call_hook": "Willux: hoe houden jullie offertes bij naast tickets — ook na de AXI-stap?",
+        "progressive_fit": "MSP-as-customer (niet AI-software) + digitale ops; size onderkant / groep note.",
+        "gaps": [
+          "FTE onderkant 20",
+          "AXI-groepsgrootte qualify first"
+        ],
+        "call_rank_wvl_first": 9,
+        "geo_tier": "regio_OV",
+        "decision_makers": [
+          {
+            "name": "Peter Steppe",
+            "role": "Oprichter / admin-c WILLUX (RIPE); teamlead op site; betrokken na AXI-partnership",
+            "email": "peter@willux.be",
+            "phone": "+32 477 85 05 91",
+            "sources": [
+              "https://willux.be/over-ons/monniken/",
+              "https://whois.ipip.net/AS39641",
+              "https://rdap.db.ripe.net/autnum/39641",
+              "https://www.axi.be/en/nieuws/axi-versterkt-kmo-aanbod-en-zet-eerste-stap-wallonie",
+              "https://www.linkedin.com/in/petersteppe"
+            ],
+            "confidence": "verified",
+            "note": "e-mail + GSM uit publieke RIPE person-object PS3552-RIPE (last-modified 2026-03-05); AXI-deal: oprichter blijft betrokken"
+          }
+        ],
+        "dm_call_ready": true
+      },
+      {
+        "rank": 1,
+        "name": "Lima Europe NV (GroGreen)",
+        "sector": "Productie — plantvoeding / agro",
+        "cluster": "productie",
+        "city": "Rumst",
+        "province": "Antwerpen",
+        "fte": 29.1,
+        "fte_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "revenue_range": "€23.3M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0473072760/lima-europe",
+        "linkedin_url": null,
+        "website": "https://grogreen.pro/",
+        "stack_running": "Odoo 18 Enterprise (Exact/4Plan/Sheets/Asana → Odoo; OBS case 28 Jul 2026)",
+        "phone": "+32 3 844 73 70",
+        "phone_source": "essenscia / Fruit Logistica listings (v2 dashboard)",
+        "call_hook": "GroGreen: na de Odoo-go-live — waar blijft offerte- en klantopvolging vandaag nog steken buiten productie/ERP?",
+        "progressive_fit": "Publieke OBS Odoo 18-case (28 Jul 2026) + multi-company productie + 29.1 FTE Rumst.",
+        "gaps": [
+          "linkedin_url company page te bevestigen"
+        ],
+        "call_rank_wvl_first": 10,
+        "geo_tier": "verder"
+      },
+      {
+        "rank": 2,
+        "name": "Wim Verhuur BV",
+        "sector": "Machineverhuur / diensten",
+        "cluster": "verhuur_diensten",
+        "city": "Sint-Katelijne-Waver",
+        "province": "Antwerpen",
+        "fte": 74.3,
+        "fte_note": "stretch above 60 — sterke AI/automation intent",
+        "fte_source": "https://belscope.be/company/0476867242",
+        "revenue_range": "€53.7M (2025)",
+        "revenue_source": "https://belscope.be/company/0476867242",
+        "linkedin_url": "https://www.linkedin.com/company/wimverhuur",
+        "website": "https://www.wimverhuur.be/",
+        "stack_running": "Dynamics NAV + actieve vacature Power Platform / ICT Automatisatie",
+        "phone": "+32 15 63 63 63",
+        "phone_source": "https://www.wimverhuur.be/nl",
+        "call_hook": "Wim Verhuur: jullie zoeken automation op Power Platform — waar botst vandaag nog de keten van aanvraag/offerte naast Dynamics?",
+        "progressive_fit": "Actieve ICT-automatisatievacature + omzetgroei + stretch ~74 FTE progressive.",
+        "gaps": [
+          "FTE stretch >60"
+        ],
+        "call_rank_wvl_first": 11,
+        "geo_tier": "verder"
+      },
+      {
+        "rank": 7,
+        "name": "Isoproc BV",
+        "sector": "Groothandel — isolatie / bouwtechniek",
+        "cluster": "groothandel",
+        "city": "Mechelen (Hombeek)",
+        "province": "Antwerpen",
+        "fte": 20,
+        "fte_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "revenue_range": "€13.5M (2025)",
+        "revenue_source": "https://www.companyweb.be/nl/0474142631/isoproc",
+        "linkedin_url": "https://www.linkedin.com/company/isoproc",
+        "website": "https://www.isoproc.be/",
+        "stack_running": "Odoo (stock/purchase/production/accounting — jobs + Odoo customer page)",
+        "phone": "+32 15 62 39 35",
+        "phone_source": "https://www.isoproc.be/nl/contact",
+        "call_hook": "Isoproc: jullie noemen Odoo in jobs — waar botst de keten van professionele offerte-aanvraag naar opvolging vandaag?",
+        "progressive_fit": "Expliciet Odoo-signaal + moderne UX + omzetgroei + Antwerp-corridor.",
+        "gaps": [
+          "which Odoo sales/CRM modules active"
+        ],
+        "call_rank_wvl_first": 12,
+        "geo_tier": "verder"
+      },
+      {
+        "rank": 10,
+        "name": "Cleanit BV",
+        "sector": "Facility / kantoorschoonmaak",
+        "cluster": "facility",
+        "city": "Wommelgem (+ Aartselaar)",
+        "province": "Antwerpen",
+        "fte": 25.4,
+        "fte_source": "https://belscope.be/company/0472162445",
+        "revenue_range": "onbekend (brutomarge ~€1.35M 2024)",
+        "revenue_source": "https://belscope.be/company/0472162445",
+        "linkedin_url": "https://www.linkedin.com/company/cleanpointbv",
+        "website": "https://clean-it.be/",
+        "stack_running": "onzeker (moderne site; focus kantoren/VME; planning-ops)",
+        "phone": "+32 3 887 54 60",
+        "phone_source": "https://clean-it.be/contact/",
+        "call_hook": "Cleanit: met ~25 FTE en focus kantoren/VME — waar kost offertes en contractopvolging vandaag het meest admin?",
+        "progressive_fit": "Mid-facility Antwerp + niche-focus + site claimt +35 professionals; FTE 25.4 cw.",
+        "gaps": [
+          "LI slug Cleanit vs Cleanpoint bevestigen",
+          "stack_running",
+          "revenue not published"
+        ],
+        "call_rank_wvl_first": 13,
+        "geo_tier": "verder"
+      },
+      {
+        "rank": 8,
+        "name": "Pumptech / Flow Group",
+        "sector": "Tech-light groothandel — pompen / flow",
+        "cluster": "tech_light",
+        "city": "Aarschot",
+        "province": "Vlaams-Brabant",
+        "fte": 25.1,
+        "fte_note": "entity ~25.1 cw; AFAS case ~30 Flow Group",
+        "fte_source": "https://www.afas.be/klantverhaal/pumptech",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/pumptech-bv",
+        "website": "https://theflowgroup.eu/",
+        "stack_running": "AFAS ERP (CRM, order/stock, projects, subscriptions, InSite, finance)",
+        "phone": "+32 16 47 44 41",
+        "phone_source": "https://theflowgroup.eu/contact/",
+        "call_hook": "Pumptech: na AFAS — waar blijft sales/offerte-opvolging vandaag nog manueel naast het ERP?",
+        "progressive_fit": "Publieke AFAS-case + FTE-groei + Flow Group-schaal + Vlaams-Brabant.",
+        "gaps": [
+          "exact Flow Group vs entity FTE",
+          "revenue"
+        ],
+        "call_rank_wvl_first": 14,
+        "geo_tier": "verder"
+      },
+      {
+        "rank": 13,
+        "name": "Euroquip",
+        "sector": "Tech-light — equipment / technical service",
+        "cluster": "tech_light",
+        "city": "Pelt",
+        "province": "Limburg",
+        "fte": 22.8,
+        "fte_source": "v2 dashboard / Odoo customer case",
+        "revenue_range": "onbekend",
+        "revenue_source": null,
+        "linkedin_url": "https://www.linkedin.com/company/euroquip-group",
+        "website": "https://www.euroquip.be/",
+        "stack_running": "Odoo (vervangt Dynamics 365/Navision/Excel + Kardex)",
+        "phone": "+32 11 80 75 30",
+        "phone_source": "https://www.euroquip.be/en/contact-euroquip/",
+        "call_hook": "Euroquip: na de Odoo-overstap — waar blijft sales/offerte-opvolging vandaag nog manueel naast serviceorders?",
+        "progressive_fit": "Publieke Odoo-case + Limburg geo + technical service/installations.",
+        "gaps": [
+          "fte_source companyweb URL bevestigen",
+          "revenue"
+        ],
+        "call_rank_wvl_first": 15,
+        "geo_tier": "verder"
+      }
+    ],
+    "calling_note": "Sander 2 okt 2026: eerst WVL/regio bellen, pas daarna verder buiten. Sector-mix Top15 blijft; alleen volgorde herschikt.",
+    "generated_at_calling_reorder": "2026-10-02T16:24+02:00",
+    "dm_enrichment": {
+      "generated_at": "2026-10-02",
+      "updated_at": "2026-10-02T16:50:00+02:00",
+      "scope": "calling_order_wvl_first[0..8] only",
+      "rule": "NO invented names/emails/phones — verified public sources only",
+      "dm_call_ready_definition": "true iff ≥1 DM with name AND (email OR direct phone)",
+      "dm_call_ready_count": 6,
+      "dm_call_ready_of": 9,
+      "gap_round": "2026-10-02 close attempt ranks 2,4,5,7,8",
+      "newly_ready": [
+        "Autohandel Didier NV (Julie Vanwijnsberghe julie@didier.be)",
+        "Huysman Verzekeringen (Sabine De Pauw sabine@huysman.be / +32 9 376 15 13)"
+      ],
+      "still_gaps": [
+        "Aannemingen M. & J. Braet NV",
+        "Certis Benelux NV",
+        "Neopack NV"
+      ],
+      "li_dm_updated_at": "2026-10-02T16:42:00+02:00",
+      "li_dm_note": "Braet/Certis/Neopack (+Didier Mathieu, Huysman Pauline/Peter) public LinkedIn URLs added for LI DM",
+      "planning_check_at": "2026-10-02T17:19+02:00",
+      "planning_check_status": "partial",
+      "planning_check_note": "17:11 one-shot: direct mail/GSM filled for Didier + Huysman; still_gaps Braet, Certis, Neopack. All three have li_dm_ready + switchboard next_action. Marked weekboard 🟡; Primary pinged."
+    },
+    "calling_status": "HOLD",
+    "calling_hold_note": "HOLD tot Sander «mag bellen» zegt. Scripts: Desktop upgraide-sales-scripts /workspace/upgraide/sales/"
+  }
+}
